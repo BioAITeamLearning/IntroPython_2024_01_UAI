@@ -3,7 +3,7 @@
 
 title: Introducción a Python 2024 - 01
 author: Reinel Tabares, Johan Piña, Brayan Arteaga
-logo: images/logo.png
+logo: _static/images/logo.png
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
@@ -21,7 +21,7 @@ launch_buttons:
 
 # Information about where the book exists on the web
 repository:
-  url: https://github.com/BioAITeamLearning/IntroPython_2023_03_UAI  # Online location of your book
+  url: https://github.com/BioAITeamLearning/IntroPython_2024_01_UAI  # Online location of your book
   branch: main  # Which branch of the repository should be used when creating links (optional)
 
 # Add GitHub buttons to your book

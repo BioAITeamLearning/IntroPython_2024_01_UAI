@@ -12,7 +12,7 @@ title: Bienvenida al curso
 :class-body: text-center
 :class-header: bg-light text-center
 
-```{image} images/rts.png
+```{image} _static/images/rts.png
 :height: 100
 :class: rounded
 ```
@@ -25,7 +25,7 @@ title: Bienvenida al curso
 :::{grid-item-card} Johan 🍍
 :class-body: text-center
 :class-header: bg-light text-center
-```{image} images/jpd.png
+```{image} _static/images/jpd.png
 :height: 100
 :class: rounded
 ```
@@ -38,7 +38,7 @@ title: Bienvenida al curso
 :::{grid-item-card} Brayan Arteaga
 :class-body: text-center
 :class-header: bg-light text-center
-```{image} images/hba.png
+```{image} _static/images/hba.png
 :height: 100
 :class: rounded
 ```
@@ -93,7 +93,7 @@ title: Bienvenida al curso
 
 
 <a href="https://www.algoritmospublicos.cl/">
-    <img src="images/globlabAlgoEticos.png" alt="RepoAlgoritmosEticos">
+    <img src="_static/images/globlabAlgoEticos.png" alt="RepoAlgoritmosEticos">
 </a>
 
 ---
@@ -111,7 +111,7 @@ Introducir a los estudiantes en el uso del lenguaje de programación Python para
 :gutter: 3
 
 :::{grid-item-card}
-:link: Tema_1_1_Intro_TiposDeDatos_Sintaxis_10_08_2023
+:link: Introduccion
 :link-type: doc
 :class-header: bg-light
 

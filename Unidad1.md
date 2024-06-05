@@ -36,5 +36,5 @@ Google ha hecho lo más genial al proporcionar un servicio gratuito de servicio 
 
 ## Datos utilizados en la unidad
 ```{note}
-Recurso 📂 [Data](https://github.com/BioAITeamLearning/IntroPython_2023_03_UAI/tree/main/Data)
+Recurso 📂 [Data](https://github.com/BioAITeamLearning/IntroPython_2024_01_UAI/tree/main/Data)
 ```
