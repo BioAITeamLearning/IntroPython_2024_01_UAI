@@ -60,6 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Introduccion';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Operaciones con tipos y estructuras condicionales" href="OperacionesCondicionales.html" />
     <link rel="prev" title="Introducción a Python" href="Unidad1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -179,6 +180,8 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="Unidad1.html">Introducción a Python</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Primeros pasos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OperacionesCondicionales.html">Operaciones con tipos y estructuras condicionales</a></li>
+
 </ul>
 </details></li>
 </ul>
@@ -438,6 +441,10 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-0-pedir-edad">Ejercicio 0: Pedir edad</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-recibir-y-mostrar-datos">Ejercicio 1: Recibir y mostrar datos</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2-realizar-operaciones-matematicas-con-datos-ingresados-por-el-usuario">Ejercicio 2: Realizar operaciones matemáticas con datos ingresados por el usuario</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formato-para-definir-variables">Formato para definir variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convenciones-de-nombres">Convenciones de nombres</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Ejercicio</a></li>
@@ -1766,7 +1773,7 @@ True
 <section id="entrada-dinamica-de-datos-en-python">
 <h2>Entrada dinámica de datos en python<a class="headerlink" href="#entrada-dinamica-de-datos-en-python" title="Link to this heading">#</a></h2>
 <p>Hasta aquí hemos visto como imprimir información desde el programa hacia los usuarios.</p>
-<p>Sin embargo, una persona que quiera probar o hacer un programa debe poder entender sobre variables para, por ejemplo, hacer una calculadora, o un validador de edad. Pero en la vida real, lo que buscamos es que el usuario ingrese la información de manera dinámica.</p>
+<p>Sin embargo, una persona que quiera probar o hacer un programa debe entender sobre variables para, por ejemplo, hacer una calculadora, o un validador de edad. Pero en la vida real, lo que buscamos es que el usuario ingrese la información de manera dinámica, sin tener que saber programar.</p>
 <p>Para esto, Python cuenta con la función <code class="docutils literal notranslate"><span class="pre">input()</span></code> para pedirle a un usuario externo que ingrese algunos datos y nosotros realizar las validaciones o procesos.</p>
 <img src="https://scaler.com/topics/images/input-and-output-in-python-1024x928.webp" width=400>
 <p>La función <code class="docutils literal notranslate"><span class="pre">input()</span></code> en Python se utiliza para recibir datos del usuario. Es una manera efectiva de hacer que tus programas sean interactivos, permitiendo a los usuarios ingresar información que luego puede ser utilizada por el programa.</p>
@@ -1876,6 +1883,50 @@ El usuario escribió:  3
 </div>
 </section>
 </section>
+<section id="formato-para-definir-variables">
+<h2>Formato para definir variables<a class="headerlink" href="#formato-para-definir-variables" title="Link to this heading">#</a></h2>
+<p>Definir nombres de variables de manera consistente y clara es una práctica esencial en la programación. Utilizar convenciones de nombres estándar no solo hace que tu código sea más legible y mantenible, sino que también facilita la colaboración con otros desarrolladores. En esta clase, exploraremos las diferentes convenciones de nombres y las mejores prácticas para definir variables en Python.</p>
+<section id="convenciones-de-nombres">
+<h3>Convenciones de nombres<a class="headerlink" href="#convenciones-de-nombres" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Snake Case (snake_case)</strong></p></li>
+</ol>
+<p>En snake_case, todas las letras son minúsculas y las palabras están separadas por guiones bajos (_).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">numero_de_estudiantes</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">nombre_del_profesor</span> <span class="o">=</span> <span class="s2">&quot;Carlos&quot;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Camel Case (camelCase)</strong></p></li>
+</ol>
+<p>En camelCase, la primera letra de la primera palabra es minúscula y la primera letra de cada palabra subsiguiente es mayúscula.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">numeroDeEstudiantes</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">nombreDelProfesor</span> <span class="o">=</span> <span class="s2">&quot;Carlos&quot;</span>
+
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>Pascal Case (PascalCase)</strong></p></li>
+</ol>
+<p>En PascalCase, la primera letra de cada palabra es mayúscula.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NumeroDeEstudiantes</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">NombreDelProfesor</span> <span class="o">=</span> <span class="s2">&quot;Carlos&quot;</span>
+
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p><strong>Mayúsculas para Constantes</strong></p></li>
+</ol>
+<p>Las constantes, o variables que no deberían cambiar su valor, se escriben generalmente en mayúsculas con guiones bajos (_) entre las palabras.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PI</span> <span class="o">=</span> <span class="mf">3.14159</span>
+<span class="n">VELOCIDAD_DE_LUZ</span> <span class="o">=</span> <span class="mi">299792458</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>Seguir una convención de nombres hace que tu código sea más fácil de leer y entender, tanto para ti como para otros desarrolladores.</strong></p>
+</div></blockquote>
+</section>
+</section>
 <section id="id2">
 <h2>Ejercicio<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p><strong>Contexto</strong></p>
@@ -1983,6 +2034,15 @@ El usuario escribió:  3
         <p class="prev-next-title">Introducción a Python</p>
       </div>
     </a>
+    <a class="right-next"
+       href="OperacionesCondicionales.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Operaciones con tipos y estructuras condicionales</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -2030,6 +2090,10 @@ El usuario escribió:  3
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-0-pedir-edad">Ejercicio 0: Pedir edad</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-recibir-y-mostrar-datos">Ejercicio 1: Recibir y mostrar datos</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2-realizar-operaciones-matematicas-con-datos-ingresados-por-el-usuario">Ejercicio 2: Realizar operaciones matemáticas con datos ingresados por el usuario</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formato-para-definir-variables">Formato para definir variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convenciones-de-nombres">Convenciones de nombres</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Ejercicio</a></li>
