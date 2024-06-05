@@ -429,13 +429,19 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-verificar-edad-o-altura">Ejercicio: Verificar Edad o Altura</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-de-asignacion">Operadores de asignación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ejercicio:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jerarquia-de-operadores">Jerarquía de operadores</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrada-dinamica-de-datos-en-python">Entrada dinámica de datos en python</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-0-pedir-edad">Ejercicio 0: Pedir edad</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-recibir-y-mostrar-datos">Ejercicio 1: Recibir y mostrar datos</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2-realizar-operaciones-matematicas-con-datos-ingresados-por-el-usuario">Ejercicio 2: Realizar operaciones matemáticas con datos ingresados por el usuario</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ejercicio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Ejercicio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reto-1-factura-empresa-de-hamburguesas">Reto 1: Factura Empresa de hamburguesas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reto-analisis-de-informacion-financiera">Reto: Análisis de Información Financiera</a></li>
 </ul>
             </nav>
@@ -780,7 +786,52 @@ Alvaro
 </section>
 <section id="operaciones-aritmeticas">
 <h2>Operaciones Aritméticas<a class="headerlink" href="#operaciones-aritmeticas" title="Link to this heading">#</a></h2>
-<img src="https://miro.medium.com/v2/resize:fit:1400/1*7U1Sp-DucFUUF9XECXPbyQ.png" width=600><div class="cell docutils container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Operador</th>
+<th style="text-align:center">Descripción</th>
+<th style="text-align:center">Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">+</td>
+<td style="text-align:center">Realiza Adición entre los operandos</td>
+<td style="text-align:center">12 + 3 = 15</td>
+</tr>
+<tr>
+<td style="text-align:center">-</td>
+<td style="text-align:center">Realiza Substracción entre los operandos</td>
+<td style="text-align:center">12 - 3 = 9</td>
+</tr>
+<tr>
+<td style="text-align:center">*</td>
+<td style="text-align:center">Realiza Multiplicación entre los operandos</td>
+<td style="text-align:center">12 * 3 = 36</td>
+</tr>
+<tr>
+<td style="text-align:center">/</td>
+<td style="text-align:center">Realiza División entre los operandos</td>
+<td style="text-align:center">12 / 3 = 4</td>
+</tr>
+<tr>
+<td style="text-align:center">%</td>
+<td style="text-align:center">Realiza un módulo entre los operandos</td>
+<td style="text-align:center">16 % 3 = 1</td>
+</tr>
+<tr>
+<td style="text-align:center">**</td>
+<td style="text-align:center">Realiza la potencia de los operandos</td>
+<td style="text-align:center">12 ** 3 = 1728</td>
+</tr>
+<tr>
+<td style="text-align:center">//</td>
+<td style="text-align:center">Realiza la división con resultado de número entero</td>
+<td style="text-align:center">18 // 5 = 3</td>
+</tr>
+</tbody>
+</table><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Suma y resta</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Suma = &quot;</span><span class="p">,</span> <span class="mi">4</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span>
@@ -812,6 +863,78 @@ Resta =  -1
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Multiplicación =  30
 División =  3.3333333333333335
 División entera =  3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="o">//</span><span class="n">b</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+
+<span class="c1"># Tipo de variable &#39;c&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+&lt;class &#39;int&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mf">2.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tipo de variable &#39;a&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+
+<span class="c1"># Tipo de variable &#39;b&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+
+<span class="c1"># Tipo de variable &#39;c&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;int&#39;&gt;
+&lt;class &#39;int&#39;&gt;
+&lt;class &#39;float&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">operacion_a</span> <span class="o">=</span> <span class="n">a</span><span class="o">/</span><span class="n">b</span>
+
+<span class="n">operacion_b</span> <span class="o">=</span> <span class="n">a</span><span class="o">/</span><span class="n">c</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">operacion_a</span><span class="p">)</span>
+<span class="c1"># Tipo de dato &#39;operacion_a&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">operacion_a</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">operacion_b</span><span class="p">)</span>
+<span class="c1"># Tipo de dato &#39;operacion_b&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">operacion_b</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.0
+&lt;class &#39;float&#39;&gt;
+3.0
+&lt;class &#39;float&#39;&gt;
 </pre></div>
 </div>
 </div>
@@ -946,7 +1069,8 @@ Convertir número a decimal=  3.5
 <img src="https://programacionpython.wordpress.com/wp-content/uploads/2008/07/signos1.jpg">
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span><span class="o">&lt;</span><span class="mi">6</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#m Menor que</span>
+<span class="mi">5</span><span class="o">&lt;</span><span class="mi">6</span>
 </pre></div>
 </div>
 </div>
@@ -958,7 +1082,75 @@ Convertir número a decimal=  3.5
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;Hola&#39;</span> <span class="o">==</span> <span class="s1">&#39;Holaa&#39;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">a1</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">b1</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">c1</span> <span class="o">=</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mayor que</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">a1</span> <span class="o">&gt;</span> <span class="n">b1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Menor que</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">b1</span> <span class="o">&lt;</span> <span class="n">a1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mayor o igual que</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">b1</span> <span class="o">&gt;=</span> <span class="n">c1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Menor o igual que</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">b1</span> <span class="o">&lt;=</span> <span class="n">c1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Igual</span>
+<span class="s1">&#39;Hola&#39;</span> <span class="o">==</span> <span class="s1">&#39;Adios&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -970,7 +1162,24 @@ Convertir número a decimal=  3.5
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="o">!=</span> <span class="mi">0</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cadena1</span> <span class="o">=</span> <span class="s1">&#39;Adios&#39;</span>
+<span class="n">cadena2</span> <span class="o">=</span> <span class="s1">&#39;Bye&#39;</span>
+
+<span class="n">cadena0</span> <span class="o">=</span> <span class="n">cadena1</span> <span class="o">!=</span> <span class="n">cadena2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cadena0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Diferente</span>
+<span class="mi">1</span> <span class="o">!=</span> <span class="mi">0</span>
 </pre></div>
 </div>
 </div>
@@ -988,6 +1197,141 @@ Convertir número a decimal=  3.5
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num_1</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">num_2</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">num_3</span> <span class="o">=</span> <span class="mf">2.0001</span>
+<span class="n">num_4</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">letra_E</span> <span class="o">=</span> <span class="s1">&#39;E&#39;</span>
+<span class="n">letra_e</span> <span class="o">=</span> <span class="s1">&#39;e&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tipo de dato &#39;num_1&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tipo de dato &#39;num_1&#39;:&quot;</span><span class="p">,</span><span class="nb">type</span><span class="p">(</span><span class="n">num_1</span><span class="p">))</span>
+
+<span class="c1"># Tipo de dato &#39;num_2&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tipo de dato &#39;num_2&#39;:&quot;</span><span class="p">,</span><span class="nb">type</span><span class="p">(</span><span class="n">num_2</span><span class="p">))</span>
+
+<span class="c1"># Tipo de dato &#39;num_3&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tipo de dato &#39;num_3&#39;:&quot;</span><span class="p">,</span><span class="nb">type</span><span class="p">(</span><span class="n">num_3</span><span class="p">))</span>
+
+<span class="c1"># Tipo de dato &#39;num_4&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tipo de dato &#39;num_4&#39;:&quot;</span><span class="p">,</span><span class="nb">type</span><span class="p">(</span><span class="n">num_4</span><span class="p">))</span>
+
+<span class="c1"># Tipo de dato &#39;letra_E&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tipo de dato &#39;letra_E&#39;: &quot;</span><span class="p">,</span><span class="nb">type</span><span class="p">(</span><span class="n">letra_E</span><span class="p">))</span>
+
+<span class="c1"># Tipo de dato &#39;letra_e&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tipo de dato &#39;letra_E&#39;:&quot;</span><span class="p">,</span><span class="nb">type</span><span class="p">(</span><span class="n">letra_e</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tipo de dato &#39;num_1&#39;: &lt;class &#39;int&#39;&gt;
+Tipo de dato &#39;num_2&#39;: &lt;class &#39;int&#39;&gt;
+Tipo de dato &#39;num_3&#39;: &lt;class &#39;float&#39;&gt;
+Tipo de dato &#39;num_4&#39;: &lt;class &#39;int&#39;&gt;
+Tipo de dato &#39;letra_E&#39;:  &lt;class &#39;str&#39;&gt;
+Tipo de dato &#39;letra_E&#39;: &lt;class &#39;str&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2 es mayor que 5?</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">num_1</span> <span class="o">&gt;</span> <span class="n">num_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2 es menor que 5?</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">num_1</span> <span class="o">&lt;</span> <span class="n">num_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2 es mayor o igual que 5?</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">num_1</span> <span class="o">&gt;=</span> <span class="n">num_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2 es menor o igual que 5?</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">num_1</span> <span class="o">&lt;=</span> <span class="n">num_2</span><span class="p">)</span>
+
+<span class="c1"># 2 es menor o igual que 2?</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">num_1</span> <span class="o">&lt;=</span> <span class="n">num_4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2 es igual a 2.0001?</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">num_1</span> <span class="o">==</span> <span class="n">num_3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2 es diferente a 2.0001?</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">num_1</span> <span class="o">!=</span> <span class="n">num_3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># la letra &#39;E&#39; es diferente a la letra &#39;e&#39;?</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">letra_E</span> <span class="o">!=</span> <span class="n">letra_e</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -1124,6 +1468,272 @@ True
 </div>
 </section>
 </section>
+<section id="operadores-de-asignacion">
+<h2>Operadores de asignación<a class="headerlink" href="#operadores-de-asignacion" title="Link to this heading">#</a></h2>
+<p>Los operadores de asignación en Python se utilizan para asignar valores a las variables. Estos operadores combinan una operación matemática con la asignación, lo que permite escribir el código de manera más concisa y eficiente.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Operador</th>
+<th style="text-align:center">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">=</td>
+<td style="text-align:center">a = 5. El valor 5 es asignado a la variable a</td>
+</tr>
+<tr>
+<td style="text-align:center">+=</td>
+<td style="text-align:center">a += 5 es equivalente a a = a + 5</td>
+</tr>
+<tr>
+<td style="text-align:center">-=</td>
+<td style="text-align:center">a -= 5 es equivalente a a = a - 5</td>
+</tr>
+<tr>
+<td style="text-align:center">*=</td>
+<td style="text-align:center">a *= 3 es equivalente a a = a * 3</td>
+</tr>
+<tr>
+<td style="text-align:center">/=</td>
+<td style="text-align:center">a /= 3 es equivalente a a = a / 3</td>
+</tr>
+<tr>
+<td style="text-align:center">%=</td>
+<td style="text-align:center">a %= 3 es equivalente a a = a % 3</td>
+</tr>
+<tr>
+<td style="text-align:center">**=</td>
+<td style="text-align:center">a **= 3 es equivalente a a = a ** 3</td>
+</tr>
+<tr>
+<td style="text-align:center">//=</td>
+<td style="text-align:center">a //= 3 es equivalente a a = a // 3</td>
+</tr>
+</tbody>
+</table><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">var3</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">var3</span> <span class="o">+=</span> <span class="mi">3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">var3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">var3</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">var3</span> <span class="o">-=</span> <span class="mi">10</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">var3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-8
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">var3</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">var3</span> <span class="o">*=</span> <span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">var3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">var3</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">var3</span> <span class="o">**=</span> <span class="mi">4</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">var3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">var3</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">var3</span> <span class="o">/=</span> <span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">var3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">var3</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">var3</span> <span class="o">//=</span> <span class="mf">1.5</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">var3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">var3</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">var3</span> <span class="o">%=</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">var3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h3>Ejercicio:<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>Crea un programa que realice las siguientes operaciones utilizando operadores de asignación:</p>
+<ol class="arabic simple">
+<li><p>Asigna el valor inicial de 50 a una variable x.</p></li>
+<li><p>Suma 10 a x utilizando +=.</p></li>
+<li><p>Resta 5 a x utilizando -=.</p></li>
+<li><p>Multiplica x por 2 utilizando *=.</p></li>
+<li><p>Divide x entre 4 utilizando /=.</p></li>
+<li><p>Calcula el módulo de x con 3 utilizando %=.</p></li>
+<li><p>Eleva x al cuadrado utilizando **=.</p></li>
+<li><p>Realiza una división entera de x por 5 utilizando //=.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tu código va acá</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="jerarquia-de-operadores">
+<h2>Jerarquía de operadores<a class="headerlink" href="#jerarquia-de-operadores" title="Link to this heading">#</a></h2>
+<p>La jerarquía de operaciones, también conocida como precedencia de operadores, determina el orden en que se evalúan las operaciones en una expresión. Conocer la jerarquía es crucial para escribir expresiones matemáticas y lógicas correctamente en Python.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Jerarquia</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Paréntesis <code class="docutils literal notranslate"><span class="pre">(</span> <span class="pre">)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Exponente <code class="docutils literal notranslate"><span class="pre">**</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>División (<code class="docutils literal notranslate"><span class="pre">/</span></code>) y Módulo (<code class="docutils literal notranslate"><span class="pre">%</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Multiplicación (<code class="docutils literal notranslate"><span class="pre">*</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p>Suma (<code class="docutils literal notranslate"><span class="pre">+</span></code>) y Resta (<code class="docutils literal notranslate"><span class="pre">-</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Operadores Relacionales (<code class="docutils literal notranslate"><span class="pre">&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code>, <code class="docutils literal notranslate"><span class="pre">==</span></code>, <code class="docutils literal notranslate"><span class="pre">!=</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p>Negación (<code class="docutils literal notranslate"><span class="pre">not</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Conjunción (<code class="docutils literal notranslate"><span class="pre">and</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p>Disyunción inclusiva (<code class="docutils literal notranslate"><span class="pre">or</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Operadores de Asignación</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><em>Para más información sobre prioridad de operadores en Python visite este <a class="reference external" href="https://interactivechaos.com/es/manual/tutorial-de-python/precedencia-de-operadores">enlace</a></em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="mi">5</span> <span class="o">**</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15628
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="mi">5</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">3</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="mi">5</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="nb">print</span><span class="p">(</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span> <span class="o">*</span> <span class="n">a</span> <span class="o">/</span> <span class="n">c</span> <span class="o">&gt;</span> <span class="n">b</span> <span class="o">-</span> <span class="n">a</span> <span class="o">*</span> <span class="n">c</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">c</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span> <span class="n">a</span> <span class="o">%</span>  <span class="n">b</span> <span class="o">+</span> <span class="n">c</span> <span class="o">*</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="mi">3</span> <span class="ow">or</span> <span class="n">c</span> <span class="o">*</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="mi">5</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 <section id="entrada-dinamica-de-datos-en-python">
 <h2>Entrada dinámica de datos en python<a class="headerlink" href="#entrada-dinamica-de-datos-en-python" title="Link to this heading">#</a></h2>
 <p>Hasta aquí hemos visto como imprimir información desde el programa hacia los usuarios.</p>
@@ -1237,8 +1847,8 @@ El usuario escribió:  3
 </div>
 </section>
 </section>
-<section id="id1">
-<h2>Ejercicio<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<section id="id2">
+<h2>Ejercicio<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p><strong>Contexto</strong></p>
 <p>Imagina que estás desarrollando un programa para una oficina gubernamental que necesita recopilar y analizar información básica de sus empleados. La información que necesitas incluir es la edad, la altura, si son estudiantes, y su salario. El programa debe verificar si los empleados cumplen ciertos criterios y proporcionar un resumen de la información.</p>
 <p><strong>Objetivos del Ejercicio</strong></p>
@@ -1264,11 +1874,32 @@ El usuario escribió:  3
 </div>
 </div>
 </section>
+<section id="reto-1-factura-empresa-de-hamburguesas">
+<h2>Reto 1: Factura Empresa de hamburguesas<a class="headerlink" href="#reto-1-factura-empresa-de-hamburguesas" title="Link to this heading">#</a></h2>
+<p><strong>Contexto</strong></p>
+<p>Ud trabaja en un restaurante de hamburguesas en el que necesitan automatizar el proceso de impresión de la factura de cada uno de los clientes. Debes calcular los precios de impuestos y el costo total de cada orden.</p>
+<p><strong>Objetivo del ejercicio</strong></p>
+<p>Realice una impresión de una factura que muestre:</p>
+<ul class="simple">
+<li><p>El precio individual de una hamburguesa (5 dolares)</p></li>
+<li><p>El precio invididual de una gaseosa (2 dolares)</p></li>
+<li><p>El precio del menú con hamburguesa, gaseosa y papas cuyo costo es de 10 dolares</p></li>
+<li><p>El precio total sin IVA</p></li>
+<li><p>El precio total con IVA del 8%</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tu código va acá</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 <section id="reto-analisis-de-informacion-financiera">
 <h2>Reto: Análisis de Información Financiera<a class="headerlink" href="#reto-analisis-de-informacion-financiera" title="Link to this heading">#</a></h2>
-<p>Contexto</p>
+<p><strong>Contexto</strong></p>
 <p>Imagina que trabajas en el departamento financiero de una empresa y necesitas desarrollar un programa para analizar la información financiera básica de los empleados. Este programa debe recopilar datos como el salario mensual, los gastos mensuales, y calcular el ahorro mensual. Además, debe verificar si los empleados están ahorrando más del 20% de su salario y proporcionar un resumen financiero.</p>
-<p>Objetivos del Ejercicio</p>
+<p><strong>Objetivos del Ejercicio</strong></p>
 <p><strong>1.</strong>	Solicitar al usuario que ingrese su salario mensual y sus gastos mensuales.</p>
 <p><strong>2.</strong>	Convertir las entradas a los tipos de datos adecuados.</p>
 <p><strong>3.</strong>	Calcular el ahorro mensual y el porcentaje de ahorro sobre el salario.</p>
@@ -1361,13 +1992,19 @@ El usuario escribió:  3
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-verificar-edad-o-altura">Ejercicio: Verificar Edad o Altura</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-de-asignacion">Operadores de asignación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ejercicio:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jerarquia-de-operadores">Jerarquía de operadores</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrada-dinamica-de-datos-en-python">Entrada dinámica de datos en python</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-0-pedir-edad">Ejercicio 0: Pedir edad</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-recibir-y-mostrar-datos">Ejercicio 1: Recibir y mostrar datos</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2-realizar-operaciones-matematicas-con-datos-ingresados-por-el-usuario">Ejercicio 2: Realizar operaciones matemáticas con datos ingresados por el usuario</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ejercicio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Ejercicio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reto-1-factura-empresa-de-hamburguesas">Reto 1: Factura Empresa de hamburguesas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reto-analisis-de-informacion-financiera">Reto: Análisis de Información Financiera</a></li>
 </ul>
   </nav></div>
