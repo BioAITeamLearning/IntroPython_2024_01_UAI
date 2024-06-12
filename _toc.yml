@@ -7,9 +7,9 @@ chapters:
 - file: Unidad1
   sections:
     - file: "Introduccion"
-    - file: "OperacionesCondicionales"
-    - file: "OperacionesListasTuplas"
-    - file: "EstructurasRepetitivas"
-    - file: "Funciones"
-    #- file: "Tema_4_Manejo_ficheros_10_08_2023"
+- file: "OperacionesCondicionales"
+- file: "OperacionesListasTuplas"
+- file: "EstructurasRepetitivas"
+- file: "Funciones"
+- file: "Ficheros"
     #- file: "recursos_extra"
