@@ -1,0 +1,22 @@
+[
+    {"nombre": "Juan", "departamento": "TI", "fecha": "2023-06-01", "puntaje": 85},
+    {"nombre": "Ana", "departamento": "RRHH", "fecha": "2023-06-02", "puntaje": 90},
+    {"nombre": "Carlos", "departamento": "TI", "fecha": "2023-06-01", "puntaje": 78},
+    {"nombre": "Beatriz", "departamento": "RRHH", "fecha": "2023-06-03", "puntaje": 92},
+    {"nombre": "Lucia", "departamento": "TI", "fecha": "2023-06-04", "puntaje": 88},
+    {"nombre": "David", "departamento": "Finanzas", "fecha": "2023-06-01", "puntaje": 81},
+    {"nombre": "María", "departamento": "TI", "fecha": "2023-06-05", "puntaje": 85},
+    {"nombre": "Luis", "departamento": "RRHH", "fecha": "2023-06-02", "puntaje": 79},
+    {"nombre": "Laura", "departamento": "Finanzas", "fecha": "2023-06-03", "puntaje": 91},
+    {"nombre": "Pedro", "departamento": "TI", "fecha": "2023-06-04", "puntaje": 82},
+    {"nombre": "Carmen", "departamento": "RRHH", "fecha": "2023-06-01", "puntaje": 88},
+    {"nombre": "Miguel", "departamento": "TI", "fecha": "2023-06-05", "puntaje": 76},
+    {"nombre": "Raquel", "departamento": "Finanzas", "fecha": "2023-06-02", "puntaje": 93},
+    {"nombre": "Jorge", "departamento": "TI", "fecha": "2023-06-03", "puntaje": 80},
+    {"nombre": "Sofia", "departamento": "RRHH", "fecha": "2023-06-04", "puntaje": 89},
+    {"nombre": "Rafael", "departamento": "TI", "fecha": "2023-06-05", "puntaje": 87},
+    {"nombre": "Teresa", "departamento": "Finanzas", "fecha": "2023-06-01", "puntaje": 84},
+    {"nombre": "Isabel", "departamento": "TI", "fecha": "2023-06-02", "puntaje": 78},
+    {"nombre": "Ricardo", "departamento": "RRHH", "fecha": "2023-06-03", "puntaje": 90},
+    {"nombre": "Sara", "departamento": "Finanzas", "fecha": "2023-06-04", "puntaje": 86}
+]
