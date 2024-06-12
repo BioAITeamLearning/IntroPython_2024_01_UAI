@@ -1,0 +1,1134 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Estructuras Repetitivas &#8212; Introducción a Python 2024 - 01</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'EstructurasRepetitivas';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Funciones" href="Funciones.html" />
+    <link rel="prev" title="Operaciones con Listas, Tuplas y Diccionarios" href="OperacionesListasTuplas.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Introducción a Python 2024 - 01 - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Introducción a Python 2024 - 01 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Bienvenida al curso
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Unidad1.html">Introducción a Python</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Introduccion.html">Primeros pasos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OperacionesCondicionales.html">Operaciones con tipos y estructuras condicionales</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="OperacionesListasTuplas.html">Operaciones con Listas, Tuplas y Diccionarios</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Estructuras Repetitivas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Funciones.html">Funciones</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/BioAITeamLearning/IntroPython_2024_01_UAI/blob/main/EstructurasRepetitivas.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/BioAITeamLearning/IntroPython_2024_01_UAI" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/BioAITeamLearning/IntroPython_2024_01_UAI/issues/new?title=Issue%20on%20page%20%2FEstructurasRepetitivas.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/EstructurasRepetitivas.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Estructuras Repetitivas</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ciclo-while">Ciclo While</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-1">Ejemplo 1:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ciclo-for">Ciclo For</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1">Ejercicio 1:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2">Ejercicio 2:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-3">Ejercicio 3:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-4">Ejercicio 4:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-5">Ejercicio 5:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos">Ejemplos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ciclos-anidados">Ciclos anidados</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ejemplo 1:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-comprehensions">List comprehensions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-2">Ejemplo 2:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionario-comprehensions">Diccionario comprehensions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-analisis-de-asistencia">Ejercicio 1: Análisis de Asistencia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-registro-de-equipos-informaticos">Ejercicio 1: Registro de Equipos Informáticos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-en-clase-registro-de-actividades-diarias">Ejercicio en clase: Registro de Actividades Diarias</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reto-1-gestion-de-incidentes">Reto 1: Gestión de Incidentes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reto-2-analisis-de-datos-de-salud">Reto 2: Análisis de Datos de Salud</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reto-3-registro-de-asistencia">Reto 3: Registro de Asistencia</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="estructuras-repetitivas">
+<h1>Estructuras Repetitivas<a class="headerlink" href="#estructuras-repetitivas" title="Link to this heading">#</a></h1>
+<p>Las estructuras repetitivas, también conocidas como ciclos o bucles, son fundamentales en programación. Permiten ejecutar un bloque de código múltiples veces de manera eficiente. Python proporciona varias estructuras repetitivas: while, for, bucles anidados, y comprehensions. También existen iteradores y generadores que facilitan la manipulación de datos de forma eficiente.</p>
+<img src="https://img.freepik.com/vector-premium/ilustracion-plana-ciclo-programacion_120816-63883.jpg" width=300><section id="ciclo-while">
+<h2>Ciclo While<a class="headerlink" href="#ciclo-while" title="Link to this heading">#</a></h2>
+<p>El ciclo while ejecuta un bloque de código mientras una condición sea verdadera.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">condicion</span><span class="p">:</span>
+    <span class="c1"># Bloque de código</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">contador</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">contador</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Contador: </span><span class="si">{</span><span class="n">contador</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">contador</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Contador: 0
+Contador: 1
+Contador: 2
+Contador: 3
+Contador: 4
+</pre></div>
+</div>
+</div>
+</div>
+<section id="ejemplo-1">
+<h3>Ejemplo 1:<a class="headerlink" href="#ejemplo-1" title="Link to this heading">#</a></h3>
+<p>Escribe un programa que use un ciclo while para contar del 10 al 1 e imprima cada número.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">contador</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">while</span> <span class="n">contador</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">contador</span><span class="p">)</span>
+    <span class="n">contador</span> <span class="o">-=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="ciclo-for">
+<h2>Ciclo For<a class="headerlink" href="#ciclo-for" title="Link to this heading">#</a></h2>
+<p>El ciclo for itera sobre una secuencia (como una lista, tupla o cadena) y ejecuta un bloque de código por cada elemento.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">elemento</span> <span class="ow">in</span> <span class="n">secuencia</span><span class="p">:</span>
+    <span class="c1"># Bloque de código</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nombres</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Ana&quot;</span><span class="p">,</span> <span class="s2">&quot;Carlos&quot;</span><span class="p">,</span> <span class="s2">&quot;Beatriz&quot;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">nombre</span> <span class="ow">in</span> <span class="n">nombres</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hola, </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hola, Ana!
+Hola, Carlos!
+Hola, Beatriz!
+</pre></div>
+</div>
+</div>
+</div>
+<section id="ejercicio-1">
+<h3>Ejercicio 1:<a class="headerlink" href="#ejercicio-1" title="Link to this heading">#</a></h3>
+<p>Escribe un programa que use un ciclo para imprimir la posición y el elemento que hay en una lista</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">v</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="s2">&quot;--&gt;&quot;</span><span class="p">,</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 --&gt; a
+1 --&gt; b
+2 --&gt; c
+3 --&gt; d
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-2">
+<h3>Ejercicio 2:<a class="headerlink" href="#ejercicio-2" title="Link to this heading">#</a></h3>
+<p>Escribe un programa que use un ciclo for para imprimir cada letra de la cadena “Python”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">letra</span> <span class="ow">in</span> <span class="s2">&quot;Python&quot;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">letra</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P
+y
+t
+h
+o
+n
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-3">
+<h3>Ejercicio 3:<a class="headerlink" href="#ejercicio-3" title="Link to this heading">#</a></h3>
+<p>Escribe un programa que use un ciclo for para imprimir los números del 1 al 10</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-4">
+<h3>Ejercicio 4:<a class="headerlink" href="#ejercicio-4" title="Link to this heading">#</a></h3>
+<p>Escribe un programa que imprima los nombres de una lista y el número de nombre.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nombres</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Ana&quot;</span><span class="p">,</span><span class="s2">&quot;Pedro&quot;</span><span class="p">,</span><span class="s2">&quot;Juan&quot;</span><span class="p">,</span><span class="s2">&quot;Andres&quot;</span><span class="p">,</span><span class="s2">&quot;Pablo&quot;</span><span class="p">,</span><span class="s2">&quot;Jimmy&quot;</span><span class="p">,</span><span class="s2">&quot;Felix&quot;</span><span class="p">,</span><span class="s2">&quot;Sonia&quot;</span><span class="p">,</span><span class="s2">&quot;Tania&quot;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">indice</span><span class="p">,</span> <span class="n">nombre</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nombres</span><span class="p">):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Nombre </span><span class="si">{</span><span class="n">indice</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Nombre 0: Ana
+Nombre 1: Pedro
+Nombre 2: Juan
+Nombre 3: Andres
+Nombre 4: Pablo
+Nombre 5: Jimmy
+Nombre 6: Felix
+Nombre 7: Sonia
+Nombre 8: Tania
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-5">
+<h3>Ejercicio 5:<a class="headerlink" href="#ejercicio-5" title="Link to this heading">#</a></h3>
+<p>Escribe un programa que imprima los nombres de una lista y las direcciones de correo que están en otra lista</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Listas de nombres y direcciones de correo</span>
+<span class="n">nombres</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Juan Perez&quot;</span><span class="p">,</span> <span class="s2">&quot;Maria Gomez&quot;</span><span class="p">,</span> <span class="s2">&quot;Carlos Sanchez&quot;</span><span class="p">,</span> <span class="s2">&quot;Ana Martinez&quot;</span><span class="p">]</span>
+<span class="n">correos</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;juan.perez@example.com&quot;</span><span class="p">,</span> <span class="s2">&quot;maria.gomez@example.com&quot;</span><span class="p">,</span> <span class="s2">&quot;carlos.sanchez@example.com&quot;</span><span class="p">,</span> <span class="s2">&quot;ana.martinez@example.com&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Usar zip para combinar las listas</span>
+<span class="k">for</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">correo</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">nombres</span><span class="p">,</span> <span class="n">correos</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Nombre: </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">, Correo: </span><span class="si">{</span><span class="n">correo</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Nombre: Juan Perez, Correo: juan.perez@example.com
+Nombre: Maria Gomez, Correo: maria.gomez@example.com
+Nombre: Carlos Sanchez, Correo: carlos.sanchez@example.com
+Nombre: Ana Martinez, Correo: ana.martinez@example.com
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejemplos">
+<h3>Ejemplos<a class="headerlink" href="#ejemplos" title="Link to this heading">#</a></h3>
+<p>Realiza un algoritmo que cuente las vocales de un `string``</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">frase</span> <span class="o">=</span> <span class="s2">&quot;Anita lava la tina&quot;</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">letra</span> <span class="ow">in</span> <span class="n">frase</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">letra</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;e&quot;</span><span class="p">,</span><span class="s2">&quot;i&quot;</span><span class="p">,</span><span class="s2">&quot;o&quot;</span><span class="p">,</span><span class="s2">&quot;u&quot;</span><span class="p">):</span> <span class="c1"># Explicar la sentencia in para buscar elementos</span>
+        <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hay </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2"> vocales&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hay 8 vocales
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Realiza un programa que haga un triangulo de caracteres</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="o">*</span><span class="n">k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>*
+**
+***
+****
+*****
+******
+*******
+********
+*********
+**********
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="ciclos-anidados">
+<h2>Ciclos anidados<a class="headerlink" href="#ciclos-anidados" title="Link to this heading">#</a></h2>
+<p>Puedes anidar ciclos for y while dentro de otros ciclos para iterar sobre estructuras de datos más complejas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">matriz</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]</span>
+<span class="k">for</span> <span class="n">fila</span> <span class="ow">in</span> <span class="n">matriz</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">elemento</span> <span class="ow">in</span> <span class="n">fila</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">elemento</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 2 3 
+4 5 6 
+7 8 9 
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h3>Ejemplo 1:<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>Escribe un programa que use ciclos anidados para imprimir cada combinación de números del 1 al 3 con las letras ‘A’ y ‘B’.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solución</span>
+<span class="k">for</span> <span class="n">numero</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">letra</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">numero</span><span class="si">}{</span><span class="n">letra</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1A
+1B
+2A
+2B
+3A
+3B
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="list-comprehensions">
+<h2>List comprehensions<a class="headerlink" href="#list-comprehensions" title="Link to this heading">#</a></h2>
+<p>Las comprehensions son una forma concisa de crear listas, diccionarios o conjuntos en Python.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cuadrados</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cuadrados</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+</pre></div>
+</div>
+</div>
+</div>
+<section id="ejemplo-2">
+<h3>Ejemplo 2:<a class="headerlink" href="#ejemplo-2" title="Link to this heading">#</a></h3>
+<p>Escribe una lista comprehension para crear una lista de los primeros 10 números al cubo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cubos</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cubos</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 8, 27, 64, 125, 216, 343, 512, 729, 1000]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="diccionario-comprehensions">
+<h3>Diccionario comprehensions<a class="headerlink" href="#diccionario-comprehensions" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cuadrados</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cuadrados</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64, 9: 81}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="ejercicios">
+<h2>Ejercicios<a class="headerlink" href="#ejercicios" title="Link to this heading">#</a></h2>
+<p>Vamos a resolver los siguientes ejercicios</p>
+<section id="ejercicio-1-analisis-de-asistencia">
+<h3>Ejercicio 1: Análisis de Asistencia<a class="headerlink" href="#ejercicio-1-analisis-de-asistencia" title="Link to this heading">#</a></h3>
+<p>Crea un programa que analice la asistencia de empleados en una institución pública. Debe permitir ingresar el nombre de cada empleado y si asistió o no en una lista de días. Luego, debe calcular el porcentaje de asistencia de cada empleado y mostrar un resumen.</p>
+<ol class="arabic simple">
+<li><p>Crear una lista de empleados.</p></li>
+<li><p>Para cada empleado, crear una lista de asistencia (True para asistió, False para no asistió).</p></li>
+<li><p>Calcular el porcentaje de asistencia.</p></li>
+<li><p>Imprimir un resumen.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solución</span>
+<span class="n">empleados</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Juan&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span>
+    <span class="s2">&quot;Ana&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span>
+    <span class="s2">&quot;Carlos&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">asistencias</span> <span class="ow">in</span> <span class="n">empleados</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">porcentaje_asistencia</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">asistencias</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">asistencias</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">porcentaje_asistencia</span><span class="si">}</span><span class="s2">% de asistencia&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Juan: 60.0% de asistencia
+Ana: 80.0% de asistencia
+Carlos: 60.0% de asistencia
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-1-registro-de-equipos-informaticos">
+<h3>Ejercicio 1: Registro de Equipos Informáticos<a class="headerlink" href="#ejercicio-1-registro-de-equipos-informaticos" title="Link to this heading">#</a></h3>
+<p>Crea un programa que gestione el registro de equipos informáticos en una institución pública. Debe permitir ingresar el nombre del equipo, su tipo (computadora, impresora, escáner, etc.), y su estado (operativo, en reparación, dado de baja). Luego, debe permitir actualizar el estado de un equipo específico y mostrar un resumen del inventario.</p>
+<ol class="arabic simple">
+<li><p>Crear un diccionario para el inventario.</p></li>
+<li><p>Agregar al menos tres equipos con su tipo y estado.</p></li>
+<li><p>Permitir actualizar el estado de un equipo.</p></li>
+<li><p>Imprimir un resumen del inventario.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solución</span>
+<span class="n">inventario</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Equipo1&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;tipo&quot;</span><span class="p">:</span> <span class="s2">&quot;Computadora&quot;</span><span class="p">,</span> <span class="s2">&quot;estado&quot;</span><span class="p">:</span> <span class="s2">&quot;operativo&quot;</span><span class="p">},</span>
+    <span class="s2">&quot;Equipo2&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;tipo&quot;</span><span class="p">:</span> <span class="s2">&quot;Impresora&quot;</span><span class="p">,</span> <span class="s2">&quot;estado&quot;</span><span class="p">:</span> <span class="s2">&quot;en reparación&quot;</span><span class="p">},</span>
+    <span class="s2">&quot;Equipo3&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;tipo&quot;</span><span class="p">:</span> <span class="s2">&quot;Escáner&quot;</span><span class="p">,</span> <span class="s2">&quot;estado&quot;</span><span class="p">:</span> <span class="s2">&quot;dado de baja&quot;</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># Actualizar estado de un equipo</span>
+<span class="n">inventario</span><span class="p">[</span><span class="s2">&quot;Equipo1&quot;</span><span class="p">][</span><span class="s2">&quot;estado&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;en reparación&quot;</span>
+
+<span class="c1"># Imprimir resumen del inventario</span>
+<span class="k">for</span> <span class="n">equipo</span><span class="p">,</span> <span class="n">datos</span> <span class="ow">in</span> <span class="n">inventario</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">equipo</span><span class="si">}</span><span class="s2">: Tipo=</span><span class="si">{</span><span class="n">datos</span><span class="p">[</span><span class="s1">&#39;tipo&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, Estado=</span><span class="si">{</span><span class="n">datos</span><span class="p">[</span><span class="s1">&#39;estado&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Equipo1: Tipo=Computadora, Estado=en reparación
+Equipo2: Tipo=Impresora, Estado=en reparación
+Equipo3: Tipo=Escáner, Estado=dado de baja
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-en-clase-registro-de-actividades-diarias">
+<h3>Ejercicio en clase: Registro de Actividades Diarias<a class="headerlink" href="#ejercicio-en-clase-registro-de-actividades-diarias" title="Link to this heading">#</a></h3>
+<p>Crea un programa para registrar las actividades diarias de empleados en una institución pública. El programa debe permitir agregar actividades con la duración en minutos. Luego, debe calcular el total de tiempo dedicado a las actividades y mostrar un resumen.</p>
+<ol class="arabic simple">
+<li><p>Crear una lista de actividades.</p></li>
+<li><p>Agregar al menos cinco actividades con su duración.</p></li>
+<li><p>Calcular el total de tiempo dedicado.</p></li>
+<li><p>Imprimir un resumen de las actividades y el tiempo total.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tu código acá</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="reto-1-gestion-de-incidentes">
+<h2>Reto 1: Gestión de Incidentes<a class="headerlink" href="#reto-1-gestion-de-incidentes" title="Link to this heading">#</a></h2>
+<p><strong>Contexto:</strong> Trabajas en el departamento de TI de un ministerio y necesitas gestionar un registro de incidentes de seguridad.</p>
+<p><strong>Descripción del reto:</strong></p>
+<ol class="arabic simple">
+<li><p>Crea un programa que lea una lista de incidentes de seguridad registrados en un sistema.</p></li>
+<li><p>Cada incidente debe tener un identificador único, una descripción, una fecha y un estado (abierto, en progreso, cerrado).</p></li>
+<li><p>Usa un ciclo while para permitir a un administrador realizar las siguientes acciones en un menú:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Mostrar todos los incidentes.</p></li>
+<li><p>Filtrar incidentes por estado.</p></li>
+<li><p>Actualizar el estado de un incidente específico.</p></li>
+<li><p>Salir del programa.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">incidentes</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;descripcion&quot;</span><span class="p">:</span> <span class="s2">&quot;Acceso no autorizado&quot;</span><span class="p">,</span> <span class="s2">&quot;fecha&quot;</span><span class="p">:</span> <span class="s2">&quot;2024-06-01&quot;</span><span class="p">,</span> <span class="s2">&quot;estado&quot;</span><span class="p">:</span> <span class="s2">&quot;abierto&quot;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;descripcion&quot;</span><span class="p">:</span> <span class="s2">&quot;Intento de phishing&quot;</span><span class="p">,</span> <span class="s2">&quot;fecha&quot;</span><span class="p">:</span> <span class="s2">&quot;2024-06-02&quot;</span><span class="p">,</span> <span class="s2">&quot;estado&quot;</span><span class="p">:</span> <span class="s2">&quot;en progreso&quot;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;descripcion&quot;</span><span class="p">:</span> <span class="s2">&quot;Malware detectado&quot;</span><span class="p">,</span> <span class="s2">&quot;fecha&quot;</span><span class="p">:</span> <span class="s2">&quot;2024-06-03&quot;</span><span class="p">,</span> <span class="s2">&quot;estado&quot;</span><span class="p">:</span> <span class="s2">&quot;cerrado&quot;</span><span class="p">}</span>
+<span class="p">]</span>
+
+<span class="c1"># Tu código va acá</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="reto-2-analisis-de-datos-de-salud">
+<h2>Reto 2: Análisis de Datos de Salud<a class="headerlink" href="#reto-2-analisis-de-datos-de-salud" title="Link to this heading">#</a></h2>
+<p><strong>Contexto:</strong> Eres analista en una institución que audita empresas de salud y necesitas analizar los datos de salud de los pacientes.</p>
+<p><strong>Descripción del reto:</strong></p>
+<ol class="arabic simple">
+<li><p>Crea un programa que lea un conjunto de datos de salud de pacientes, donde cada paciente tenga un identificador único, nombre, edad y una lista de diagnósticos.</p></li>
+<li><p>Usa un ciclo for para iterar sobre los pacientes y realizar las siguientes tareas:</p>
+<ul class="simple">
+<li><p>Imprimir el nombre y la edad de cada paciente.</p></li>
+<li><p>Contar cuántos pacientes tienen más de 60 años.</p></li>
+<li><p>Imprimir un informe de los diagnósticos más comunes entre los pacientes.</p></li>
+</ul>
+</li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pacientes</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Juan Perez&quot;</span><span class="p">,</span> <span class="s2">&quot;edad&quot;</span><span class="p">:</span> <span class="mi">45</span><span class="p">,</span> <span class="s2">&quot;diagnosticos&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Hipertensión&quot;</span><span class="p">,</span> <span class="s2">&quot;Diabetes&quot;</span><span class="p">]},</span>
+    <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Maria Gomez&quot;</span><span class="p">,</span> <span class="s2">&quot;edad&quot;</span><span class="p">:</span> <span class="mi">70</span><span class="p">,</span> <span class="s2">&quot;diagnosticos&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Artritis&quot;</span><span class="p">]},</span>
+    <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Carlos Sanchez&quot;</span><span class="p">,</span> <span class="s2">&quot;edad&quot;</span><span class="p">:</span> <span class="mi">65</span><span class="p">,</span> <span class="s2">&quot;diagnosticos&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Hipertensión&quot;</span><span class="p">]}</span>
+<span class="p">]</span>
+
+<span class="c1"># Tu código va acá</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="reto-3-registro-de-asistencia">
+<h2>Reto 3: Registro de Asistencia<a class="headerlink" href="#reto-3-registro-de-asistencia" title="Link to this heading">#</a></h2>
+<p>Crea un programa que registre la asistencia de empleados en una institución pública. El programa debe permitir agregar registros de asistencia diaria (nombre del empleado, fecha, asistencia: True/False). Luego, debe calcular el porcentaje de asistencia de cada empleado y mostrar un resumen.</p>
+<ol class="arabic simple">
+<li><p>Crear una lista de registros de asistencia.</p></li>
+<li><p>Agregar al menos cinco registros con nombre del empleado, fecha y asistencia.</p></li>
+<li><p>Calcular el porcentaje de asistencia de cada empleado.</p></li>
+<li><p>Imprimir un resumen de la asistencia de todos los empleados.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">asistencia</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Juan&quot;</span><span class="p">,</span> <span class="s2">&quot;fecha&quot;</span><span class="p">:</span> <span class="s2">&quot;2023-06-01&quot;</span><span class="p">,</span> <span class="s2">&quot;asistencia&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Ana&quot;</span><span class="p">,</span> <span class="s2">&quot;fecha&quot;</span><span class="p">:</span> <span class="s2">&quot;2023-06-01&quot;</span><span class="p">,</span> <span class="s2">&quot;asistencia&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Carlos&quot;</span><span class="p">,</span> <span class="s2">&quot;fecha&quot;</span><span class="p">:</span> <span class="s2">&quot;2023-06-01&quot;</span><span class="p">,</span> <span class="s2">&quot;asistencia&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Juan&quot;</span><span class="p">,</span> <span class="s2">&quot;fecha&quot;</span><span class="p">:</span> <span class="s2">&quot;2023-06-02&quot;</span><span class="p">,</span> <span class="s2">&quot;asistencia&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Ana&quot;</span><span class="p">,</span> <span class="s2">&quot;fecha&quot;</span><span class="p">:</span> <span class="s2">&quot;2023-06-02&quot;</span><span class="p">,</span> <span class="s2">&quot;asistencia&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<span class="p">]</span>
+
+<span class="c1"># Tu código va acá</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="OperacionesListasTuplas.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Operaciones con Listas, Tuplas y Diccionarios</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Funciones.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Funciones</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ciclo-while">Ciclo While</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-1">Ejemplo 1:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ciclo-for">Ciclo For</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1">Ejercicio 1:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2">Ejercicio 2:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-3">Ejercicio 3:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-4">Ejercicio 4:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-5">Ejercicio 5:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos">Ejemplos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ciclos-anidados">Ciclos anidados</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ejemplo 1:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-comprehensions">List comprehensions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-2">Ejemplo 2:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionario-comprehensions">Diccionario comprehensions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-analisis-de-asistencia">Ejercicio 1: Análisis de Asistencia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-registro-de-equipos-informaticos">Ejercicio 1: Registro de Equipos Informáticos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-en-clase-registro-de-actividades-diarias">Ejercicio en clase: Registro de Actividades Diarias</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reto-1-gestion-de-incidentes">Reto 1: Gestión de Incidentes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reto-2-analisis-de-datos-de-salud">Reto 2: Análisis de Datos de Salud</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reto-3-registro-de-asistencia">Reto 3: Registro de Asistencia</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Reinel Tabares, Johan Piña, Brayan Arteaga
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

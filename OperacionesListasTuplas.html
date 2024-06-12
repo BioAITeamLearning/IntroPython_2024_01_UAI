@@ -1,0 +1,1054 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Operaciones con Listas, Tuplas y Diccionarios &#8212; Introducción a Python 2024 - 01</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'OperacionesListasTuplas';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Estructuras Repetitivas" href="EstructurasRepetitivas.html" />
+    <link rel="prev" title="Operaciones con tipos y estructuras condicionales" href="OperacionesCondicionales.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Introducción a Python 2024 - 01 - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Introducción a Python 2024 - 01 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Bienvenida al curso
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Unidad1.html">Introducción a Python</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Introduccion.html">Primeros pasos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OperacionesCondicionales.html">Operaciones con tipos y estructuras condicionales</a></li>
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Operaciones con Listas, Tuplas y Diccionarios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="EstructurasRepetitivas.html">Estructuras Repetitivas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Funciones.html">Funciones</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/BioAITeamLearning/IntroPython_2024_01_UAI/blob/main/OperacionesListasTuplas.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/BioAITeamLearning/IntroPython_2024_01_UAI" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/BioAITeamLearning/IntroPython_2024_01_UAI/issues/new?title=Issue%20on%20page%20%2FOperacionesListasTuplas.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/OperacionesListasTuplas.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Operaciones con Listas, Tuplas y Diccionarios</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#listas">Listas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuplas">Tuplas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo">Ejemplo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionarios">Diccionarios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ejemplo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-gestor-de-inventario-de-equipos-de-oficina">Ejercicio 1: Gestor de Inventario de Equipos de Oficina</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2-analisis-de-datos-de-encuestas-de-satisfaccion">Ejercicio 2: Análisis de Datos de Encuestas de Satisfacción</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="operaciones-con-listas-tuplas-y-diccionarios">
+<h1>Operaciones con Listas, Tuplas y Diccionarios<a class="headerlink" href="#operaciones-con-listas-tuplas-y-diccionarios" title="Link to this heading">#</a></h1>
+<p>Las listas y tuplas son estructuras de datos fundamentales en Python que se utilizan para almacenar colecciones de elementos. Las listas son mutables, lo que significa que sus elementos se pueden cambiar después de haber sido creadas, mientras que las tuplas son inmutables.</p>
+<img src="https://miro.medium.com/v2/resize:fit:1400/0*hZ1kX3Zlr9NheJvu.jpeg">
+<section id="listas">
+<h2>Listas<a class="headerlink" href="#listas" title="Link to this heading">#</a></h2>
+<p>Las listas son colecciones ordenadas de elementos que pueden ser modificadas.</p>
+<img src="https://elpythonista.com/wp-content/uploads/2020/11/Listas_En_Python.jpg" width=500><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Crear una lista</span>
+<span class="n">mi_lista</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="n">mi_lista2</span> <span class="o">=</span> <span class="nb">list</span><span class="p">([</span><span class="n">mi_lista</span><span class="p">,</span><span class="s1">&#39;Vamos con texto&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">4.6</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_lista2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[2, 3, 1, 3, 4, 5, 7, 6], &#39;Vamos con texto&#39;, 1, 4.6, True, False]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Acceder a los elementos</span>
+<span class="n">primer_elemento</span> <span class="o">=</span> <span class="n">mi_lista</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">ultimo_elemento</span> <span class="o">=</span> <span class="n">mi_lista</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">sublista</span> <span class="o">=</span> <span class="n">mi_lista</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">primer_elemento</span><span class="p">,</span> <span class="n">ultimo_elemento</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sublista</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2 10
+[2, 3]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Modificar el contenido</span>
+<span class="n">mi_lista</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_lista</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2, 3, 10, 3, 4, 5, 7, 6]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Agregar elementos</span>
+<span class="n">mi_lista</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">mi_lista</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_lista</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2, 3, 10, 3, 4, 5, 7, 6, 6, 10]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Eliminar elementos</span>
+<span class="n">mi_lista</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_lista</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2, 3, 3, 4, 5, 7, 6, 6, 10]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Insertar elemento en una posición específica</span>
+<span class="n">mi_lista</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_lista</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2, 3, 10, 3, 4, 5, 7, 6, 6, 10]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Eliminar en una posición específica</span>
+<span class="n">elemento</span> <span class="o">=</span> <span class="n">mi_lista</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Si no se coloca posición se elimina el último.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_lista</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">elemento</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2, 3, 4, 5, 7, 6, 6, 10]
+3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Logitud de lista</span>
+<span class="n">longitud</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mi_lista</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">longitud</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ordenar lista</span>
+<span class="n">ordenada</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">mi_lista</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ordenada</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2, 3, 3, 4, 5, 6, 6, 7, 10]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sumar elementos de la lista</span>
+<span class="n">suma</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">mi_lista</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">suma</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>46
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Buscar elementos</span>
+<span class="mi">2</span> <span class="ow">in</span> <span class="n">mi_lista</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Buscar elementos en una lista</span>
+<span class="s1">&#39;Vamos con texto&#39;</span> <span class="ow">in</span> <span class="n">mi_lista2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="tuplas">
+<h2>Tuplas<a class="headerlink" href="#tuplas" title="Link to this heading">#</a></h2>
+<p>Las tuplas son colecciones ordenadas de elementos que <strong>NO</strong> pueden ser modificadas después de su creación.</p>
+<img src="https://elpythonista.com/wp-content/uploads/2020/11/Tuplas_En_Python.jpg" width=500>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sintáxis de una tupla</span>
+<span class="n">mi_tupla</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">mi_otra_tupla</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_tupla</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_otra_tupla</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 2, 3, 4, 5, 1, 2, 4, 2, 2, 2)
+(1, 2, 3, 4, 5)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Acceder a elementos de una tupla</span>
+<span class="n">primer_elemento</span> <span class="o">=</span> <span class="n">mi_tupla</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">ultimo_elemento</span> <span class="o">=</span> <span class="n">mi_tupla</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">primer_elemento</span><span class="p">,</span> <span class="n">ultimo_elemento</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Longiutd de la tupla</span>
+<span class="n">longitud</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mi_tupla</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">longitud</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Otras operaciones</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;cuantas veces hay un elemento=&#39;</span><span class="p">,</span><span class="n">mi_tupla</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;dice en que posicion esta el elemento=&#39;</span><span class="p">,</span><span class="n">mi_tupla</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+<span class="c1">#tupla[0]=2# dado que es una TUPLA no se puede agregar ni borrar información.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cuantas veces hay un elemento= 5
+dice en que posicion esta el elemento= 3
+</pre></div>
+</div>
+</div>
+</div>
+<section id="ejemplo">
+<h3>Ejemplo<a class="headerlink" href="#ejemplo" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Crear una lista con nombres de tus amigos.</p></li>
+<li><p>Agregar un nuevo nombre al final de la lista.</p></li>
+<li><p>Reemplazar el segundo nombre con otro nombre.</p></li>
+<li><p>Eliminar el último nombre de la lista.</p></li>
+<li><p>Crear una tupla con los nombres restantes.</p></li>
+<li><p>Imprimir el primer y último nombre de la tupla.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tu código va acá</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="diccionarios">
+<h2>Diccionarios<a class="headerlink" href="#diccionarios" title="Link to this heading">#</a></h2>
+<p>Los diccionarios son colecciones de pares clave-valor. Cada clave se asocia con un valor y se puede utilizar para acceder a ese valor.</p>
+<img src="https://elpythonista.com/wp-content/uploads/2020/12/Diccionarios_En_Python.jpg" width=500>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Crear un diccionario</span>
+<span class="n">mi_diccionario</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Juan&quot;</span><span class="p">,</span> <span class="s2">&quot;edad&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s2">&quot;ciudad&quot;</span><span class="p">:</span> <span class="s2">&quot;Madrid&quot;</span><span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_diccionario</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;nombre&#39;: &#39;Juan&#39;, &#39;edad&#39;: 30, &#39;ciudad&#39;: &#39;Madrid&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Acceder a valores</span>
+<span class="n">nombre</span> <span class="o">=</span> <span class="n">mi_diccionario</span><span class="p">[</span><span class="s2">&quot;nombre&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Juan
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Agregar o modificar elementos</span>
+<span class="n">mi_diccionario</span><span class="p">[</span><span class="s2">&quot;edad&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">31</span>
+<span class="n">mi_diccionario</span><span class="p">[</span><span class="s2">&quot;profesion&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Ingeniero&quot;</span> <span class="c1"># Note que esta llave no existía, por lo que se crea.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_diccionario</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;nombre&#39;: &#39;Juan&#39;, &#39;edad&#39;: 31, &#39;ciudad&#39;: &#39;Madrid&#39;, &#39;profesion&#39;: &#39;Ingeniero&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Eliminar elementos</span>
+<span class="k">del</span> <span class="n">mi_diccionario</span><span class="p">[</span><span class="s2">&quot;ciudad&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_diccionario</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;nombre&#39;: &#39;Juan&#39;, &#39;edad&#39;: 31, &#39;profesion&#39;: &#39;Ingeniero&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Obtener todas las llaves o todos los valores como una lista</span>
+<span class="n">todos</span> <span class="o">=</span> <span class="n">mi_diccionario</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+<span class="n">claves</span> <span class="o">=</span> <span class="n">mi_diccionario</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="n">valores</span> <span class="o">=</span> <span class="n">mi_diccionario</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">todos</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">claves</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">valores</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_items([(&#39;nombre&#39;, &#39;Juan&#39;), (&#39;profesion&#39;, &#39;Ingeniero&#39;), (&#39;pais&#39;, &#39;España&#39;)])
+dict_keys([&#39;nombre&#39;, &#39;profesion&#39;, &#39;pais&#39;])
+dict_values([&#39;Juan&#39;, &#39;Ingeniero&#39;, &#39;España&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definir una variable diccionario</span>
+<span class="n">futbolistas</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+<span class="n">futbolistas</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;Casillas&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span> <span class="s2">&quot;Iniesta&quot;</span><span class="p">,</span><span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;Piqué&quot;</span><span class="p">,</span>
+    <span class="mi">5</span><span class="p">:</span> <span class="s2">&quot;Puyol&quot;</span><span class="p">,</span>
+    <span class="mi">7</span><span class="p">:</span> <span class="s2">&quot;Villa&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">:</span> <span class="s2">&quot;Xavi Hernández&quot;</span><span class="p">,</span>
+    <span class="mi">9</span><span class="p">:</span> <span class="s2">&quot;Torres&quot;</span><span class="p">,</span> <span class="mi">11</span><span class="p">:</span> <span class="s2">&quot;Capdevila&quot;</span><span class="p">,</span>
+    <span class="mi">14</span><span class="p">:</span> <span class="s2">&quot;Xavi Alonso&quot;</span><span class="p">,</span> <span class="mi">15</span><span class="p">:</span> <span class="s2">&quot;Ramos&quot;</span><span class="p">,</span>
+    <span class="mi">16</span><span class="p">:</span> <span class="s2">&quot;Busquets&quot;</span>
+<span class="p">}</span>
+<span class="n">futbolistas</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_items([(1, &#39;Casillas&#39;), (6, &#39;Iniesta&#39;), (3, &#39;Piqué&#39;), (5, &#39;Puyol&#39;), (7, &#39;Villa&#39;), (8, &#39;Xavi Hernández&#39;), (9, &#39;Torres&#39;), (11, &#39;Capdevila&#39;), (14, &#39;Xavi Alonso&#39;), (15, &#39;Ramos&#39;), (16, &#39;Busquets&#39;)])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Métodos para obtener el valor de un diccionario teniendo un valor</span>
+<span class="n">profesion</span> <span class="o">=</span> <span class="n">mi_diccionario</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;profesion&quot;</span><span class="p">,</span> <span class="s2">&quot;Desconocido&quot;</span><span class="p">)</span> <span class="c1"># Qué pasaría si</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">profesion</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ingeniero
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Actualizar</span>
+<span class="n">otro_diccionario</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;pais&quot;</span><span class="p">:</span> <span class="s2">&quot;España&quot;</span><span class="p">,</span> <span class="s2">&quot;edad&quot;</span><span class="p">:</span> <span class="mi">32</span><span class="p">}</span>
+<span class="n">mi_diccionario</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">otro_diccionario</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_diccionario</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;nombre&#39;: &#39;Juan&#39;, &#39;edad&#39;: 32, &#39;profesion&#39;: &#39;Ingeniero&#39;, &#39;pais&#39;: &#39;España&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Eliminar</span>
+<span class="n">edad</span> <span class="o">=</span> <span class="n">mi_diccionario</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;edad&quot;</span><span class="p">)</span> <span class="c1"># Note que queda guardado el elemento eliminado.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_diccionario</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">edad</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;nombre&#39;: &#39;Juan&#39;, &#39;profesion&#39;: &#39;Ingeniero&#39;, &#39;pais&#39;: &#39;España&#39;}
+32
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h3>Ejemplo<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Crear un diccionario con información de un libro (título, autor, año).</p></li>
+<li><p>Agregar una nueva clave-valor para el género del libro.</p></li>
+<li><p>Modificar el año de publicación.</p></li>
+<li><p>Eliminar la clave del género.</p></li>
+<li><p>Obtener todas las claves y valores del diccionario.</p></li>
+<li><p>Obtener el valor de la clave “autor” utilizando get().</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tu código va acá</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="ejercicio-1-gestor-de-inventario-de-equipos-de-oficina">
+<h2>Ejercicio 1: Gestor de Inventario de Equipos de Oficina<a class="headerlink" href="#ejercicio-1-gestor-de-inventario-de-equipos-de-oficina" title="Link to this heading">#</a></h2>
+<p>Crea un programa que gestione el inventario de equipos de oficina para una institución pública. Debe permitir agregar equipos con su nombre, cantidad y estado (nuevo, usado, en reparación). Además, debe permitir actualizar la cantidad de un equipo, cambiar el estado de un equipo, eliminar un equipo y mostrar el inventario completo.</p>
+<ol class="arabic simple">
+<li><p>Crear un diccionario para el inventario.</p></li>
+<li><p>Agregar al menos tres equipos al inventario con su nombre, cantidad y estado.</p></li>
+<li><p>Modificar la cantidad de uno de los equipos.</p></li>
+<li><p>Cambiar el estado de uno de los equipos.</p></li>
+<li><p>Eliminar uno de los equipos.</p></li>
+<li><p>Imprimir el inventario completo, mostrando el nombre, cantidad y estado de cada equipo.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">inventario</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Impresora&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;cantidad&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;estado&quot;</span><span class="p">:</span> <span class="s2">&quot;nuevo&quot;</span><span class="p">},</span>
+    <span class="s2">&quot;Computadora&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;cantidad&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;estado&quot;</span><span class="p">:</span> <span class="s2">&quot;usado&quot;</span><span class="p">},</span>
+    <span class="s2">&quot;Escáner&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;cantidad&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;estado&quot;</span><span class="p">:</span> <span class="s2">&quot;en reparación&quot;</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># Tu código va acá</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-2-analisis-de-datos-de-encuestas-de-satisfaccion">
+<h2>Ejercicio 2: Análisis de Datos de Encuestas de Satisfacción<a class="headerlink" href="#ejercicio-2-analisis-de-datos-de-encuestas-de-satisfaccion" title="Link to this heading">#</a></h2>
+<p>Crea un programa que analice los resultados de una encuesta de satisfacción de los usuarios de un servicio público. Debe permitir agregar la información de los usuarios encuestados, incluyendo su edad, nivel de satisfacción (de 1 a 5) y comentarios. Además, debe calcular la satisfacción promedio y mostrar todos los datos almacenados.</p>
+<ol class="arabic simple">
+<li><p>Crear una lista para almacenar los datos de los usuarios encuestados.</p></li>
+<li><p>Agregar al menos cinco usuarios a la lista, donde cada usuario se representa como un diccionario con su edad, nivel de satisfacción y comentarios.</p></li>
+<li><p>Calcular el nivel de satisfacción promedio de los usuarios encuestados.</p></li>
+<li><p>Imprimir la lista completa de usuarios, mostrando edad, nivel de satisfacción y comentarios de cada uno.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">encuestados</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;edad&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="s2">&quot;satisfaccion&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;comentarios&quot;</span><span class="p">:</span> <span class="s2">&quot;Buen servicio&quot;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;edad&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s2">&quot;satisfaccion&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;comentarios&quot;</span><span class="p">:</span> <span class="s2">&quot;Excelente&quot;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;edad&quot;</span><span class="p">:</span> <span class="mi">45</span><span class="p">,</span> <span class="s2">&quot;satisfaccion&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;comentarios&quot;</span><span class="p">:</span> <span class="s2">&quot;Regular&quot;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;edad&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="s2">&quot;satisfaccion&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;comentarios&quot;</span><span class="p">:</span> <span class="s2">&quot;Malo&quot;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;edad&quot;</span><span class="p">:</span> <span class="mi">35</span><span class="p">,</span> <span class="s2">&quot;satisfaccion&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;comentarios&quot;</span><span class="p">:</span> <span class="s2">&quot;Bueno&quot;</span><span class="p">}</span>
+<span class="p">]</span>
+
+<span class="c1"># Tu código va acá</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="OperacionesCondicionales.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Operaciones con tipos y estructuras condicionales</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="EstructurasRepetitivas.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Estructuras Repetitivas</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#listas">Listas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuplas">Tuplas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo">Ejemplo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionarios">Diccionarios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ejemplo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-gestor-de-inventario-de-equipos-de-oficina">Ejercicio 1: Gestor de Inventario de Equipos de Oficina</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2-analisis-de-datos-de-encuestas-de-satisfaccion">Ejercicio 2: Análisis de Datos de Encuestas de Satisfacción</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Reinel Tabares, Johan Piña, Brayan Arteaga
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
