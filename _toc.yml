@@ -7,9 +7,9 @@ chapters:
 - file: Unidad1
   sections:
     - file: "Introduccion"
-    #- file: "Tema_1_2_Sentencias_libs_text_list_dict_inputs_Condicionales_10_08_2023"
-    #- file: "Tema_1_3_Estruct_repetitivas_funciones_10_08_2023"
-    #- file: "Tema_2_Numpy_Matplotlib_10_08_2023"
-    #- file: "Tema_3_Pandas_10_08_2023"
+    - file: "OperacionesCondicionales"
+    - file: "OperacionesListasTuplas"
+    - file: "EstructurasRepetitivas"
+    - file: "Funciones"
     #- file: "Tema_4_Manejo_ficheros_10_08_2023"
     #- file: "recursos_extra"
