@@ -12,4 +12,5 @@ chapters:
 - file: "EstructurasRepetitivas"
 - file: "Funciones"
 - file: "Ficheros"
+- file: "Intro_Pandas"
     #- file: "recursos_extra"
