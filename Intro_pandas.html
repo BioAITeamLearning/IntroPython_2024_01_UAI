@@ -1,0 +1,4522 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Introducción a Pandas &#8212; Introducción a Python 2024 - 01</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Intro_pandas';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Introducción a Python 2024 - 01 - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Introducción a Python 2024 - 01 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Bienvenida al curso
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="Unidad1.html">Introducción a Python</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Introduccion.html">Primeros pasos</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="OperacionesCondicionales.html">Operaciones con tipos y estructuras condicionales</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="OperacionesListasTuplas.html">Operaciones con Listas, Tuplas y Diccionarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EstructurasRepetitivas.html">Estructuras Repetitivas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Funciones.html">Funciones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ficheros.html">Manejo de ficheros</a></li>
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/BioAITeamLearning/IntroPython_2024_01_UAI/blob/main/Intro_pandas.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/BioAITeamLearning/IntroPython_2024_01_UAI" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/BioAITeamLearning/IntroPython_2024_01_UAI/issues/new?title=Issue%20on%20page%20%2FIntro_pandas.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Intro_pandas.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introducción a Pandas</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#series-de-pandas">Series de pandas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acceso-a-los-elementos-de-una-serie">Acceso a los elementos de una Serie</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#acceso-por-indexacion-como-lista">Acceso por indexación como lista</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#acceso-por-la-clace-de-indice">Acceso por la clace de índice</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vectorizacion-y-broadcasting">Vectorización y broadcasting</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vectorizacion">Vectorización</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#broadcasting">Broadcasting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframes-de-pandas">DataFrames de pandas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acceso-a-los-elementos-de-un-dataframe">Acceso a los elementos de un DataFrame</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#obtener-una-columna-especifica">Obtener una columna específica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#recuperar-un-valor-especifico-mediante-encadenamiento">Recuperar un valor específico mediante encadenamiento</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-fuentes-externas-de-datos">Cargar Fuentes externas de datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-sintaxis-general-para-cargar-datos-en-un-dataframe-de-pandas-es-la-siguiente">La sintaxis general para cargar datos en un DataFrame de pandas es la siguiente:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-sintaxis-general-para-guardar-datos-desde-un-dataframe-de-pandas-es-la-siguiente">La sintaxis general para guardar datos desde un DataFrame de pandas es la siguiente:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exploremos-los-datos-que-importamos">Exploremos los datos que importamos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explorando-la-informacion">Explorando la información</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#info">Info</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#counts">Counts</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dtype">Dtype</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#describe">Describe</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#otros-metodos">Otros métodos</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reordenar-columnas">Reordenar columnas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mas-fuentes-de-informacion-con-pandas">Más fuentes de información con pandas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-json">Cargar JSON</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-excel">Cargar Excel</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-directamente-desde-la-web">Cargar Directamente desde la web</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#leer-csv-desde-una-url">Leer CSV desde una URL</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#leer-html-desde-una-url">Leer HTML desde una URL</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-datos-de-una-base-de-datos-sql-mid-level">Cargar datos de una base de datos SQL (Mid-level)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql">SQL</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduccion-a-pandas">
+<h1>Introducción a Pandas<a class="headerlink" href="#introduccion-a-pandas" title="Link to this heading">#</a></h1>
+<p>Pandas es una biblioteca de Python fundamental para la manipulación y el análisis de datos, ampliamente utilizada en el ámbito de la ciencia de datos y la ingeniería de datos. Proporciona estructuras de datos fáciles de usar y de alto rendimiento, como DataFrames y Series, que permiten realizar operaciones complejas de limpieza, transformación, y análisis de datos con una sintaxis intuitiva y eficiente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># </span>
+<span class="c1"># ¿Cómo importamos la librería?</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<section id="series-de-pandas">
+<h2>Series de pandas<a class="headerlink" href="#series-de-pandas" title="Link to this heading">#</a></h2>
+<p>Una pandas Series es una estructura de datos unidimensional en la biblioteca pandas de Python, similar a una columna en una tabla de datos o a un array en otros lenguajes de programación. Cada Series tiene un índice asociado, que son las etiquetas de las filas que permiten acceder a los elementos de la serie de manera rápida y eficiente. Los elementos de una Series pueden ser de diferentes tipos, como enteros, flotantes, cadenas, entre otros.</p>
+<img src="https://www.w3resource.com/w3r_images/pandas-series-view-image-1.svg"/>
+<p>Lo que hace que las Series sean especialmente poderosas es su capacidad para manejar datos faltantes y realizar operaciones vectorizadas, lo que significa que puedes aplicar operaciones a todos los elementos de una Series de una sola vez, en lugar de tener que iterar sobre cada elemento individualmente. Además, las Series ofrecen una variedad de métodos y propiedades para realizar operaciones estadísticas, manipulación de datos, y transformaciones, lo que las convierte en una herramienta versátil y esencial para el análisis de datos en Python.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Vamos a crear una serie a partir de un diccionario</span>
+
+<span class="n">test_balance_data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;pasan&#39;</span><span class="p">:</span> <span class="mf">20.00</span><span class="p">,</span>
+    <span class="s1">&#39;treasure&#39;</span><span class="p">:</span> <span class="mf">20.18</span><span class="p">,</span>
+    <span class="s1">&#39;ashley&#39;</span><span class="p">:</span> <span class="mf">1.05</span><span class="p">,</span>
+    <span class="s1">&#39;craig&#39;</span><span class="p">:</span> <span class="mf">42.42</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Para crear una serie se debe partir de un objeto de tipo diccionario</span>
+<span class="n">balances</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">test_balance_data</span><span class="p">)</span>
+<span class="n">balances</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pasan       20.00
+treasure    20.18
+ashley       1.05
+craig       42.42
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Acá tenemos una serie de pandas, que es una estructura de datos que se parece a un diccionario (pero más bonito y poderoso)</span>
+
+<span class="c1">#las etiquetas de las filas se obtienen</span>
+<span class="n">balances</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="c1"># tal cual como el un diccionario.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;pasan&#39;, &#39;treasure&#39;, &#39;ashley&#39;, &#39;craig&#39;], dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Alternativamente, se pueden obtener con el método index</span>
+<span class="n">balances</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;pasan&#39;, &#39;treasure&#39;, &#39;ashley&#39;, &#39;craig&#39;], dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Si solo quieres los valores, puedes usar:</span>
+<span class="n">balances</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([20.  , 20.18,  1.05, 42.42])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ahora, creemos una serie a partir de una lista</span>
+
+<span class="n">unlabeled_balances</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">20.00</span><span class="p">,</span> <span class="mf">20.18</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">,</span> <span class="mf">42.42</span><span class="p">])</span>
+<span class="n">unlabeled_balances</span> <span class="c1"># Note que las etiquetas de las filas son números enteros que van de 0 a n-1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    20.00
+1    20.18
+2     1.05
+3    42.42
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Si quieres personalizar esos index, puedes hacerlo de la siguiente manera</span>
+<span class="n">labeled_balances</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
+    <span class="p">[</span><span class="mf">20.00</span><span class="p">,</span> <span class="mf">20.18</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">,</span> <span class="mf">42.42</span><span class="p">],</span>
+    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pasan&#39;</span><span class="p">,</span> <span class="s1">&#39;treasure&#39;</span><span class="p">,</span> <span class="s1">&#39;ashley&#39;</span><span class="p">,</span> <span class="s1">&#39;craig&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">labeled_balances</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pasan       20.00
+treasure    20.18
+ashley       1.05
+craig       42.42
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Si pasas un escalar, recuerda que es un valor único, </span>
+<span class="c1"># este se transmitirá a cada una de las claves especificadas en el argumento de palabra clave index.</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="mf">20.0</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;guil&quot;</span><span class="p">,</span> <span class="s2">&quot;jay&quot;</span><span class="p">,</span> <span class="s2">&quot;james&quot;</span><span class="p">,</span> <span class="s2">&quot;ben&quot;</span><span class="p">,</span> <span class="s2">&quot;nick&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>guil     20.0
+jay      20.0
+james    20.0
+ben      20.0
+nick     20.0
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<section id="acceso-a-los-elementos-de-una-serie">
+<h3>Acceso a los elementos de una Serie<a class="headerlink" href="#acceso-a-los-elementos-de-una-serie" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+
+<span class="c1"># Creemos una serie a partir de un diccionario que tiene nombres de personas como claves y saldos como valores</span>
+<span class="n">test_balance_data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;pasan&#39;</span><span class="p">:</span> <span class="mf">20.00</span><span class="p">,</span>
+    <span class="s1">&#39;treasure&#39;</span><span class="p">:</span> <span class="mf">20.18</span><span class="p">,</span>
+    <span class="s1">&#39;ashley&#39;</span><span class="p">:</span> <span class="mf">1.05</span><span class="p">,</span>
+    <span class="s1">&#39;craig&#39;</span><span class="p">:</span> <span class="mf">42.42</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">balances</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">test_balance_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="acceso-por-indexacion-como-lista">
+<h4>Acceso por indexación como lista<a class="headerlink" href="#acceso-por-indexacion-como-lista" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Una Serie es ordenada e indexada (como las listas de Python)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">balances</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">balances</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20.0
+&lt;class &#39;numpy.float64&#39;&gt;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/yj/2_4_0_ln42j05fvg3t6db0pc0000gn/T/ipykernel_46975/363276410.py:2: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+  print(balances[0])
+/var/folders/yj/2_4_0_ln42j05fvg3t6db0pc0000gn/T/ipykernel_46975/363276410.py:3: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+  print(type(balances[0]))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># La forma correcta es:</span>
+<span class="n">balances</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(20.0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Si quieres obtener el ultimo balance</span>
+<span class="n">balances</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/yj/2_4_0_ln42j05fvg3t6db0pc0000gn/T/ipykernel_46975/3307448855.py:2: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+  balances[-1]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(42.42)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="acceso-por-la-clace-de-indice">
+<h4>Acceso por la clace de índice<a class="headerlink" href="#acceso-por-la-clace-de-indice" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Acceder a un elemento por su clave(index según pandas)</span>
+<span class="n">balances</span><span class="p">[</span><span class="s1">&#39;pasan&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(20.0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Las series de pandas se comportan como diccionarios</span>
+
+<span class="k">for</span> <span class="n">label</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">balances</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pasan 20.0
+treasure 20.18
+ashley 1.05
+craig 42.42
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Acceder a un elemento usando su clave como si fuera un atributo</span>
+<span class="n">balances</span><span class="o">.</span><span class="n">ashley</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(1.05)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Acceder a los elementos explicitamente como lo menciona la documentación</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">balances</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;ashley&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">balances</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.05
+20.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Acceder a una porción de la serie</span>
+<span class="n">balances</span><span class="p">[</span><span class="s1">&#39;treasure&#39;</span><span class="p">:</span><span class="s1">&#39;craig&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>treasure    20.18
+ashley       1.05
+craig       42.42
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">balances</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pasan       20.00
+treasure    20.18
+ashley       1.05
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="vectorizacion-y-broadcasting">
+<h3>Vectorización y broadcasting<a class="headerlink" href="#vectorizacion-y-broadcasting" title="Link to this heading">#</a></h3>
+<p>se trata de la capacidad de pandas para realizar operaciones element-wise (elemento a elemento) en estructuras de datos con diferentes formas, alineando automáticamente las dimensiones según sea necesario.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">test_balance_data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;pasan&#39;</span><span class="p">:</span> <span class="mf">20.00</span><span class="p">,</span>
+    <span class="s1">&#39;treasure&#39;</span><span class="p">:</span> <span class="mf">20.18</span><span class="p">,</span>
+    <span class="s1">&#39;ashley&#39;</span><span class="p">:</span> <span class="mf">1.05</span><span class="p">,</span>
+    <span class="s1">&#39;craig&#39;</span><span class="p">:</span> <span class="mf">42.42</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">test_deposit_data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;pasan&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="s1">&#39;treasure&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s1">&#39;ashley&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s1">&#39;craig&#39;</span><span class="p">:</span> <span class="mi">55</span>
+<span class="p">}</span>
+
+<span class="n">balances</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">test_balance_data</span><span class="p">)</span>
+<span class="n">deposits</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">test_deposit_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="vectorizacion">
+<h4>Vectorización<a class="headerlink" href="#vectorizacion" title="Link to this heading">#</a></h4>
+<p>Aunque es posible recorrer cada elemento y aplicarlo a otro…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">deposits</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Depositando </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2"> en la cuenta de </span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">, que tiene </span><span class="si">{</span><span class="n">balances</span><span class="p">[</span><span class="n">label</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">balances</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">+=</span> <span class="n">value</span>
+
+<span class="n">balances</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Depositando 20 en la cuenta de pasan, que tiene 20.0
+Depositando 10 en la cuenta de treasure, que tiene 20.18
+Depositando 100 en la cuenta de ashley, que tiene 1.05
+Depositando 55 en la cuenta de craig, que tiene 42.42
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pasan        40.00
+treasure     30.18
+ashley      101.05
+craig        97.42
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>…es importante recordar apoyarse en la vectorización y omitir los bucles por completo. La vectorización es más rápida y, como puedes ver, más fácil de leer y escribir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Se debe considerar que para esta operacion los indices deben coincidir, de lo contrario se generará un NaN</span>
+
+<span class="n">balances</span> <span class="o">+=</span> <span class="n">deposits</span>
+<span class="n">balances</span>
+<span class="c1"># agrega 10 a la cuenta de &#39;james&#39; en el diccionario de depositos para y ejecuta nuevamente esta celda. revisa lo que pasa</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pasan        60.00
+treasure     40.18
+ashley      201.05
+craig       152.42
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">balances</span> <span class="o">-=</span> <span class="n">deposits</span>
+<span class="n">balances</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pasan        40.00
+treasure     30.18
+ashley      101.05
+craig        97.42
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="broadcasting">
+<h4>Broadcasting<a class="headerlink" href="#broadcasting" title="Link to this heading">#</a></h4>
+<p>Esto lo que permite es sumar un escalar a cada uno de los elementos de la serie.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">balances</span> <span class="o">+</span> <span class="mi">5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pasan        45.00
+treasure     35.18
+ashley      106.05
+craig       102.42
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hacer broadcast de una serie con otra serie es posible siempre y cuando ambas tengan el mismo índice. En caso de que no sea así, se devolverá NaN.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coupons</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;craig&#39;</span><span class="p">,</span> <span class="s1">&#39;ashley&#39;</span><span class="p">,</span> <span class="s1">&#39;james&#39;</span><span class="p">])</span>
+<span class="n">coupons</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>craig     1
+ashley    1
+james     1
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sumemos los balances con los cupones, el resultado es una nueva serie</span>
+<span class="n">balances</span> <span class="o">+</span> <span class="n">coupons</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ashley      102.05
+craig        98.42
+james          NaN
+pasan          NaN
+treasure       NaN
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">balances</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pasan        40.00
+treasure     30.18
+ashley      101.05
+craig        97.42
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">balances</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">coupons</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Así se puede evitar el NaN y que no se pierda la información</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ashley      102.05
+craig        98.42
+james         1.00
+pasan        40.00
+treasure     30.18
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="dataframes-de-pandas">
+<h2>DataFrames de pandas<a class="headerlink" href="#dataframes-de-pandas" title="Link to this heading">#</a></h2>
+<p>Un DataFrame es una estructura de datos bidimensional en la biblioteca pandas de Python, similar a una tabla de datos o una hoja de cálculo en Excel. Cada DataFrame tiene un índice asociado, que son las etiquetas de las filas, y columnas, que son las etiquetas de las columnas. Los elementos de un DataFrame pueden ser de diferentes tipos, como enteros, flotantes, cadenas, entre otros.</p>
+<img src="https://camo.qiitausercontent.com/5a1924b47a5200f0618fddda44db1f357201d5ef/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e61702d6e6f727468656173742d312e616d617a6f6e6177732e636f6d2f302f3131373437392f32623061326364342d636131392d633665342d313364342d3664323133636432306539642e706e67"/><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">test_users_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s1">&#39;Craig&#39;</span><span class="p">,</span> <span class="s1">&#39;Dennis&#39;</span><span class="p">,</span> <span class="mf">42.42</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Treasure&#39;</span><span class="p">,</span> <span class="s1">&#39;Porth&#39;</span><span class="p">,</span> <span class="mf">25.00</span><span class="p">]</span>
+<span class="p">]</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">test_users_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Craig</td>
+      <td>Dennis</td>
+      <td>42.42</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Treasure</td>
+      <td>Porth</td>
+      <td>25.00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">test_users_list</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;craigsdennis&#39;</span><span class="p">,</span> <span class="s1">&#39;treasure&#39;</span><span class="p">],</span>
+            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;first_name&#39;</span><span class="p">,</span> <span class="s1">&#39;last_name&#39;</span><span class="p">,</span> <span class="s1">&#39;balance&#39;</span><span class="p">])</span> <span class="c1"># Note que acá se especifican los nombres de las columnas</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>first_name</th>
+      <th>last_name</th>
+      <th>balance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>craigsdennis</th>
+      <td>Craig</td>
+      <td>Dennis</td>
+      <td>42.42</td>
+    </tr>
+    <tr>
+      <th>treasure</th>
+      <td>Treasure</td>
+      <td>Porth</td>
+      <td>25.00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Si se tiene un diccionario es más fácil crear un dataframe</span>
+<span class="n">test_user_data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;first_name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Craig&#39;</span><span class="p">,</span> <span class="s1">&#39;Treasure&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;last_name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Dennis&#39;</span><span class="p">,</span> <span class="s1">&#39;Porth&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;balance&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">42.42</span><span class="p">,</span> <span class="mf">25.00</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">test_user_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>first_name</th>
+      <th>last_name</th>
+      <th>balance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Craig</td>
+      <td>Dennis</td>
+      <td>42.42</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Treasure</td>
+      <td>Porth</td>
+      <td>25.00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Se puede especificar los indices de las filas</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">test_user_data</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;craigsdennis&#39;</span><span class="p">,</span> <span class="s1">&#39;treasure&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>first_name</th>
+      <th>last_name</th>
+      <th>balance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>craigsdennis</th>
+      <td>Craig</td>
+      <td>Dennis</td>
+      <td>42.42</td>
+    </tr>
+    <tr>
+      <th>treasure</th>
+      <td>Treasure</td>
+      <td>Porth</td>
+      <td>25.00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<section id="acceso-a-los-elementos-de-un-dataframe">
+<h3>Acceso a los elementos de un DataFrame<a class="headerlink" href="#acceso-a-los-elementos-de-un-dataframe" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Vamos a crear un dataframe con algunos datos de usuarios</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">test_user_data</span> <span class="o">=</span> <span class="p">{</span> <span class="c1"># Estos son los datos de los usuarios y el balance</span>
+    <span class="s1">&#39;first_name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Craig&#39;</span><span class="p">,</span> <span class="s1">&#39;Treasure&#39;</span><span class="p">,</span> <span class="s1">&#39;Ashley&#39;</span><span class="p">,</span> <span class="s1">&#39;Guil&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;last_name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Dennis&#39;</span><span class="p">,</span> <span class="s1">&#39;Porth&#39;</span><span class="p">,</span> <span class="s1">&#39;Boucher&#39;</span><span class="p">,</span> <span class="s1">&#39;Hernandez&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;balance&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">42.42</span><span class="p">,</span> <span class="mf">25.00</span><span class="p">,</span> <span class="mf">2.02</span><span class="p">,</span> <span class="mf">87.00</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="n">test_user_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;craigsdennis&#39;</span><span class="p">,</span> <span class="s1">&#39;treasure&#39;</span><span class="p">,</span> <span class="s1">&#39;lindsay2000&#39;</span><span class="p">,</span> <span class="s1">&#39;guil&#39;</span><span class="p">]</span> <span class="c1"># Supongamos que estos son los usernames</span>
+
+<span class="n">users</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">test_user_data</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">test_user_names</span><span class="p">)</span>
+<span class="n">users</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>first_name</th>
+      <th>last_name</th>
+      <th>balance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>craigsdennis</th>
+      <td>Craig</td>
+      <td>Dennis</td>
+      <td>42.42</td>
+    </tr>
+    <tr>
+      <th>treasure</th>
+      <td>Treasure</td>
+      <td>Porth</td>
+      <td>25.00</td>
+    </tr>
+    <tr>
+      <th>lindsay2000</th>
+      <td>Ashley</td>
+      <td>Boucher</td>
+      <td>2.02</td>
+    </tr>
+    <tr>
+      <th>guil</th>
+      <td>Guil</td>
+      <td>Hernandez</td>
+      <td>87.00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<section id="obtener-una-columna-especifica">
+<h4>Obtener una columna específica<a class="headerlink" href="#obtener-una-columna-especifica" title="Link to this heading">#</a></h4>
+<p>Cada columna en un DataFrame es una Serie de pandas, por lo que puedes acceder a una columna específica utilizando la notación de corchetes y el nombre de la columna y el retorno es una serie.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">balances</span> <span class="o">=</span> <span class="n">users</span><span class="p">[</span><span class="s1">&#39;balance&#39;</span><span class="p">]</span>
+<span class="n">balances</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>craigsdennis    42.42
+treasure        25.00
+lindsay2000      2.02
+guil            87.00
+Name: balance, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># La serie que retorna la celda anterior tiene una propiedad llamada name que retorna el nombre de la columna</span>
+<span class="n">balances</span><span class="o">.</span><span class="n">name</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;balance&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Puedes obtener una fila de un Dataframe usando la propiedad .loc[] y pasando el índice de la fila, o el número.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">users</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;guil&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>first_name         Guil
+last_name     Hernandez
+balance            87.0
+Name: guil, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">users</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>first_name         Guil
+last_name     Hernandez
+balance            87.0
+Name: guil, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="recuperar-un-valor-especifico-mediante-encadenamiento">
+<h4>Recuperar un valor específico mediante encadenamiento<a class="headerlink" href="#recuperar-un-valor-especifico-mediante-encadenamiento" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">users</span><span class="p">[</span><span class="s1">&#39;first_name&#39;</span><span class="p">][</span><span class="s1">&#39;craigsdennis&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Craig&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">users</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;craigsdennis&#39;</span><span class="p">][</span><span class="s1">&#39;first_name&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Craig&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">users</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;craigsdennis&#39;</span><span class="p">,</span> <span class="s1">&#39;first_name&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Craig&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">users</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;craigsdennis&#39;</span><span class="p">,</span> <span class="s1">&#39;first_name&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Craig&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Usando las propiedades loc e iloc puedes dividir un DataFrame existente en uno nuevo.</p>
+<p>En el ejemplo a continuación, usamos : en el eje de filas para seleccionar todas las filas, y especificamos qué columnas queremos recuperar usando una lista en el eje de columnas</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Esto se lee como:</span>
+<span class="c1"># En el dataframe users, selecciona todas las filas, y dame solo las columnas &#39;balance&#39; y &#39;last_name&#39;</span>
+<span class="n">users</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s1">&#39;balance&#39;</span><span class="p">,</span> <span class="s1">&#39;last_name&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>balance</th>
+      <th>last_name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>craigsdennis</th>
+      <td>42.42</td>
+      <td>Dennis</td>
+    </tr>
+    <tr>
+      <th>treasure</th>
+      <td>25.00</td>
+      <td>Porth</td>
+    </tr>
+    <tr>
+      <th>lindsay2000</th>
+      <td>2.02</td>
+      <td>Boucher</td>
+    </tr>
+    <tr>
+      <th>guil</th>
+      <td>87.00</td>
+      <td>Hernandez</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># O lo puedes indexar por posición como en las listas</span>
+<span class="n">users</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>last_name</th>
+      <th>balance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>treasure</th>
+      <td>Porth</td>
+      <td>25.00</td>
+    </tr>
+    <tr>
+      <th>lindsay2000</th>
+      <td>Boucher</td>
+      <td>2.02</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+</section>
+<section id="cargar-fuentes-externas-de-datos">
+<h2>Cargar Fuentes externas de datos<a class="headerlink" href="#cargar-fuentes-externas-de-datos" title="Link to this heading">#</a></h2>
+<p>Naturalmente, cuando se trabaja con datos en la vida real, no siempre se tienen los datos en un DataFrame de pandas. A menudo, los datos se almacenan en archivos CSV, Excel, bases de datos SQL, o en la web. Afortunadamente, pandas proporciona una variedad de funciones para cargar datos desde diferentes fuentes y formatos, lo que facilita la importación y exportación de datos en Python.</p>
+<img src="https://pandas.pydata.org/docs/_images/02_io_readwrite.svg"/>
+<section id="la-sintaxis-general-para-cargar-datos-en-un-dataframe-de-pandas-es-la-siguiente">
+<h3>La sintaxis general para cargar datos en un DataFrame de pandas es la siguiente:<a class="headerlink" href="#la-sintaxis-general-para-cargar-datos-en-un-dataframe-de-pandas-es-la-siguiente" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">read_</span><span class="o">&lt;</span><span class="n">formato</span><span class="o">&gt;</span><span class="p">(</span><span class="s1">&#39;ruta/al/archivo&#39;</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</section>
+<section id="la-sintaxis-general-para-guardar-datos-desde-un-dataframe-de-pandas-es-la-siguiente">
+<h3>La sintaxis general para guardar datos desde un DataFrame de pandas es la siguiente:<a class="headerlink" href="#la-sintaxis-general-para-guardar-datos-desde-un-dataframe-de-pandas-es-la-siguiente" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">to_</span><span class="o">&lt;</span><span class="n">formato</span><span class="o">&gt;</span><span class="p">(</span><span class="s1">&#39;ruta/al/archivo&#39;</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+<p>Los formatos más comunes para cargar y guardar datos en pandas son los siguientes:</p>
+<img src="https://lh3.googleusercontent.com/proxy/qV5agpQPwtkDr-71ZlBOwmaq6kjV8onyBGOJxXJZfAhTY2tpj22qYuVnrxgOm6F3hV0VAZkabrukiyGfWfOOv5aho3ZCoVtXUJXCwiE2GWw8CVhC2aBXhm3Bh1Qv_31evSZrwAOREBA"/>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Vamos a importar los datos de un archivo CSV</span>
+
+<span class="c1"># 1. Veamos lo que tiene el archivo users.csv</span>
+
+<span class="o">!</span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span><span class="w"> </span>data/users.csv<span class="w"> </span>#<span class="w"> </span>Este<span class="w"> </span>comando<span class="w"> </span>solo<span class="w"> </span>es<span class="w"> </span>una<span class="w"> </span>muestra<span class="w"> </span>del<span class="w"> </span>contenido<span class="w"> </span>del<span class="w"> </span>archivo,<span class="w"> </span>no<span class="w"> </span>tiene<span class="w"> </span>nada<span class="w"> </span>que<span class="w"> </span>ver<span class="w"> </span>con<span class="w"> </span>python<span class="w"> </span>o<span class="w"> </span>pandas.
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>,first_name,last_name,email,email_verified,signup_date,referral_count,balance
+aaron,Aaron,Davis,aaron6348@gmail.com,True,2018-08-31,6,18.14
+acook,Anthony,Cook,cook@gmail.com,True,2018-05-12,2,55.45
+adam.saunders,Adam,Saunders,adam@gmail.com,False,2018-05-29,3,72.12
+adrian,Adrian,Fang,adrian.fang@teamtreehouse.com,True,2018-04-28,3,30.01
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">my_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/users.csv&#39;</span><span class="p">)</span>
+<span class="n">my_data</span> <span class="c1"># Note que hay una columna sin nombre, que es el índice y carga como Unnamed: 0. vamos a arreglar eso</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>first_name</th>
+      <th>last_name</th>
+      <th>email</th>
+      <th>email_verified</th>
+      <th>signup_date</th>
+      <th>referral_count</th>
+      <th>balance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>aaron</td>
+      <td>Aaron</td>
+      <td>Davis</td>
+      <td>aaron6348@gmail.com</td>
+      <td>True</td>
+      <td>2018-08-31</td>
+      <td>6</td>
+      <td>18.14</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>acook</td>
+      <td>Anthony</td>
+      <td>Cook</td>
+      <td>cook@gmail.com</td>
+      <td>True</td>
+      <td>2018-05-12</td>
+      <td>2</td>
+      <td>55.45</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>adam.saunders</td>
+      <td>Adam</td>
+      <td>Saunders</td>
+      <td>adam@gmail.com</td>
+      <td>False</td>
+      <td>2018-05-29</td>
+      <td>3</td>
+      <td>72.12</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>adrian</td>
+      <td>Adrian</td>
+      <td>Fang</td>
+      <td>adrian.fang@teamtreehouse.com</td>
+      <td>True</td>
+      <td>2018-04-28</td>
+      <td>3</td>
+      <td>30.01</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>adrian.blair</td>
+      <td>Adrian</td>
+      <td>Blair</td>
+      <td>adrian9335@gmail.com</td>
+      <td>True</td>
+      <td>2018-06-16</td>
+      <td>7</td>
+      <td>25.85</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>470</th>
+      <td>wilson</td>
+      <td>Robert</td>
+      <td>Wilson</td>
+      <td>robert@yahoo.com</td>
+      <td>False</td>
+      <td>2018-05-16</td>
+      <td>5</td>
+      <td>59.75</td>
+    </tr>
+    <tr>
+      <th>471</th>
+      <td>wking</td>
+      <td>Wanda</td>
+      <td>King</td>
+      <td>wanda.king@holt.com</td>
+      <td>True</td>
+      <td>2018-06-01</td>
+      <td>2</td>
+      <td>67.08</td>
+    </tr>
+    <tr>
+      <th>472</th>
+      <td>wright3590</td>
+      <td>Jacqueline</td>
+      <td>Wright</td>
+      <td>jacqueline.wright@gonzalez.com</td>
+      <td>True</td>
+      <td>2018-02-08</td>
+      <td>6</td>
+      <td>18.48</td>
+    </tr>
+    <tr>
+      <th>473</th>
+      <td>young</td>
+      <td>Jessica</td>
+      <td>Young</td>
+      <td>jessica4028@yahoo.com</td>
+      <td>True</td>
+      <td>2018-07-17</td>
+      <td>4</td>
+      <td>75.39</td>
+    </tr>
+    <tr>
+      <th>474</th>
+      <td>zachary.neal</td>
+      <td>Zachary</td>
+      <td>Neal</td>
+      <td>zneal@gmail.com</td>
+      <td>True</td>
+      <td>2018-07-26</td>
+      <td>1</td>
+      <td>39.90</td>
+    </tr>
+  </tbody>
+</table>
+<p>475 rows × 8 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Usemos los parámetros para cargar el archivo CSV</span>
+<span class="n">my_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/users.csv&#39;</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># Otros parametros que se pueden usar son:</span>
+
+<span class="c1"># sep: el separador de los datos. Algunos archivos CSV usan ; en lugar de ,</span>
+<span class="c1"># header: la fila que se usará como encabezado. </span>
+<span class="c1"># names: una lista con los nombres de las columnas. </span>
+<span class="c1"># skiprows: las filas que se deben omitir</span>
+<span class="c1"># na_values: los valores que se deben tratar como NaN</span>
+<span class="c1"># nrows: el número de filas que se deben leer</span>
+<span class="c1"># encoding: la codificación de caracteres que se debe usar</span>
+
+<span class="c1"># Existen otros parámetros que se pueden usar, pero estos son los más comunes. </span>
+<span class="c1"># Vamos a ver otros parámetros a lo largo de los ejemplos.</span>
+
+<span class="n">my_data</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>first_name</th>
+      <th>last_name</th>
+      <th>email</th>
+      <th>email_verified</th>
+      <th>signup_date</th>
+      <th>referral_count</th>
+      <th>balance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>aaron</th>
+      <td>Aaron</td>
+      <td>Davis</td>
+      <td>aaron6348@gmail.com</td>
+      <td>True</td>
+      <td>2018-08-31</td>
+      <td>6</td>
+      <td>18.14</td>
+    </tr>
+    <tr>
+      <th>acook</th>
+      <td>Anthony</td>
+      <td>Cook</td>
+      <td>cook@gmail.com</td>
+      <td>True</td>
+      <td>2018-05-12</td>
+      <td>2</td>
+      <td>55.45</td>
+    </tr>
+    <tr>
+      <th>adam.saunders</th>
+      <td>Adam</td>
+      <td>Saunders</td>
+      <td>adam@gmail.com</td>
+      <td>False</td>
+      <td>2018-05-29</td>
+      <td>3</td>
+      <td>72.12</td>
+    </tr>
+    <tr>
+      <th>adrian</th>
+      <td>Adrian</td>
+      <td>Fang</td>
+      <td>adrian.fang@teamtreehouse.com</td>
+      <td>True</td>
+      <td>2018-04-28</td>
+      <td>3</td>
+      <td>30.01</td>
+    </tr>
+    <tr>
+      <th>adrian.blair</th>
+      <td>Adrian</td>
+      <td>Blair</td>
+      <td>adrian9335@gmail.com</td>
+      <td>True</td>
+      <td>2018-06-16</td>
+      <td>7</td>
+      <td>25.85</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>wilson</th>
+      <td>Robert</td>
+      <td>Wilson</td>
+      <td>robert@yahoo.com</td>
+      <td>False</td>
+      <td>2018-05-16</td>
+      <td>5</td>
+      <td>59.75</td>
+    </tr>
+    <tr>
+      <th>wking</th>
+      <td>Wanda</td>
+      <td>King</td>
+      <td>wanda.king@holt.com</td>
+      <td>True</td>
+      <td>2018-06-01</td>
+      <td>2</td>
+      <td>67.08</td>
+    </tr>
+    <tr>
+      <th>wright3590</th>
+      <td>Jacqueline</td>
+      <td>Wright</td>
+      <td>jacqueline.wright@gonzalez.com</td>
+      <td>True</td>
+      <td>2018-02-08</td>
+      <td>6</td>
+      <td>18.48</td>
+    </tr>
+    <tr>
+      <th>young</th>
+      <td>Jessica</td>
+      <td>Young</td>
+      <td>jessica4028@yahoo.com</td>
+      <td>True</td>
+      <td>2018-07-17</td>
+      <td>4</td>
+      <td>75.39</td>
+    </tr>
+    <tr>
+      <th>zachary.neal</th>
+      <td>Zachary</td>
+      <td>Neal</td>
+      <td>zneal@gmail.com</td>
+      <td>True</td>
+      <td>2018-07-26</td>
+      <td>1</td>
+      <td>39.90</td>
+    </tr>
+  </tbody>
+</table>
+<p>475 rows × 7 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="exploremos-los-datos-que-importamos">
+<h3>Exploremos los datos que importamos<a class="headerlink" href="#exploremos-los-datos-que-importamos" title="Link to this heading">#</a></h3>
+<p>La forma más fácil si cargamos correctamente, podemos usar el método .head() para ver las primeras filas de un DataFrame, o .tail() para ver las últimas filas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> <span class="c1"># Muestra las primeras 5 filas del dataframe</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>first_name</th>
+      <th>last_name</th>
+      <th>email</th>
+      <th>email_verified</th>
+      <th>signup_date</th>
+      <th>referral_count</th>
+      <th>balance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>aaron</th>
+      <td>Aaron</td>
+      <td>Davis</td>
+      <td>aaron6348@gmail.com</td>
+      <td>True</td>
+      <td>2018-08-31</td>
+      <td>6</td>
+      <td>18.14</td>
+    </tr>
+    <tr>
+      <th>acook</th>
+      <td>Anthony</td>
+      <td>Cook</td>
+      <td>cook@gmail.com</td>
+      <td>True</td>
+      <td>2018-05-12</td>
+      <td>2</td>
+      <td>55.45</td>
+    </tr>
+    <tr>
+      <th>adam.saunders</th>
+      <td>Adam</td>
+      <td>Saunders</td>
+      <td>adam@gmail.com</td>
+      <td>False</td>
+      <td>2018-05-29</td>
+      <td>3</td>
+      <td>72.12</td>
+    </tr>
+    <tr>
+      <th>adrian</th>
+      <td>Adrian</td>
+      <td>Fang</td>
+      <td>adrian.fang@teamtreehouse.com</td>
+      <td>True</td>
+      <td>2018-04-28</td>
+      <td>3</td>
+      <td>30.01</td>
+    </tr>
+    <tr>
+      <th>adrian.blair</th>
+      <td>Adrian</td>
+      <td>Blair</td>
+      <td>adrian9335@gmail.com</td>
+      <td>True</td>
+      <td>2018-06-16</td>
+      <td>7</td>
+      <td>25.85</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>first_name</th>
+      <th>last_name</th>
+      <th>email</th>
+      <th>email_verified</th>
+      <th>signup_date</th>
+      <th>referral_count</th>
+      <th>balance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>aaron</th>
+      <td>Aaron</td>
+      <td>Davis</td>
+      <td>aaron6348@gmail.com</td>
+      <td>True</td>
+      <td>2018-08-31</td>
+      <td>6</td>
+      <td>18.14</td>
+    </tr>
+    <tr>
+      <th>acook</th>
+      <td>Anthony</td>
+      <td>Cook</td>
+      <td>cook@gmail.com</td>
+      <td>True</td>
+      <td>2018-05-12</td>
+      <td>2</td>
+      <td>55.45</td>
+    </tr>
+    <tr>
+      <th>adam.saunders</th>
+      <td>Adam</td>
+      <td>Saunders</td>
+      <td>adam@gmail.com</td>
+      <td>False</td>
+      <td>2018-05-29</td>
+      <td>3</td>
+      <td>72.12</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Revisemos la cantidad de muestras que tiene el dataframe</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">my_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>475
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_data</span><span class="o">.</span><span class="n">shape</span> <span class="c1"># Shape es un atributo que tiene todo DF (dataFrame) y retorna una tupla con la cantidad de filas y columnas</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(475, 7)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="explorando-la-informacion">
+<h3>Explorando la información<a class="headerlink" href="#explorando-la-informacion" title="Link to this heading">#</a></h3>
+<section id="info">
+<h4>Info<a class="headerlink" href="#info" title="Link to this heading">#</a></h4>
+<p>El método .info() proporciona una descripción concisa de un DataFrame, incluyendo el número de filas y columnas, el número de valores no nulos, el tipo de datos de cada columna, y la cantidad de memoria utilizada.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_data</span><span class="o">.</span><span class="n">info</span><span class="p">()</span> <span class="c1"># Info es un método que retorna información sobre el dataframe</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+Index: 475 entries, aaron to zachary.neal
+Data columns (total 7 columns):
+ #   Column          Non-Null Count  Dtype  
+---  ------          --------------  -----  
+ 0   first_name      475 non-null    object 
+ 1   last_name       430 non-null    object 
+ 2   email           475 non-null    object 
+ 3   email_verified  475 non-null    bool   
+ 4   signup_date     475 non-null    object 
+ 5   referral_count  475 non-null    int64  
+ 6   balance         475 non-null    float64
+dtypes: bool(1), float64(1), int64(1), object(4)
+memory usage: 26.4+ KB
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="counts">
+<h4>Counts<a class="headerlink" href="#counts" title="Link to this heading">#</a></h4>
+<p>El método .count() cuenta, por cada columna, cuantos valores no nulos hay.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_data</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>first_name        475
+last_name         430
+email             475
+email_verified    475
+signup_date       475
+referral_count    475
+balance           475
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>La mayoría de nuestras columnas incluyen valores para cada fila, pero parece que last_name tiene algunos valores faltantes. Los datos faltantes aparecerán como np.nan – no es un número de NumPy – en esos registros.</p>
+</section>
+<section id="dtype">
+<h4>Dtype<a class="headerlink" href="#dtype" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Revisemos los tipos de datos de las columnas</span>
+
+<span class="n">my_data</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>first_name         object
+last_name          object
+email              object
+email_verified       bool
+signup_date        object
+referral_count      int64
+balance           float64
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>a mayoría de los tipos de datos de estas columnas fueron inferidos o asumidos correctamente. Observa cómo email_verified es automáticamente bool, referral_count es un entero y balance un flotante. Esto es lo que hace pandas cuando usamos pd.read_csv.</p>
+<p>Sin embargo, una cosa a tener en cuenta es que el campo signup_date es un objeto y no un datetime. Puedes convertir estos datos durante o después de la importación si lo necesitas, y haremos algunas de esas conversiones más adelante en este curso.</p>
+</section>
+<section id="describe">
+<h4>Describe<a class="headerlink" href="#describe" title="Link to this heading">#</a></h4>
+<p>El método DataFrame.describe es una excelente manera de obtener una idea general de todos los datos numéricos en tu DataFrame. Notarás que solo se devuelven las columnas que tienen datos numéricos, mientras que las que tienen valores booleanos o texto, como email_verified y first_name, se omiten.</p>
+<p>Verás muchas agregaciones diferentes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_data</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>referral_count</th>
+      <th>balance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>475.000000</td>
+      <td>475.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>3.429474</td>
+      <td>49.933263</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>2.281085</td>
+      <td>28.280448</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>0.050000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>2.000000</td>
+      <td>25.305000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>3.000000</td>
+      <td>51.570000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>5.000000</td>
+      <td>74.480000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>7.000000</td>
+      <td>99.900000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="otros-metodos">
+<h4>Otros métodos<a class="headerlink" href="#otros-metodos" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># El promedio</span>
+<span class="n">my_data</span><span class="o">.</span><span class="n">balance</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(49.933263157894736)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># La desviación estándar</span>
+<span class="n">my_data</span><span class="o">.</span><span class="n">balance</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(28.28044849675191)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># La suma de todo el balance</span>
+<span class="n">my_data</span><span class="o">.</span><span class="n">balance</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(23718.3)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># El valor minimo del balance</span>
+<span class="n">my_data</span><span class="o">.</span><span class="n">balance</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.05)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># El valor máximo del balance</span>
+<span class="n">my_data</span><span class="o">.</span><span class="n">balance</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(99.9)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Obtener, de una columna en específico, el conteo de los valores únicos</span>
+<span class="n">my_data</span><span class="o">.</span><span class="n">email_verified</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>email_verified
+True     389
+False     86
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="reordenar-columnas">
+<h3>Reordenar columnas<a class="headerlink" href="#reordenar-columnas" title="Link to this heading">#</a></h3>
+<p>Con pandas puedes ordenar rápidamente las columnas de un DF.</p>
+<p>Ordenemos el DataFrame para que el usuario con el saldo más alto esté en la parte superior. Por defecto, se asume el orden ascendente, pero puedes cambiar eso configurando el argumento de palabra clave ascending en False.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_data</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;balance&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>first_name</th>
+      <th>last_name</th>
+      <th>email</th>
+      <th>email_verified</th>
+      <th>signup_date</th>
+      <th>referral_count</th>
+      <th>balance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>twhite</th>
+      <td>Timothy</td>
+      <td>White</td>
+      <td>white5136@hotmail.com</td>
+      <td>True</td>
+      <td>2018-07-06</td>
+      <td>5</td>
+      <td>99.90</td>
+    </tr>
+    <tr>
+      <th>karen.snow</th>
+      <td>Karen</td>
+      <td>Snow</td>
+      <td>ksnow@yahoo.com</td>
+      <td>True</td>
+      <td>2018-05-06</td>
+      <td>2</td>
+      <td>99.38</td>
+    </tr>
+    <tr>
+      <th>king</th>
+      <td>Billy</td>
+      <td>King</td>
+      <td>billy.king@hotmail.com</td>
+      <td>True</td>
+      <td>2018-05-29</td>
+      <td>4</td>
+      <td>98.80</td>
+    </tr>
+    <tr>
+      <th>king3246</th>
+      <td>Brittney</td>
+      <td>King</td>
+      <td>brittney@yahoo.com</td>
+      <td>True</td>
+      <td>2018-04-15</td>
+      <td>6</td>
+      <td>98.79</td>
+    </tr>
+    <tr>
+      <th>crane203</th>
+      <td>Valerie</td>
+      <td>Crane</td>
+      <td>valerie7051@hotmail.com</td>
+      <td>True</td>
+      <td>2018-05-12</td>
+      <td>3</td>
+      <td>98.69</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>first_name</th>
+      <th>last_name</th>
+      <th>email</th>
+      <th>email_verified</th>
+      <th>signup_date</th>
+      <th>referral_count</th>
+      <th>balance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>aaron</th>
+      <td>Aaron</td>
+      <td>Davis</td>
+      <td>aaron6348@gmail.com</td>
+      <td>True</td>
+      <td>2018-08-31</td>
+      <td>6</td>
+      <td>18.14</td>
+    </tr>
+    <tr>
+      <th>acook</th>
+      <td>Anthony</td>
+      <td>Cook</td>
+      <td>cook@gmail.com</td>
+      <td>True</td>
+      <td>2018-05-12</td>
+      <td>2</td>
+      <td>55.45</td>
+    </tr>
+    <tr>
+      <th>adam.saunders</th>
+      <td>Adam</td>
+      <td>Saunders</td>
+      <td>adam@gmail.com</td>
+      <td>False</td>
+      <td>2018-05-29</td>
+      <td>3</td>
+      <td>72.12</td>
+    </tr>
+    <tr>
+      <th>adrian</th>
+      <td>Adrian</td>
+      <td>Fang</td>
+      <td>adrian.fang@teamtreehouse.com</td>
+      <td>True</td>
+      <td>2018-04-28</td>
+      <td>3</td>
+      <td>30.01</td>
+    </tr>
+    <tr>
+      <th>adrian.blair</th>
+      <td>Adrian</td>
+      <td>Blair</td>
+      <td>adrian9335@gmail.com</td>
+      <td>True</td>
+      <td>2018-06-16</td>
+      <td>7</td>
+      <td>25.85</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Notarás que la llamada a sort_values en realidad creó un nuevo DataFrame. Si deseas cambiar permanentemente el orden predeterminado (ordenado por índice), puedes pasar True como argumento al parámetro de palabra clave inplace.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ordenar primero por last_name y luego por first_name. Por defecto, np.nan aparece al final</span>
+<span class="n">my_data</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;last_name&#39;</span><span class="p">,</span> <span class="s1">&#39;first_name&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># El orden ahora ha cambiado</span>
+<span class="n">my_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>first_name</th>
+      <th>last_name</th>
+      <th>email</th>
+      <th>email_verified</th>
+      <th>signup_date</th>
+      <th>referral_count</th>
+      <th>balance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>darlene.adams</th>
+      <td>Darlene</td>
+      <td>Adams</td>
+      <td>adams@hotmail.com</td>
+      <td>True</td>
+      <td>2018-09-15</td>
+      <td>2</td>
+      <td>67.02</td>
+    </tr>
+    <tr>
+      <th>lauren</th>
+      <td>Lauren</td>
+      <td>Aguilar</td>
+      <td>lauren.aguilar@summers.com</td>
+      <td>False</td>
+      <td>2018-05-31</td>
+      <td>4</td>
+      <td>69.90</td>
+    </tr>
+    <tr>
+      <th>daniel</th>
+      <td>Daniel</td>
+      <td>Allen</td>
+      <td>allen@hotmail.com</td>
+      <td>False</td>
+      <td>2018-07-01</td>
+      <td>2</td>
+      <td>21.21</td>
+    </tr>
+    <tr>
+      <th>kallen</th>
+      <td>Kathy</td>
+      <td>Allen</td>
+      <td>kathy@hotmail.com</td>
+      <td>False</td>
+      <td>2018-02-20</td>
+      <td>1</td>
+      <td>43.72</td>
+    </tr>
+    <tr>
+      <th>alvarado</th>
+      <td>Denise</td>
+      <td>Alvarado</td>
+      <td>alvarado@hotmail.com</td>
+      <td>True</td>
+      <td>2018-09-07</td>
+      <td>6</td>
+      <td>26.72</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Si quieres ordenar por el índice, puedes usar sort_index</span>
+
+<span class="n">my_data</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">my_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>first_name</th>
+      <th>last_name</th>
+      <th>email</th>
+      <th>email_verified</th>
+      <th>signup_date</th>
+      <th>referral_count</th>
+      <th>balance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>aaron</th>
+      <td>Aaron</td>
+      <td>Davis</td>
+      <td>aaron6348@gmail.com</td>
+      <td>True</td>
+      <td>2018-08-31</td>
+      <td>6</td>
+      <td>18.14</td>
+    </tr>
+    <tr>
+      <th>acook</th>
+      <td>Anthony</td>
+      <td>Cook</td>
+      <td>cook@gmail.com</td>
+      <td>True</td>
+      <td>2018-05-12</td>
+      <td>2</td>
+      <td>55.45</td>
+    </tr>
+    <tr>
+      <th>adam.saunders</th>
+      <td>Adam</td>
+      <td>Saunders</td>
+      <td>adam@gmail.com</td>
+      <td>False</td>
+      <td>2018-05-29</td>
+      <td>3</td>
+      <td>72.12</td>
+    </tr>
+    <tr>
+      <th>adrian</th>
+      <td>Adrian</td>
+      <td>Fang</td>
+      <td>adrian.fang@teamtreehouse.com</td>
+      <td>True</td>
+      <td>2018-04-28</td>
+      <td>3</td>
+      <td>30.01</td>
+    </tr>
+    <tr>
+      <th>adrian.blair</th>
+      <td>Adrian</td>
+      <td>Blair</td>
+      <td>adrian9335@gmail.com</td>
+      <td>True</td>
+      <td>2018-06-16</td>
+      <td>7</td>
+      <td>25.85</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="mas-fuentes-de-informacion-con-pandas">
+<h3>Más fuentes de información con pandas<a class="headerlink" href="#mas-fuentes-de-informacion-con-pandas" title="Link to this heading">#</a></h3>
+<p>Exploremos la forma en la que se cargan diferentes fuentes de datos con pandas, una vez cargados en un dataframe, se pueden aplicar los métodos y propiedades que hemos visto anteriormente.</p>
+<section id="cargar-json">
+<h4>Cargar JSON<a class="headerlink" href="#cargar-json" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filepath</span> <span class="o">=</span> <span class="s1">&#39;data/anscombe.json&#39;</span>
+
+<span class="c1"># Leer el archivo JSON</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+
+
+<span class="c1"># Verificar los datos</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Series</th>
+      <th>X</th>
+      <th>Y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>I</td>
+      <td>10</td>
+      <td>8.04</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>I</td>
+      <td>8</td>
+      <td>6.95</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>I</td>
+      <td>13</td>
+      <td>7.58</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>I</td>
+      <td>9</td>
+      <td>8.81</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>I</td>
+      <td>11</td>
+      <td>8.33</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="s1">&#39;data/mi_archivojson.json&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="cargar-excel">
+<h4>Cargar Excel<a class="headerlink" href="#cargar-excel" title="Link to this heading">#</a></h4>
+<p>Carguemos el archivo data/datos_rrss.xlsx en un DataFrame de pandas.</p>
+<p>Primero revisemos el contenido del archivo Excel.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Para cargar los datos de un archivo Excel, se usa la función read_excel</span>
+<span class="c1"># Debemos instalar la librería openpyxl</span>
+
+<span class="o">%</span><span class="k">pip</span> install openpyxl
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting openpyxl
+  Downloading openpyxl-3.1.4-py2.py3-none-any.whl.metadata (2.5 kB)
+Collecting et-xmlfile (from openpyxl)
+  Using cached et_xmlfile-1.1.0-py3-none-any.whl.metadata (1.8 kB)
+Downloading openpyxl-3.1.4-py2.py3-none-any.whl (251 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">251.4/251.4 kB</span> <span class=" -Color -Color-Red">1.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>a <span class=" -Color -Color-Cyan">0:00:01</span>m
+?25hUsing cached et_xmlfile-1.1.0-py3-none-any.whl (4.7 kB)
+Installing collected packages: et-xmlfile, openpyxl
+Successfully installed et-xmlfile-1.1.0 openpyxl-3.1.4
+Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">my_excel</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;data/datos_rrss.xlsx&#39;</span><span class="p">)</span>
+<span class="n">my_excel</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Nombre</th>
+      <th>Cantidad</th>
+      <th>ES_FBK</th>
+      <th>Año</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Facebook</td>
+      <td>2449</td>
+      <td>True</td>
+      <td>2006</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Twitter</td>
+      <td>339</td>
+      <td>False</td>
+      <td>2006</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Instagram</td>
+      <td>1000</td>
+      <td>True</td>
+      <td>2010</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>YouTube</td>
+      <td>2000</td>
+      <td>False</td>
+      <td>2005</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>LinkedIn</td>
+      <td>663</td>
+      <td>False</td>
+      <td>2003</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Esto por defecto carga la primera hoja del archivo Excel. Si deseas cargar una hoja específica, puedes hacerlo pasando el nombre de la hoja al argumento sheet_name.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_excel</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;data/datos_rrss.xlsx&#39;</span><span class="p">,</span><span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Hoja3&#39;</span><span class="p">)</span>
+<span class="n">my_excel</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> <span class="c1"># Note que este no tiene encabezado de la información</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Facebook</th>
+      <th>2449</th>
+      <th>True</th>
+      <th>2006</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Twitter</td>
+      <td>339</td>
+      <td>False</td>
+      <td>2006</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Instagram</td>
+      <td>1000</td>
+      <td>True</td>
+      <td>2010</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>YouTube</td>
+      <td>2000</td>
+      <td>False</td>
+      <td>2005</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>LinkedIn</td>
+      <td>663</td>
+      <td>False</td>
+      <td>2003</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>WhatsApp</td>
+      <td>1600</td>
+      <td>True</td>
+      <td>2009</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ajustar el encabezado</span>
+<span class="n">my_excel</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;data/datos_rrss.xlsx&#39;</span><span class="p">,</span><span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Hoja3&#39;</span><span class="p">)</span>
+<span class="n">my_excel</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Nombre&#39;</span><span class="p">,</span> <span class="s1">&#39;Cantidad&#39;</span><span class="p">,</span> <span class="s1">&#39;ES_FBK&#39;</span><span class="p">,</span> <span class="s1">&#39;Año&#39;</span><span class="p">]</span> <span class="c1"># De esta forma asignamos las columnas.</span>
+<span class="n">my_excel</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Nombre</th>
+      <th>Cantidad</th>
+      <th>ES_FBK</th>
+      <th>Año</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Twitter</td>
+      <td>339</td>
+      <td>False</td>
+      <td>2006</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Instagram</td>
+      <td>1000</td>
+      <td>True</td>
+      <td>2010</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>YouTube</td>
+      <td>2000</td>
+      <td>False</td>
+      <td>2005</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>LinkedIn</td>
+      <td>663</td>
+      <td>False</td>
+      <td>2003</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>WhatsApp</td>
+      <td>1600</td>
+      <td>True</td>
+      <td>2009</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_excel</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s1">&#39;data/mi_archivo_excel.xlsx&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># Guardar el archivo sin el índice (los números de las filas)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="cargar-directamente-desde-la-web">
+<h4>Cargar Directamente desde la web<a class="headerlink" href="#cargar-directamente-desde-la-web" title="Link to this heading">#</a></h4>
+<p>Pandas también puede cargar datos directamente desde una URL. Esto es útil si los datos que deseas cargar están disponibles en la web y no necesitas descargarlos localmente.</p>
+<section id="leer-csv-desde-una-url">
+<h5>Leer CSV desde una URL<a class="headerlink" href="#leer-csv-desde-una-url" title="Link to this heading">#</a></h5>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ejemplo para cargar datos desde la web</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/datasets/investor-flow-of-funds-us/master/data/weekly.csv&#39;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Total Equity</th>
+      <th>Domestic Equity</th>
+      <th>World Equity</th>
+      <th>Hybrid</th>
+      <th>Total Bond</th>
+      <th>Taxable Bond</th>
+      <th>Municipal Bond</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2012-12-05</td>
+      <td>-7426</td>
+      <td>-6060</td>
+      <td>-1367</td>
+      <td>-74</td>
+      <td>5317</td>
+      <td>4210</td>
+      <td>1107</td>
+      <td>-2183</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2012-12-12</td>
+      <td>-8783</td>
+      <td>-7520</td>
+      <td>-1263</td>
+      <td>123</td>
+      <td>1818</td>
+      <td>1598</td>
+      <td>219</td>
+      <td>-6842</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2012-12-19</td>
+      <td>-5496</td>
+      <td>-5470</td>
+      <td>-26</td>
+      <td>-73</td>
+      <td>103</td>
+      <td>3472</td>
+      <td>-3369</td>
+      <td>-5466</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2012-12-26</td>
+      <td>-4451</td>
+      <td>-4076</td>
+      <td>-375</td>
+      <td>550</td>
+      <td>2610</td>
+      <td>3333</td>
+      <td>-722</td>
+      <td>-1291</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2013-01-02</td>
+      <td>-11156</td>
+      <td>-9622</td>
+      <td>-1533</td>
+      <td>-158</td>
+      <td>2383</td>
+      <td>2103</td>
+      <td>280</td>
+      <td>-8931</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="leer-html-desde-una-url">
+<h5>Leer HTML desde una URL<a class="headerlink" href="#leer-html-desde-una-url" title="Link to this heading">#</a></h5>
+<p>Para este necesitamos instalar la librería lxml, que es una librería de Python que permite trabajar con archivos XML y HTML.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install lxml
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: lxml in ./.venv/lib/python3.11/site-packages (5.2.2)
+Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># URL de la página web que contiene la tabla</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://en.wikipedia.org/wiki/List_of_countries_by_inflation_rate&#39;</span>
+
+<span class="c1"># Leer todas las tablas en la página web</span>
+<span class="n">tables</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">tables</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[    0                                                  1
+ 0 NaN  This article needs to be updated. Please help ...,
+                         Country/Territory/Region/Group  \
+                         Country/Territory/Region/Group   
+ 0                                                Aruba   
+ 1                                          Afghanistan   
+ 2                                               Angola   
+ 3                                              Albania   
+ 4                                              Andorra   
+ ..                                                 ...   
+ 245                                     European Union   
+ 246                              G20 (Group of Twenty)   
+ 247                                 G-77 (Group of 77)   
+ 248  OECD (Organisation for Economic Cooperation an...   
+ 249  Notes: WB: Consumer price index reflects chang...   
+ 
+               World Bank consumer price indices (in %)  \
+                                                   2010   
+ 0                                                 2.08   
+ 1                                                 2.18   
+ 2                                                14.47   
+ 3                                                 3.63   
+ 4                                                  NaN   
+ ..                                                 ...   
+ 245                                               1.53   
+ 246                                                NaN   
+ 247                                                NaN   
+ 248                                               1.81   
+ 249  Notes: WB: Consumer price index reflects chang...   
+ 
+                                                         \
+                                                   2011   
+ 0                                                 4.32   
+ 1                                                11.80   
+ 2                                                13.48   
+ 3                                                 3.43   
+ 4                                                  NaN   
+ ..                                                 ...   
+ 245                                               3.29   
+ 246                                                NaN   
+ 247                                                NaN   
+ 248                                               3.37   
+ 249  Notes: WB: Consumer price index reflects chang...   
+ 
+                                                         \
+                                                   2012   
+ 0                                                 0.63   
+ 1                                                 6.44   
+ 2                                                10.28   
+ 3                                                 2.03   
+ 4                                                  NaN   
+ ..                                                 ...   
+ 245                                               2.66   
+ 246                                                NaN   
+ 247                                                NaN   
+ 248                                               2.53   
+ 249  Notes: WB: Consumer price index reflects chang...   
+ 
+                                                         \
+                                                   2013   
+ 0                                                −2.37   
+ 1                                                 7.39   
+ 2                                                 8.78   
+ 3                                                 1.94   
+ 4                                                  NaN   
+ ..                                                 ...   
+ 245                                               1.22   
+ 246                                                NaN   
+ 247                                                NaN   
+ 248                                               1.45   
+ 249  Notes: WB: Consumer price index reflects chang...   
+ 
+                                                         \
+                                                   2014   
+ 0                                                 0.42   
+ 1                                                 4.67   
+ 2                                                 7.28   
+ 3                                                 1.63   
+ 4                                                  NaN   
+ ..                                                 ...   
+ 245                                               0.20   
+ 246                                                NaN   
+ 247                                                NaN   
+ 248                                               0.62   
+ 249  Notes: WB: Consumer price index reflects chang...   
+ 
+                                                         \
+                                                   2015   
+ 0                                                 0.47   
+ 1                                                −0.66   
+ 2                                                 9.35   
+ 3                                                 1.90   
+ 4                                                  NaN   
+ ..                                                 ...   
+ 245                                              −0.06   
+ 246                                                NaN   
+ 247                                                NaN   
+ 248                                               0.34   
+ 249  Notes: WB: Consumer price index reflects chang...   
+ 
+                                                         \
+                                                   2016   
+ 0                                                −0.93   
+ 1                                                 4.38   
+ 2                                                30.70   
+ 3                                                 1.28   
+ 4                                                  NaN   
+ ..                                                 ...   
+ 245                                               0.18   
+ 246                                                NaN   
+ 247                                                NaN   
+ 248                                               0.44   
+ 249  Notes: WB: Consumer price index reflects chang...   
+ 
+                                                         \
+                                                   2017   
+ 0                                                −1.03   
+ 1                                                 4.98   
+ 2                                                29.84   
+ 3                                                 1.99   
+ 4                                                  NaN   
+ ..                                                 ...   
+ 245                                               1.43   
+ 246                                                NaN   
+ 247                                                NaN   
+ 248                                               1.82   
+ 249  Notes: WB: Consumer price index reflects chang...   
+ 
+                                                         \
+                                                   2018   
+ 0                                                 3.63   
+ 1                                                 0.63   
+ 2                                                19.63   
+ 3                                                 2.03   
+ 4                                                  NaN   
+ ..                                                 ...   
+ 245                                               1.74   
+ 246                                                NaN   
+ 247                                                NaN   
+ 248                                               1.93   
+ 249  Notes: WB: Consumer price index reflects chang...   
+ 
+                                                         \
+                                                   2019   
+ 0                                                 4.26   
+ 1                                                 2.30   
+ 2                                                17.08   
+ 3                                                 1.41   
+ 4                                                  NaN   
+ ..                                                 ...   
+ 245                                               1.63   
+ 246                                                NaN   
+ 247                                                NaN   
+ 248                                               1.74   
+ 249  Notes: WB: Consumer price index reflects chang...   
+ 
+                                                         \
+                                                   2020   
+ 0                                                  NaN   
+ 1                                                  NaN   
+ 2                                                22.27   
+ 3                                                 1.62   
+ 4                                                  NaN   
+ ..                                                 ...   
+ 245                                               0.48   
+ 246                                                NaN   
+ 247                                                NaN   
+ 248                                               0.73   
+ 249  Notes: WB: Consumer price index reflects chang...   
+ 
+                                                         \
+                                                   2021   
+ 0                                                  NaN   
+ 1                                                  NaN   
+ 2                                                25.75   
+ 3                                                 2.04   
+ 4                                                  NaN   
+ ..                                                 ...   
+ 245                                               2.55   
+ 246                                                NaN   
+ 247                                                NaN   
+ 248                                               2.82   
+ 249  Notes: WB: Consumer price index reflects chang...   
+ 
+                                                         \
+                                                   2022   
+ 0                                                  NaN   
+ 1                                                  NaN   
+ 2                                                  NaN   
+ 3                                                 6.73   
+ 4                                                  NaN   
+ ..                                                 ...   
+ 245                                               8.83   
+ 246                                                NaN   
+ 247                                                NaN   
+ 248                                               8.24   
+ 249  Notes: WB: Consumer price index reflects chang...   
+ 
+                    WB Consumer price index  (2010=100)  \
+                                                  Index   
+ 0                                                109.5   
+ 1                                                149.9   
+ 2                                                583.7   
+ 3                                                131.8   
+ 4                                                  NaN   
+ ..                                                 ...   
+ 245                                                NaN   
+ 246                                                NaN   
+ 247                                                NaN   
+ 248                                                NaN   
+ 249  Notes: WB: Consumer price index reflects chang...   
+ 
+                                                         
+                                                   Year  
+ 0                                                 2019  
+ 1                                                 2019  
+ 2                                                 2021  
+ 3                                                 2022  
+ 4                                                  NaN  
+ ..                                                 ...  
+ 245                                                NaN  
+ 246                                                NaN  
+ 247                                                NaN  
+ 248                                                NaN  
+ 249  Notes: WB: Consumer price index reflects chang...  
+ 
+ [250 rows x 16 columns],
+                         Country/Territory/Region/Group  \
+                         Country/Territory/Region/Group   
+                         Country/Territory/Region/Group   
+ 0                                                Aruba   
+ 1                                          Afghanistan   
+ 2                                               Angola   
+ 3                                              Albania   
+ 4                                              Andorra   
+ ..                                                 ...   
+ 245                                     European Union   
+ 246                              G20 (Group of Twenty)   
+ 247                                 G-77 (Group of 77)   
+ 248  OECD (Organisation for Economic Cooperation an...   
+ 249  Notes: WB: Consumer price index reflects chang...   
+ 
+                  United Nations consumer price indices  \
+                                                   2010   
+                                     Unnamed: 1_level_2   
+ 0                                                 2.08   
+ 1                                                  NaN   
+ 2                                                 2.15   
+ 3                                                 3.61   
+ 4                                                14.48   
+ ..                                                 ...   
+ 245                                               1.69   
+ 246                                               2.54   
+ 247                                               5.15   
+ 248                                               1.74   
+ 249  Notes: WB: Consumer price index reflects chang...   
+ 
+                                                         \
+                                                   2011   
+                                     Unnamed: 2_level_2   
+ 0                                                 4.38   
+ 1                                                12.17   
+ 2                                                 4.70   
+ 3                                                 3.44   
+ 4                                                13.48   
+ ..                                                 ...   
+ 245                                               2.74   
+ 246                                               3.75   
+ 247                                               6.87   
+ 248                                               2.79   
+ 249  Notes: WB: Consumer price index reflects chang...   
+ 
+                                                         \
+                                                   2012   
+                                     Unnamed: 3_level_2   
+ 0                                                 0.57   
+ 1                                               −28.64   
+ 2                                                 1.43   
+ 3                                                 2.04   
+ 4                                                10.28   
+ ..                                                 ...   
+ 245                                               2.53   
+ 246                                               2.77   
+ 247                                               5.45   
+ 248                                               2.13   
+ 249  Notes: WB: Consumer price index reflects chang...   
+ 
+                                                         \
+                                                   2013   
+                                     Unnamed: 4_level_2   
+ 0                                                −2.37   
+ 1                                                −9.90   
+ 2                                                 0.19   
+ 3                                                 1.93   
+ 4                                                 8.78   
+ ..                                                 ...   
+ 245                                               1.37   
+ 246                                               2.40   
+ 247                                               5.15   
+ 248                                               1.53   
+ 249  Notes: WB: Consumer price index reflects chang...   
+ 
+                                                         \
+                                                   2014   
+                                     Unnamed: 5_level_2   
+ 0                                                 0.42   
+ 1                                                 4.67   
+ 2                                                −0.28   
+ 3                                                 1.61   
+ 4                                                 7.30   
+ ..                                                 ...   
+ 245                                               0.44   
+ 246                                               2.38   
+ 247                                               4.56   
+ 248                                               1.59   
+ 249  Notes: WB: Consumer price index reflects chang...   
+ 
+                                                         \
+                                                   2015   
+                                     Unnamed: 6_level_2   
+ 0                                                 0.47   
+ 1                                                −1.55   
+ 2                                                −0.94   
+ 3                                                 1.87   
+ 4                                                 9.16   
+ ..                                                 ...   
+ 245                                               0.17   
+ 246                                               1.72   
+ 247                                               4.08   
+ 248                                               0.53   
+ 249  Notes: WB: Consumer price index reflects chang...   
+ 
+                                                         \
+                                                   2016   
+                                     Unnamed: 7_level_2   
+ 0                                                −0.93   
+ 1                                                 2.12   
+ 2                                                −0.57   
+ 3                                                 1.29   
+ 4                                                30.69   
+ ..                                                 ...   
+ 245                                               0.22   
+ 246                                               2.08   
+ 247                                               5.03   
+ 248                                               1.00   
+ 249  Notes: WB: Consumer price index reflects chang...   
+ 
+                                                         \
+                                                   2017   
+                                     Unnamed: 8_level_2   
+ 0                                                −1.03   
+ 1                                               −10.57   
+ 2                                                 1.34   
+ 3                                                 1.98   
+ 4                                                29.84   
+ ..                                                 ...   
+ 245                                               1.56   
+ 246                                               2.34   
+ 247                                               3.98   
+ 248                                               2.07   
+ 249  Notes: WB: Consumer price index reflects chang...   
+ 
+                                                         \
+                                                   2018   
+                                     Unnamed: 9_level_2   
+ 0                                                 3.63   
+ 1                                                 0.63   
+ 2                                                 0.38   
+ 3                                                 2.03   
+ 4                                                19.63   
+ ..                                                 ...   
+ 245                                               1.81   
+ 246                                               2.72   
+ 247                                               4.59   
+ 248                                               2.37   
+ 249  Notes: WB: Consumer price index reflects chang...   
+ 
+                                                         \
+                                                   2019   
+                                    Unnamed: 10_level_2   
+ 0                                                 3.94   
+ 1                                                 2.30   
+ 2                                                 0.75   
+ 3                                                 1.41   
+ 4                                                17.08   
+ ..                                                 ...   
+ 245                                               1.36   
+ 246                                               2.68   
+ 247                                               5.23   
+ 248                                               1.80   
+ 249  Notes: WB: Consumer price index reflects chang...   
+ 
+                                                         \
+                                                   2020   
+                                    Unnamed: 11_level_2   
+ 0                                                −1.31   
+ 1                                                 5.60   
+ 2                                                −0.47   
+ 3                                                 1.62   
+ 4                                                22.28   
+ ..                                                 ...   
+ 245                                               0.53   
+ 246                                               2.06   
+ 247                                               5.63   
+ 248                                               1.10   
+ 249  Notes: WB: Consumer price index reflects chang...   
+ 
+                                                         \
+                                                   2021   
+                                    Unnamed: 12_level_2   
+ 0                                                 0.73   
+ 1                                                 5.13   
+ 2                                                 1.78   
+ 3                                                 2.04   
+ 4                                                25.77   
+ ..                                                 ...   
+ 245                                               2.77   
+ 246                                               3.67   
+ 247                                               6.28   
+ 248                                               3.65   
+ 249  Notes: WB: Consumer price index reflects chang...   
+ 
+                                                         
+                                                   2022  
+                                    Unnamed: 13_level_2  
+ 0                                                 5.59  
+ 1                                                13.71  
+ 2                                                 3.04  
+ 3                                                 6.73  
+ 4                                                21.36  
+ ..                                                 ...  
+ 245                                               8.89  
+ 246                                               7.97  
+ 247                                               7.72  
+ 248                                               8.94  
+ 249  Notes: WB: Consumer price index reflects chang...  
+ 
+ [250 rows x 14 columns],
+          vteLists of countries by financial rankings  \
+ 0                                              Trade   
+ 1                                         Investment   
+ 2                                              Funds   
+ 3                                    Budget and debt   
+ 4                                   Income and taxes   
+ 5                                         Bank rates   
+ 6                                           Currency   
+ 7                                              Other   
+ 8  Lists of countries by GDP rankings List of int...   
+ 
+        vteLists of countries by financial rankings.1  
+ 0  Account balance % of GDP Exports by product me...  
+ 1                   FDI received past FDI abroad GFI  
+ 2  Forex reserves Gold reserves Sovereign wealth ...  
+ 3  Government budget PPP % of GDP per capita Cred...  
+ 4  Tax rates Inheritance tax Tax revenue Wage ave...  
+ 5  Central bank interest rate Commercial bank pri...  
+ 6               Exchange rates to US$ Inflation rate  
+ 7  Financial Development Index Average annual lab...  
+ 8  Lists of countries by GDP rankings List of int...  ]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imprimir el número total de tablas que se traen de la página web</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Número total de tablas: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">tables</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Número total de tablas: 4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Revisemos las tablas que tenemos</span>
+<span class="n">tables</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>NaN</td>
+      <td>This article needs to be updated. Please help ...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Country/Territory/Region/Group</th>
+      <th colspan="13" halign="left">World Bank consumer price indices (in %)</th>
+      <th colspan="2" halign="left">WB Consumer price index  (2010=100)</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Country/Territory/Region/Group</th>
+      <th>2010</th>
+      <th>2011</th>
+      <th>2012</th>
+      <th>2013</th>
+      <th>2014</th>
+      <th>2015</th>
+      <th>2016</th>
+      <th>2017</th>
+      <th>2018</th>
+      <th>2019</th>
+      <th>2020</th>
+      <th>2021</th>
+      <th>2022</th>
+      <th>Index</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Aruba</td>
+      <td>2.08</td>
+      <td>4.32</td>
+      <td>0.63</td>
+      <td>−2.37</td>
+      <td>0.42</td>
+      <td>0.47</td>
+      <td>−0.93</td>
+      <td>−1.03</td>
+      <td>3.63</td>
+      <td>4.26</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>109.5</td>
+      <td>2019</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Afghanistan</td>
+      <td>2.18</td>
+      <td>11.80</td>
+      <td>6.44</td>
+      <td>7.39</td>
+      <td>4.67</td>
+      <td>−0.66</td>
+      <td>4.38</td>
+      <td>4.98</td>
+      <td>0.63</td>
+      <td>2.30</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>149.9</td>
+      <td>2019</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Angola</td>
+      <td>14.47</td>
+      <td>13.48</td>
+      <td>10.28</td>
+      <td>8.78</td>
+      <td>7.28</td>
+      <td>9.35</td>
+      <td>30.70</td>
+      <td>29.84</td>
+      <td>19.63</td>
+      <td>17.08</td>
+      <td>22.27</td>
+      <td>25.75</td>
+      <td>NaN</td>
+      <td>583.7</td>
+      <td>2021</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Albania</td>
+      <td>3.63</td>
+      <td>3.43</td>
+      <td>2.03</td>
+      <td>1.94</td>
+      <td>1.63</td>
+      <td>1.90</td>
+      <td>1.28</td>
+      <td>1.99</td>
+      <td>2.03</td>
+      <td>1.41</td>
+      <td>1.62</td>
+      <td>2.04</td>
+      <td>6.73</td>
+      <td>131.8</td>
+      <td>2022</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Andorra</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tables</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Country/Territory/Region/Group</th>
+      <th colspan="13" halign="left">United Nations consumer price indices</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Country/Territory/Region/Group</th>
+      <th>2010</th>
+      <th>2011</th>
+      <th>2012</th>
+      <th>2013</th>
+      <th>2014</th>
+      <th>2015</th>
+      <th>2016</th>
+      <th>2017</th>
+      <th>2018</th>
+      <th>2019</th>
+      <th>2020</th>
+      <th>2021</th>
+      <th>2022</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Country/Territory/Region/Group</th>
+      <th>Unnamed: 1_level_2</th>
+      <th>Unnamed: 2_level_2</th>
+      <th>Unnamed: 3_level_2</th>
+      <th>Unnamed: 4_level_2</th>
+      <th>Unnamed: 5_level_2</th>
+      <th>Unnamed: 6_level_2</th>
+      <th>Unnamed: 7_level_2</th>
+      <th>Unnamed: 8_level_2</th>
+      <th>Unnamed: 9_level_2</th>
+      <th>Unnamed: 10_level_2</th>
+      <th>Unnamed: 11_level_2</th>
+      <th>Unnamed: 12_level_2</th>
+      <th>Unnamed: 13_level_2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Aruba</td>
+      <td>2.08</td>
+      <td>4.38</td>
+      <td>0.57</td>
+      <td>−2.37</td>
+      <td>0.42</td>
+      <td>0.47</td>
+      <td>−0.93</td>
+      <td>−1.03</td>
+      <td>3.63</td>
+      <td>3.94</td>
+      <td>−1.31</td>
+      <td>0.73</td>
+      <td>5.59</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Afghanistan</td>
+      <td>NaN</td>
+      <td>12.17</td>
+      <td>−28.64</td>
+      <td>−9.90</td>
+      <td>4.67</td>
+      <td>−1.55</td>
+      <td>2.12</td>
+      <td>−10.57</td>
+      <td>0.63</td>
+      <td>2.30</td>
+      <td>5.60</td>
+      <td>5.13</td>
+      <td>13.71</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Angola</td>
+      <td>2.15</td>
+      <td>4.70</td>
+      <td>1.43</td>
+      <td>0.19</td>
+      <td>−0.28</td>
+      <td>−0.94</td>
+      <td>−0.57</td>
+      <td>1.34</td>
+      <td>0.38</td>
+      <td>0.75</td>
+      <td>−0.47</td>
+      <td>1.78</td>
+      <td>3.04</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Albania</td>
+      <td>3.61</td>
+      <td>3.44</td>
+      <td>2.04</td>
+      <td>1.93</td>
+      <td>1.61</td>
+      <td>1.87</td>
+      <td>1.29</td>
+      <td>1.98</td>
+      <td>2.03</td>
+      <td>1.41</td>
+      <td>1.62</td>
+      <td>2.04</td>
+      <td>6.73</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Andorra</td>
+      <td>14.48</td>
+      <td>13.48</td>
+      <td>10.28</td>
+      <td>8.78</td>
+      <td>7.30</td>
+      <td>9.16</td>
+      <td>30.69</td>
+      <td>29.84</td>
+      <td>19.63</td>
+      <td>17.08</td>
+      <td>22.28</td>
+      <td>25.77</td>
+      <td>21.36</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tables</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>vteLists of countries by financial rankings</th>
+      <th>vteLists of countries by financial rankings.1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Trade</td>
+      <td>Account balance % of GDP Exports by product me...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Investment</td>
+      <td>FDI received past FDI abroad GFI</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Funds</td>
+      <td>Forex reserves Gold reserves Sovereign wealth ...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Budget and debt</td>
+      <td>Government budget PPP % of GDP per capita Cred...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Income and taxes</td>
+      <td>Tax rates Inheritance tax Tax revenue Wage ave...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Vamos a leer otras tablas a partir de HTML</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">table_MN</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="s1">&#39;https://en.wikipedia.org/wiki/Minnesota&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Total de tablas obtenidas: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">table_MN</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total de tablas obtenidas: 28
+</pre></div>
+</div>
+</div>
+</div>
+<p>Con 38 tablas, puede ser un desafío encontrar la que necesitas. Para facilitar la selección de la tabla, utiliza el parámetro match para seleccionar un subconjunto de tablas. Podemos usar el título “Resultados de las elecciones en carreras estatales” para seleccionar la tabla:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install html5lib
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: html5lib in ./.venv/lib/python3.11/site-packages (1.1)
+Requirement already satisfied: six&gt;=1.9 in ./.venv/lib/python3.11/site-packages (from html5lib) (1.16.0)
+Requirement already satisfied: webencodings in ./.venv/lib/python3.11/site-packages (from html5lib) (0.5.1)
+Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">table_MN</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="s1">&#39;https://en.wikipedia.org/wiki/Minnesota&#39;</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s1">&#39;presidential election results&#39;</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">table_MN</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">table_MN</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Year</th>
+      <th colspan="2" halign="left">Republican</th>
+      <th colspan="2" halign="left">Democratic</th>
+      <th colspan="2" halign="left">Third party</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Year</th>
+      <th>No.</th>
+      <th>%</th>
+      <th>No.</th>
+      <th>%</th>
+      <th>No.</th>
+      <th>%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2020</td>
+      <td>1484065</td>
+      <td>45.28%</td>
+      <td>1717077</td>
+      <td>52.40%</td>
+      <td>76029</td>
+      <td>2.32%</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2016</td>
+      <td>1323232</td>
+      <td>44.93%</td>
+      <td>1367825</td>
+      <td>46.44%</td>
+      <td>254176</td>
+      <td>8.63%</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2012</td>
+      <td>1320225</td>
+      <td>44.96%</td>
+      <td>1546167</td>
+      <td>52.65%</td>
+      <td>70169</td>
+      <td>2.39%</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2008</td>
+      <td>1275409</td>
+      <td>43.82%</td>
+      <td>1573354</td>
+      <td>54.06%</td>
+      <td>61606</td>
+      <td>2.12%</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2004</td>
+      <td>1346695</td>
+      <td>47.61%</td>
+      <td>1445014</td>
+      <td>51.09%</td>
+      <td>36678</td>
+      <td>1.30%</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="s1">&#39;data/mi_tabla_descargada.html&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="s1">&#39;data/mi_tabla_descargada.json&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;data/mi_tabla_descargada.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s1">&#39;data/mi_tabla_descargada.xlsx&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="cargar-datos-de-una-base-de-datos-sql-mid-level">
+<h3>Cargar datos de una base de datos SQL (Mid-level)<a class="headerlink" href="#cargar-datos-de-una-base-de-datos-sql-mid-level" title="Link to this heading">#</a></h3>
+<p>Pandas permite cargar datos directamente desde una base de datos SQL o NoSQL, como SQLite, MySQL, PostgreSQL, MongoDB, entre otros. Para ello, necesitas instalar los controladores de la base de datos correspondiente, como sqlalchemy, psycopg2, pymysql, pymongo, entre otros.</p>
+<section id="sql">
+<h4>SQL<a class="headerlink" href="#sql" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install sqlalchemy
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting sqlalchemy
+  Downloading SQLAlchemy-2.0.31-cp311-cp311-macosx_11_0_arm64.whl.metadata (9.6 kB)
+Requirement already satisfied: typing-extensions&gt;=4.6.0 in ./.venv/lib/python3.11/site-packages (from sqlalchemy) (4.12.2)
+Downloading SQLAlchemy-2.0.31-cp311-cp311-macosx_11_0_arm64.whl (2.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">2.1/2.1 MB</span> <span class=" -Color -Color-Red">5.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>a <span class=" -Color -Color-Cyan">0:00:01</span>0m
+?25hInstalling collected packages: sqlalchemy
+Successfully installed sqlalchemy-2.0.31
+Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span> <span class="c1"># Este es el método para crear la conexión con la base de datos</span>
+
+<span class="c1"># Crear la conexión con la base de datos</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;sqlite:///data/mibase.db&#39;</span><span class="p">)</span>  <span class="c1"># Para otros motores debes cambiar el nombre del motor </span>
+                                                    <span class="c1"># y la string de de conexión de la DB</span>
+
+<span class="c1"># Leer los datos de una tabla específica. En este caso, la tabla rock_songs que es una tabla de la base de datos</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s1">&#39;SELECT * FROM rock_songs&#39;</span><span class="p">,</span> <span class="n">engine</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Song</th>
+      <th>Artist</th>
+      <th>Release_Year</th>
+      <th>PlayCount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Caught Up in You</td>
+      <td>.38 Special</td>
+      <td>1982.0</td>
+      <td>82</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Hold On Loosely</td>
+      <td>.38 Special</td>
+      <td>1981.0</td>
+      <td>85</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Rockin' Into the Night</td>
+      <td>.38 Special</td>
+      <td>1980.0</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Art For Arts Sake</td>
+      <td>10cc</td>
+      <td>1975.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Kryptonite</td>
+      <td>3 Doors Down</td>
+      <td>2000.0</td>
+      <td>13</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM rock_songs WHERE Artist=&#39;AC/DC&#39; &quot;</span><span class="p">,</span> <span class="n">engine</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Song</th>
+      <th>Artist</th>
+      <th>Release_Year</th>
+      <th>PlayCount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Back In Black</td>
+      <td>AC/DC</td>
+      <td>1980.0</td>
+      <td>97</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Big Gun</td>
+      <td>AC/DC</td>
+      <td>1993.0</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Dirty Deeds Done Dirt Cheap</td>
+      <td>AC/DC</td>
+      <td>1976.0</td>
+      <td>85</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>For Those About To Rock</td>
+      <td>AC/DC</td>
+      <td>1981.0</td>
+      <td>46</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Hard As A Rock</td>
+      <td>AC/DC</td>
+      <td>1995.0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Estas son formas de traer datos desde una base de datos, depende del tamaño de los datos, o del problema, si es conveniente hacer la query y traer el resultado o traer toda la tabla y trabajar con ella.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Guardar el DataFrame en una tabla de la base de datos</span>
+<span class="n">data</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">&#39;rock_song_filtered&#39;</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span> <span class="n">if_exists</span><span class="o">=</span><span class="s1">&#39;replace&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#series-de-pandas">Series de pandas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acceso-a-los-elementos-de-una-serie">Acceso a los elementos de una Serie</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#acceso-por-indexacion-como-lista">Acceso por indexación como lista</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#acceso-por-la-clace-de-indice">Acceso por la clace de índice</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vectorizacion-y-broadcasting">Vectorización y broadcasting</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vectorizacion">Vectorización</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#broadcasting">Broadcasting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframes-de-pandas">DataFrames de pandas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acceso-a-los-elementos-de-un-dataframe">Acceso a los elementos de un DataFrame</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#obtener-una-columna-especifica">Obtener una columna específica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#recuperar-un-valor-especifico-mediante-encadenamiento">Recuperar un valor específico mediante encadenamiento</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-fuentes-externas-de-datos">Cargar Fuentes externas de datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-sintaxis-general-para-cargar-datos-en-un-dataframe-de-pandas-es-la-siguiente">La sintaxis general para cargar datos en un DataFrame de pandas es la siguiente:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-sintaxis-general-para-guardar-datos-desde-un-dataframe-de-pandas-es-la-siguiente">La sintaxis general para guardar datos desde un DataFrame de pandas es la siguiente:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exploremos-los-datos-que-importamos">Exploremos los datos que importamos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explorando-la-informacion">Explorando la información</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#info">Info</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#counts">Counts</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dtype">Dtype</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#describe">Describe</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#otros-metodos">Otros métodos</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reordenar-columnas">Reordenar columnas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mas-fuentes-de-informacion-con-pandas">Más fuentes de información con pandas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-json">Cargar JSON</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-excel">Cargar Excel</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-directamente-desde-la-web">Cargar Directamente desde la web</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#leer-csv-desde-una-url">Leer CSV desde una URL</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#leer-html-desde-una-url">Leer HTML desde una URL</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-datos-de-una-base-de-datos-sql-mid-level">Cargar datos de una base de datos SQL (Mid-level)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql">SQL</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Reinel Tabares, Johan Piña, Brayan Arteaga
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
