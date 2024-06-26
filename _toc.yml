@@ -12,5 +12,6 @@ chapters:
 - file: "EstructurasRepetitivas"
 - file: "Funciones"
 - file: "Ficheros"
-- file: "Intro_Pandas"
+- file: "Intro_pandas"
+- file: "Data_filtering_and_cleaning"
     #- file: "recursos_extra"
