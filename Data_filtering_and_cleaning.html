@@ -1,0 +1,3655 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>“Data cleaning” y “Filtros” &#8212; Introducción a Python 2024 - 01</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Data_filtering_and_cleaning';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Introducción a Pandas" href="Intro_pandas.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Introducción a Python 2024 - 01 - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Introducción a Python 2024 - 01 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Bienvenida al curso
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="Unidad1.html">Introducción a Python</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Introduccion.html">Primeros pasos</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="OperacionesCondicionales.html">Operaciones con tipos y estructuras condicionales</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="OperacionesListasTuplas.html">Operaciones con Listas, Tuplas y Diccionarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EstructurasRepetitivas.html">Estructuras Repetitivas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Funciones.html">Funciones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ficheros.html">Manejo de ficheros</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Intro_pandas.html">Introducción a Pandas</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">“Data cleaning” y “Filtros”</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/BioAITeamLearning/IntroPython_2024_01_UAI/blob/main/Data_filtering_and_cleaning.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/BioAITeamLearning/IntroPython_2024_01_UAI" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/BioAITeamLearning/IntroPython_2024_01_UAI/issues/new?title=Issue%20on%20page%20%2FData_filtering_and_cleaning.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Data_filtering_and_cleaning.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>“Data cleaning” y “Filtros”</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tratamiento-de-valores-faltantes">Tratamiento de valores Faltantes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio">Ejercicio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-con-dataframes">Operaciones con dataframes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-de-indexacion-booleana">Operaciones de indexación booleana</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-de-indexacion-con-operadores-logicos">Operaciones de indexación con operadores lógicos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-entre-columnas">Operaciones entre columnas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ordenar-los-valores-de-un-resultado">Ordenar los valores de un resultado</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-sobre-columnas">Operaciones sobre columnas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transformar-textos-de-un-dataframe">Transformar textos de un dataframe</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminiar-columnas-de-un-dataframe">Eliminiar columnas de un dataframe</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cambiar-el-nombre-de-las-columnas">Cambiar el nombre de las columnas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ver-solo-algunas-columnas">Ver solo algunas columnas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-de-agregacion">Funciones de agregación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-de-agrupacion">Funciones de agrupación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unir-varios-dataframes-usando-merge">Unir varios dataframes usando merge</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-de-practica">Ejercicios de práctica</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1">Ejercicio 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2">Ejercicio 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-3">Ejercicio 3</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="data-cleaning-y-filtros">
+<h1>“Data cleaning” y “Filtros”<a class="headerlink" href="#data-cleaning-y-filtros" title="Link to this heading">#</a></h1>
+<p>Para responder a preguntas a partir de los datos, pandas es una librería muy útil. Sin embargo, los datos no siempre vienen limpios y listos para ser analizados. En este notebook, veremos cómo limpiar datos y cómo filtrarlos para responder a preguntas específicas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span> <span class="c1"># Vamos a cargar un dataset de ejemplo.</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/titanic.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Braund, Mr. Owen Harris</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>A/5 21171</td>
+      <td>7.2500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O2. 3101282</td>
+      <td>7.9250</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>113803</td>
+      <td>53.1000</td>
+      <td>C123</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Allen, Mr. William Henry</td>
+      <td>male</td>
+      <td>35.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>373450</td>
+      <td>8.0500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>886</th>
+      <td>887</td>
+      <td>0</td>
+      <td>2</td>
+      <td>Montvila, Rev. Juozas</td>
+      <td>male</td>
+      <td>27.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>211536</td>
+      <td>13.0000</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>887</th>
+      <td>888</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Graham, Miss. Margaret Edith</td>
+      <td>female</td>
+      <td>19.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>112053</td>
+      <td>30.0000</td>
+      <td>B42</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>888</th>
+      <td>889</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Johnston, Miss. Catherine Helen "Carrie"</td>
+      <td>female</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>2</td>
+      <td>W./C. 6607</td>
+      <td>23.4500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>889</th>
+      <td>890</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Behr, Mr. Karl Howell</td>
+      <td>male</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>111369</td>
+      <td>30.0000</td>
+      <td>C148</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>890</th>
+      <td>891</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Dooley, Mr. Patrick</td>
+      <td>male</td>
+      <td>32.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>370376</td>
+      <td>7.7500</td>
+      <td>NaN</td>
+      <td>Q</td>
+    </tr>
+  </tbody>
+</table>
+<p>891 rows × 12 columns</p>
+</div></div></div>
+</div>
+<p>Revisa algunos de los métodos anteriores para revisar la data y explorar el tamaño de la información y las columnas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TU CÓDIGO AQUÍ</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="tratamiento-de-valores-faltantes">
+<h2>Tratamiento de valores Faltantes<a class="headerlink" href="#tratamiento-de-valores-faltantes" title="Link to this heading">#</a></h2>
+<p>Un problema común en los datos es la presencia de valores faltantes. Estos valores pueden ser NaN, None, NaT, entre otros. Para tratar estos valores, podemos usar el método <code class="docutils literal notranslate"><span class="pre">fillna()</span></code> para reemplazar los valores faltantes por un valor específico. También podemos usar el método <code class="docutils literal notranslate"><span class="pre">dropna()</span></code> para eliminar las filas que contienen valores faltantes.</p>
+<p>Con el método <code class="docutils literal notranslate"><span class="pre">isnull()</span></code>, podemos identificar los valores faltantes en un DataFrame. Este método devuelve un DataFrame booleano con True en las posiciones donde hay valores faltantes y False en las posiciones donde no hay valores faltantes.</p>
+<p>Si usamos <code class="docutils literal notranslate"><span class="pre">fillna()</span></code> se reemplazarán los valores faltantes por el valor que le pasemos como argumento. Si usamos <code class="docutils literal notranslate"><span class="pre">dropna()</span></code> se eliminarán las filas que contienen valores faltantes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># Note que al parecer el cambio no se ha realizado. ¿Por qué? ¿Qué podemos hacer para solucionar esto?</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Braund, Mr. Owen Harris</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>A/5 21171</td>
+      <td>7.2500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O2. 3101282</td>
+      <td>7.9250</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>113803</td>
+      <td>53.1000</td>
+      <td>C123</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Allen, Mr. William Henry</td>
+      <td>male</td>
+      <td>35.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>373450</td>
+      <td>8.0500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Moran, Mr. James</td>
+      <td>male</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>330877</td>
+      <td>8.4583</td>
+      <td>NaN</td>
+      <td>Q</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>0</td>
+      <td>1</td>
+      <td>McCarthy, Mr. Timothy J</td>
+      <td>male</td>
+      <td>54.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>17463</td>
+      <td>51.8625</td>
+      <td>E46</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>8</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Palsson, Master. Gosta Leonard</td>
+      <td>male</td>
+      <td>2.0</td>
+      <td>3</td>
+      <td>1</td>
+      <td>349909</td>
+      <td>21.0750</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>9</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Johnson, Mrs. Oscar W (Elisabeth Vilhelmina Berg)</td>
+      <td>female</td>
+      <td>27.0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>347742</td>
+      <td>11.1333</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>10</td>
+      <td>1</td>
+      <td>2</td>
+      <td>Nasser, Mrs. Nicholas (Adele Achem)</td>
+      <td>female</td>
+      <td>14.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>237736</td>
+      <td>30.0708</td>
+      <td>NaN</td>
+      <td>C</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_cleaned</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">df_cleaned</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># Ahora sí se ha realizado el cambio.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Braund, Mr. Owen Harris</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>A/5 21171</td>
+      <td>7.2500</td>
+      <td>-</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O2. 3101282</td>
+      <td>7.9250</td>
+      <td>-</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>113803</td>
+      <td>53.1000</td>
+      <td>C123</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Allen, Mr. William Henry</td>
+      <td>male</td>
+      <td>35.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>373450</td>
+      <td>8.0500</td>
+      <td>-</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Moran, Mr. James</td>
+      <td>male</td>
+      <td>-</td>
+      <td>0</td>
+      <td>0</td>
+      <td>330877</td>
+      <td>8.4583</td>
+      <td>-</td>
+      <td>Q</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>0</td>
+      <td>1</td>
+      <td>McCarthy, Mr. Timothy J</td>
+      <td>male</td>
+      <td>54.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>17463</td>
+      <td>51.8625</td>
+      <td>E46</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>8</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Palsson, Master. Gosta Leonard</td>
+      <td>male</td>
+      <td>2.0</td>
+      <td>3</td>
+      <td>1</td>
+      <td>349909</td>
+      <td>21.0750</td>
+      <td>-</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>9</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Johnson, Mrs. Oscar W (Elisabeth Vilhelmina Berg)</td>
+      <td>female</td>
+      <td>27.0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>347742</td>
+      <td>11.1333</td>
+      <td>-</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>10</td>
+      <td>1</td>
+      <td>2</td>
+      <td>Nasser, Mrs. Nicholas (Adele Achem)</td>
+      <td>female</td>
+      <td>14.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>237736</td>
+      <td>30.0708</td>
+      <td>-</td>
+      <td>C</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>    <span class="c1"># Esta es otra forma de tratar los valores nulos, </span>
+                                <span class="c1"># solo que en esta le especificamos que queremos que se haga el cambio en el mismo dataframe.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Otras formas de completar los valores nulos son:</span>
+<span class="c1"># - fillna(0) para completar con ceros.</span>
+<span class="c1"># - fillna(&#39;Desconocido&#39;) para completar con un string.</span>
+<span class="c1"># - fillna(df[&#39;columna&#39;].mean()) para completar con el promedio de la columna.</span>
+<span class="c1"># - fillna(df[&#39;columna&#39;].median()) para completar con la mediana de la columna.</span>
+<span class="c1"># - fillna(df[&#39;columna&#39;].mode()[0]) para completar con la moda de la columna.</span>
+<span class="c1"># - fillna(method=&#39;ffill&#39;) para completar con el valor anterior.</span>
+<span class="c1"># - fillna(method=&#39;bfill&#39;) para completar con el valor siguiente.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio">
+<h2>Ejercicio<a class="headerlink" href="#ejercicio" title="Link to this heading">#</a></h2>
+<p>Realiza la limpieza de solo una columna del dataframe y que los valores nulos se rellenen por el promedio de la columna.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TU CÓDIGO AQUÍ</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="operaciones-con-dataframes">
+<h2>Operaciones con dataframes<a class="headerlink" href="#operaciones-con-dataframes" title="Link to this heading">#</a></h2>
+<p>Para realizar operaciones y filtrar información del dataframe o calcular nuevas columnas a partir de los datos ya existentes podemos utilizar funcionalidades especializadas de pandas. Vamos a revisar algunas cosas que podemos hacer con los dataframes.</p>
+<section id="operaciones-de-indexacion-booleana">
+<h3>Operaciones de indexación booleana<a class="headerlink" href="#operaciones-de-indexacion-booleana" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Indexación booleana</span>
+<span class="c1"># La indexación booleana es una técnica que nos permite seleccionar un subconjunto de datos de un DataFrame </span>
+<span class="c1"># que cumpla con cierta condición.</span>
+
+<span class="c1"># Por ejemplo, si queremos seleccionar los pasajeros que son mujeres, podemos hacer lo siguiente:</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Braund, Mr. Owen Harris</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>A/5 21171</td>
+      <td>7.2500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O2. 3101282</td>
+      <td>7.9250</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. revisemos los posibles valores que puede tomar la columna</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;male&#39;, &#39;female&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2. Como solo quiero seleccionar los que son mujeres hago lo siguiente:</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;female&#39;</span> 
+
+<span class="n">result</span> <span class="c1"># así, en result tenemos una serie de booleanos que nos indican si el pasajero es mujer o no. </span>
+
+<span class="c1"># Pero nosotros queremos es tener los registros de las mujeres, para eso hacemos lo siguiente:</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      False
+1       True
+2       True
+3       True
+4      False
+       ...  
+886    False
+887     True
+888     True
+889    False
+890    False
+Name: Sex, Length: 891, dtype: bool
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">result</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O2. 3101282</td>
+      <td>7.9250</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>113803</td>
+      <td>53.1000</td>
+      <td>C123</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>9</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Johnson, Mrs. Oscar W (Elisabeth Vilhelmina Berg)</td>
+      <td>female</td>
+      <td>27.0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>347742</td>
+      <td>11.1333</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>10</td>
+      <td>1</td>
+      <td>2</td>
+      <td>Nasser, Mrs. Nicholas (Adele Achem)</td>
+      <td>female</td>
+      <td>14.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>237736</td>
+      <td>30.0708</td>
+      <td>NaN</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>880</th>
+      <td>881</td>
+      <td>1</td>
+      <td>2</td>
+      <td>Shelley, Mrs. William (Imanita Parrish Hall)</td>
+      <td>female</td>
+      <td>25.0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>230433</td>
+      <td>26.0000</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>882</th>
+      <td>883</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Dahlberg, Miss. Gerda Ulrika</td>
+      <td>female</td>
+      <td>22.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>7552</td>
+      <td>10.5167</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>885</th>
+      <td>886</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Rice, Mrs. William (Margaret Norton)</td>
+      <td>female</td>
+      <td>39.0</td>
+      <td>0</td>
+      <td>5</td>
+      <td>382652</td>
+      <td>29.1250</td>
+      <td>NaN</td>
+      <td>Q</td>
+    </tr>
+    <tr>
+      <th>887</th>
+      <td>888</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Graham, Miss. Margaret Edith</td>
+      <td>female</td>
+      <td>19.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>112053</td>
+      <td>30.0000</td>
+      <td>B42</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>888</th>
+      <td>889</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Johnston, Miss. Catherine Helen "Carrie"</td>
+      <td>female</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>2</td>
+      <td>W./C. 6607</td>
+      <td>23.4500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+<p>314 rows × 12 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># O lo que es lo mismo:</span>
+<span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;female&#39;</span><span class="p">]</span>
+<span class="c1"># Esta sintaxis se puede leer como: del dataframe df, vamos a seleccionar las filas donde el dataframe df en la columna &quot;Sex&quot; sea igual a &quot;female&quot;.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O2. 3101282</td>
+      <td>7.9250</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>113803</td>
+      <td>53.1000</td>
+      <td>C123</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>9</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Johnson, Mrs. Oscar W (Elisabeth Vilhelmina Berg)</td>
+      <td>female</td>
+      <td>27.0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>347742</td>
+      <td>11.1333</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>10</td>
+      <td>1</td>
+      <td>2</td>
+      <td>Nasser, Mrs. Nicholas (Adele Achem)</td>
+      <td>female</td>
+      <td>14.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>237736</td>
+      <td>30.0708</td>
+      <td>NaN</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>880</th>
+      <td>881</td>
+      <td>1</td>
+      <td>2</td>
+      <td>Shelley, Mrs. William (Imanita Parrish Hall)</td>
+      <td>female</td>
+      <td>25.0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>230433</td>
+      <td>26.0000</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>882</th>
+      <td>883</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Dahlberg, Miss. Gerda Ulrika</td>
+      <td>female</td>
+      <td>22.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>7552</td>
+      <td>10.5167</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>885</th>
+      <td>886</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Rice, Mrs. William (Margaret Norton)</td>
+      <td>female</td>
+      <td>39.0</td>
+      <td>0</td>
+      <td>5</td>
+      <td>382652</td>
+      <td>29.1250</td>
+      <td>NaN</td>
+      <td>Q</td>
+    </tr>
+    <tr>
+      <th>887</th>
+      <td>888</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Graham, Miss. Margaret Edith</td>
+      <td>female</td>
+      <td>19.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>112053</td>
+      <td>30.0000</td>
+      <td>B42</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>888</th>
+      <td>889</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Johnston, Miss. Catherine Helen "Carrie"</td>
+      <td>female</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>2</td>
+      <td>W./C. 6607</td>
+      <td>23.4500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+<p>314 rows × 12 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="operaciones-de-indexacion-con-operadores-logicos">
+<h3>Operaciones de indexación con operadores lógicos<a class="headerlink" href="#operaciones-de-indexacion-con-operadores-logicos" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pensemos ahora que queremos saber cuales fueron los pasajeros de la clase mayor a 1 que sobrevivieron.</span>
+
+<span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Pclass&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Braund, Mr. Owen Harris</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>A/5 21171</td>
+      <td>7.2500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O2. 3101282</td>
+      <td>7.9250</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Allen, Mr. William Henry</td>
+      <td>male</td>
+      <td>35.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>373450</td>
+      <td>8.0500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Moran, Mr. James</td>
+      <td>male</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>330877</td>
+      <td>8.4583</td>
+      <td>NaN</td>
+      <td>Q</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>8</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Palsson, Master. Gosta Leonard</td>
+      <td>male</td>
+      <td>2.0</td>
+      <td>3</td>
+      <td>1</td>
+      <td>349909</td>
+      <td>21.0750</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>884</th>
+      <td>885</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Sutehall, Mr. Henry Jr</td>
+      <td>male</td>
+      <td>25.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>SOTON/OQ 392076</td>
+      <td>7.0500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>885</th>
+      <td>886</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Rice, Mrs. William (Margaret Norton)</td>
+      <td>female</td>
+      <td>39.0</td>
+      <td>0</td>
+      <td>5</td>
+      <td>382652</td>
+      <td>29.1250</td>
+      <td>NaN</td>
+      <td>Q</td>
+    </tr>
+    <tr>
+      <th>886</th>
+      <td>887</td>
+      <td>0</td>
+      <td>2</td>
+      <td>Montvila, Rev. Juozas</td>
+      <td>male</td>
+      <td>27.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>211536</td>
+      <td>13.0000</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>888</th>
+      <td>889</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Johnston, Miss. Catherine Helen "Carrie"</td>
+      <td>female</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>2</td>
+      <td>W./C. 6607</td>
+      <td>23.4500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>890</th>
+      <td>891</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Dooley, Mr. Patrick</td>
+      <td>male</td>
+      <td>32.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>370376</td>
+      <td>7.7500</td>
+      <td>NaN</td>
+      <td>Q</td>
+    </tr>
+  </tbody>
+</table>
+<p>675 rows × 12 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ahora extraigamos los pasajeros que son mujeres, sobrevivieron y mayores de 20 años.</span>
+<span class="n">condicion</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;female&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">20</span><span class="p">)</span> <span class="c1"># Note que para unir los filtros usamos los operadores &amp; y |. que son el AND y el OR respectivamente.</span>
+                                                                            <span class="c1"># Esta notación de los simbolos es más familiar para los programadores en C, C++, Java, etc.  </span>
+<span class="n">df</span><span class="p">[</span><span class="n">condicion</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O2. 3101282</td>
+      <td>7.9250</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>113803</td>
+      <td>53.1000</td>
+      <td>C123</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>9</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Johnson, Mrs. Oscar W (Elisabeth Vilhelmina Berg)</td>
+      <td>female</td>
+      <td>27.0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>347742</td>
+      <td>11.1333</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>12</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Bonnell, Miss. Elizabeth</td>
+      <td>female</td>
+      <td>58.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>113783</td>
+      <td>26.5500</td>
+      <td>C103</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>866</th>
+      <td>867</td>
+      <td>1</td>
+      <td>2</td>
+      <td>Duran y More, Miss. Asuncion</td>
+      <td>female</td>
+      <td>27.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>SC/PARIS 2149</td>
+      <td>13.8583</td>
+      <td>NaN</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>871</th>
+      <td>872</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Beckwith, Mrs. Richard Leonard (Sallie Monypeny)</td>
+      <td>female</td>
+      <td>47.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>11751</td>
+      <td>52.5542</td>
+      <td>D35</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>874</th>
+      <td>875</td>
+      <td>1</td>
+      <td>2</td>
+      <td>Abelson, Mrs. Samuel (Hannah Wizosky)</td>
+      <td>female</td>
+      <td>28.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>P/PP 3381</td>
+      <td>24.0000</td>
+      <td>NaN</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>879</th>
+      <td>880</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Potter, Mrs. Thomas Jr (Lily Alexenia Wilson)</td>
+      <td>female</td>
+      <td>56.0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>11767</td>
+      <td>83.1583</td>
+      <td>C50</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>880</th>
+      <td>881</td>
+      <td>1</td>
+      <td>2</td>
+      <td>Shelley, Mrs. William (Imanita Parrish Hall)</td>
+      <td>female</td>
+      <td>25.0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>230433</td>
+      <td>26.0000</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+<p>144 rows × 12 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># modo PRO</span>
+<span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;female&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">20</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O2. 3101282</td>
+      <td>7.9250</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>113803</td>
+      <td>53.1000</td>
+      <td>C123</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>9</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Johnson, Mrs. Oscar W (Elisabeth Vilhelmina Berg)</td>
+      <td>female</td>
+      <td>27.0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>347742</td>
+      <td>11.1333</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>12</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Bonnell, Miss. Elizabeth</td>
+      <td>female</td>
+      <td>58.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>113783</td>
+      <td>26.5500</td>
+      <td>C103</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>866</th>
+      <td>867</td>
+      <td>1</td>
+      <td>2</td>
+      <td>Duran y More, Miss. Asuncion</td>
+      <td>female</td>
+      <td>27.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>SC/PARIS 2149</td>
+      <td>13.8583</td>
+      <td>NaN</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>871</th>
+      <td>872</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Beckwith, Mrs. Richard Leonard (Sallie Monypeny)</td>
+      <td>female</td>
+      <td>47.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>11751</td>
+      <td>52.5542</td>
+      <td>D35</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>874</th>
+      <td>875</td>
+      <td>1</td>
+      <td>2</td>
+      <td>Abelson, Mrs. Samuel (Hannah Wizosky)</td>
+      <td>female</td>
+      <td>28.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>P/PP 3381</td>
+      <td>24.0000</td>
+      <td>NaN</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>879</th>
+      <td>880</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Potter, Mrs. Thomas Jr (Lily Alexenia Wilson)</td>
+      <td>female</td>
+      <td>56.0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>11767</td>
+      <td>83.1583</td>
+      <td>C50</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>880</th>
+      <td>881</td>
+      <td>1</td>
+      <td>2</td>
+      <td>Shelley, Mrs. William (Imanita Parrish Hall)</td>
+      <td>female</td>
+      <td>25.0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>230433</td>
+      <td>26.0000</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+<p>144 rows × 12 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="operaciones-entre-columnas">
+<h3>Operaciones entre columnas<a class="headerlink" href="#operaciones-entre-columnas" title="Link to this heading">#</a></h3>
+<p>Si quiero crear una columna nueva puedo simplemente decir <code class="docutils literal notranslate"><span class="pre">df['nueva_columna']</span> <span class="pre">=</span> <span class="pre">df['columna1']</span> <span class="pre">+</span> <span class="pre">df['columna2']</span></code> y se creará una nueva columna con la suma de los valores de las columnas 1 y 2.</p>
+<p>Veamos como quedaría el código para realizar estas operaciones. en las que sumemos 10 a la columna Fare y luego ese resultado lo vamos a dividir entre la edad para cada uno de los pasajeros.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;mi_nueva_columna&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Fare&#39;</span><span class="p">]</span> <span class="c1"># Podemos crear nuevas columnas a partir de las existentes.</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+      <th>mi_nueva_columna</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Braund, Mr. Owen Harris</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>A/5 21171</td>
+      <td>7.2500</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>17.2500</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+      <td>81.2833</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O2. 3101282</td>
+      <td>7.9250</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>17.9250</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;mi_otra_columna&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;mi_nueva_columna&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span> <span class="c1"># Podemos crear nuevas columnas a partir de las existentes.</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+      <th>mi_nueva_columna</th>
+      <th>mi_otra_columna</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Braund, Mr. Owen Harris</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>A/5 21171</td>
+      <td>7.2500</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>17.2500</td>
+      <td>0.784091</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+      <td>81.2833</td>
+      <td>2.139034</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O2. 3101282</td>
+      <td>7.9250</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>17.9250</td>
+      <td>0.689423</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<section id="ordenar-los-valores-de-un-resultado">
+<h4>Ordenar los valores de un resultado<a class="headerlink" href="#ordenar-los-valores-de-un-resultado" title="Link to this heading">#</a></h4>
+<p>Si queremos ordenar los valores de un resultado, podemos usar el método <code class="docutils literal notranslate"><span class="pre">sort_values()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ordenemos los valores de una columna de forma ascendente, luego de sacar los registros &gt; 20 años.</span>
+<span class="n">condicion</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="n">condicion</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+      <th>Apellido_Pasajero</th>
+      <th>Nombre_Pasajero</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>227</th>
+      <td>228</td>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>20.5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>A/5 21173</td>
+      <td>7.2500</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>Lovell</td>
+      <td>Mr. John Hall ("Henry")</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>38</td>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>21.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>A./5. 2152</td>
+      <td>8.0500</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>Cann</td>
+      <td>Mr. Ernest Charles</td>
+    </tr>
+    <tr>
+      <th>56</th>
+      <td>57</td>
+      <td>1</td>
+      <td>2</td>
+      <td>female</td>
+      <td>21.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>C.A. 31026</td>
+      <td>10.5000</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>Rugg</td>
+      <td>Miss. Emily</td>
+    </tr>
+    <tr>
+      <th>436</th>
+      <td>437</td>
+      <td>0</td>
+      <td>3</td>
+      <td>female</td>
+      <td>21.0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>W./C. 6608</td>
+      <td>34.3750</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>Ford</td>
+      <td>Miss. Doolina Margaret "Daisy"</td>
+    </tr>
+    <tr>
+      <th>106</th>
+      <td>107</td>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>21.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>343120</td>
+      <td>7.6500</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>Salkjelsvik</td>
+      <td>Miss. Anna Kristine</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>116</th>
+      <td>117</td>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>70.5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>370369</td>
+      <td>7.7500</td>
+      <td>NaN</td>
+      <td>Q</td>
+      <td>Connors</td>
+      <td>Mr. Patrick</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>97</td>
+      <td>0</td>
+      <td>1</td>
+      <td>male</td>
+      <td>71.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>PC 17754</td>
+      <td>34.6542</td>
+      <td>A5</td>
+      <td>C</td>
+      <td>Goldschmidt</td>
+      <td>Mr. George B</td>
+    </tr>
+    <tr>
+      <th>493</th>
+      <td>494</td>
+      <td>0</td>
+      <td>1</td>
+      <td>male</td>
+      <td>71.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>PC 17609</td>
+      <td>49.5042</td>
+      <td>NaN</td>
+      <td>C</td>
+      <td>Artagaveytia</td>
+      <td>Mr. Ramon</td>
+    </tr>
+    <tr>
+      <th>851</th>
+      <td>852</td>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>74.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>347060</td>
+      <td>7.7750</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>Svensson</td>
+      <td>Mr. Johan</td>
+    </tr>
+    <tr>
+      <th>630</th>
+      <td>631</td>
+      <td>1</td>
+      <td>1</td>
+      <td>male</td>
+      <td>80.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>27042</td>
+      <td>30.0000</td>
+      <td>A23</td>
+      <td>S</td>
+      <td>Barkworth</td>
+      <td>Mr. Algernon Henry Wilson</td>
+    </tr>
+  </tbody>
+</table>
+<p>535 rows × 13 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="operaciones-sobre-columnas">
+<h3>Operaciones sobre columnas<a class="headerlink" href="#operaciones-sobre-columnas" title="Link to this heading">#</a></h3>
+<p>Si quieres sacar medidas estadísticas de una columna puedes usar los métodos <code class="docutils literal notranslate"><span class="pre">mean()</span></code>, <code class="docutils literal notranslate"><span class="pre">median()</span></code>, <code class="docutils literal notranslate"><span class="pre">std()</span></code>, <code class="docutils literal notranslate"><span class="pre">min()</span></code>, <code class="docutils literal notranslate"><span class="pre">max()</span></code>, <code class="docutils literal notranslate"><span class="pre">count()</span></code>, <code class="docutils literal notranslate"><span class="pre">sum()</span></code>, entre otros.</p>
+<p>Aquellas columnas que tienen valores NaN no se incluyen en el cálculo de estas medidas. Si quieres incluir los valores NaN en el cálculo de estas medidas, puedes usar el argumento <code class="docutils literal notranslate"><span class="pre">skipna=False</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="c1"># Podemos hacer operaciones sobre las columnas.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(21205.17)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">Age</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>   <span class="c1"># También podemos hacerlo de esta forma, usando el nombre de la columna como atributo, </span>
+                <span class="c1"># pero si el nombre de la columna tiene espacios o caracteres especiales toca hacerlo como muestra arriba.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(29.69911764705882)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="transformar-textos-de-un-dataframe">
+<h3>Transformar textos de un dataframe<a class="headerlink" href="#transformar-textos-de-un-dataframe" title="Link to this heading">#</a></h3>
+<p>Ahora miremos otro ejemplo, que pasa si quiero separar de nombre el apellido y el nombre en dos columnas diferentes. Para esto podemos usar el método <code class="docutils literal notranslate"><span class="pre">str.split()</span></code> que nos permite separar un texto en base a un separador.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Apellido&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># Podemos crear nuevas columnas a partir de las existentes.</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Nombre&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># Podemos crear nuevas columnas a partir de las existentes.</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+      <th>mi_nueva_columna</th>
+      <th>mi_otra_columna</th>
+      <th>Apellido</th>
+      <th>Nombre</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Braund, Mr. Owen Harris</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>A/5 21171</td>
+      <td>7.2500</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>17.2500</td>
+      <td>0.784091</td>
+      <td>Braund</td>
+      <td>Mr. Owen Harris</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+      <td>81.2833</td>
+      <td>2.139034</td>
+      <td>Cumings</td>
+      <td>Mrs. John Bradley (Florence Briggs Thayer)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O2. 3101282</td>
+      <td>7.9250</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>17.9250</td>
+      <td>0.689423</td>
+      <td>Heikkinen</td>
+      <td>Miss. Laina</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="eliminiar-columnas-de-un-dataframe">
+<h3>Eliminiar columnas de un dataframe<a class="headerlink" href="#eliminiar-columnas-de-un-dataframe" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Eliminar las columnas especificas de un DF</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mi_nueva_columna&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># Podemos eliminar columnas que no necesitamos.</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span><span class="s1">&#39;mi_otra_columna&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># Podemos eliminar columnas que no necesitamos.</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+      <th>Apellido</th>
+      <th>Nombre</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>A/5 21171</td>
+      <td>7.2500</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>Braund</td>
+      <td>Mr. Owen Harris</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+      <td>Cumings</td>
+      <td>Mrs. John Bradley (Florence Briggs Thayer)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O2. 3101282</td>
+      <td>7.9250</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>Heikkinen</td>
+      <td>Miss. Laina</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="cambiar-el-nombre-de-las-columnas">
+<h3>Cambiar el nombre de las columnas<a class="headerlink" href="#cambiar-el-nombre-de-las-columnas" title="Link to this heading">#</a></h3>
+<p>Ahora vamos a cambiar los nombres de las columnas al español. Para esto podemos usar el método <code class="docutils literal notranslate"><span class="pre">rename()</span></code> que nos permite cambiar el nombre de las columnas de un dataframe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Apellido&#39;</span><span class="p">:</span><span class="s1">&#39;Apellido_Pasajero&#39;</span><span class="p">,</span> <span class="s1">&#39;Nombre&#39;</span><span class="p">:</span><span class="s1">&#39;Nombre_Pasajero&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># Podemos renombrar columnas. Note que siempre que usamos inplace=True, estamos modificando el dataframe original.</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+      <th>Apellido_Pasajero</th>
+      <th>Nombre_Pasajero</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>A/5 21171</td>
+      <td>7.2500</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>Braund</td>
+      <td>Mr. Owen Harris</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+      <td>Cumings</td>
+      <td>Mrs. John Bradley (Florence Briggs Thayer)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O2. 3101282</td>
+      <td>7.9250</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>Heikkinen</td>
+      <td>Miss. Laina</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="ver-solo-algunas-columnas">
+<h3>Ver solo algunas columnas<a class="headerlink" href="#ver-solo-algunas-columnas" title="Link to this heading">#</a></h3>
+<p>Veamos como se puede seleccionar solo algunas columnas de un dataframe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pedazo</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Nombre_Pasajero&#39;</span><span class="p">,</span> <span class="s1">&#39;Apellido_Pasajero&#39;</span><span class="p">,</span> <span class="s1">&#39;Survived&#39;</span><span class="p">,</span> <span class="s1">&#39;Pclass&#39;</span><span class="p">]]</span>
+<span class="n">pedazo</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Nombre_Pasajero</th>
+      <th>Apellido_Pasajero</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Mr. Owen Harris</td>
+      <td>Braund</td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Mrs. John Bradley (Florence Briggs Thayer)</td>
+      <td>Cumings</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Miss. Laina</td>
+      <td>Heikkinen</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="funciones-de-agregacion">
+<h3>Funciones de agregación<a class="headerlink" href="#funciones-de-agregacion" title="Link to this heading">#</a></h3>
+<p>Para realizar operaciones de agregación en un dataframe, podemos usar el método <code class="docutils literal notranslate"><span class="pre">agg()</span></code>. Este método nos permite aplicar una función de agregación a una o más columnas de un dataframe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Funciones de agregación</span>
+<span class="c1"># Las funciones de agregación nos permiten realizar operaciones sobre un conjunto de datos y resumiros en un solo valor. las funiones sum, mean, median, max, min, etc. son ejemplos de funciones de agregación.</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="c1"># Por ejemplo, podemos calcular el promedio de la edad de los pasajeros.</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="c1"># O la edad máxima.</span>
+
+<span class="c1"># otra sintaxis es usando el método agg</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span> <span class="c1"># Por ejemplo, podemos calcular el promedio de la edad de los pasajeros.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(29.69911764705882)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="funciones-de-agrupacion">
+<h3>Funciones de agrupación<a class="headerlink" href="#funciones-de-agrupacion" title="Link to this heading">#</a></h3>
+<p>Para realizar operaciones de agrupación en un DataFrame, podemos usar el método <code class="docutils literal notranslate"><span class="pre">groupby()</span></code>. Este método divide el DataFrame en grupos según los valores de una o más columnas. Luego, podemos aplicar funciones de agregación a estos grupos.</p>
+<img src="https://raw.githubusercontent.com/jorisvandenbossche/pandas-tutorial/8308a6eb7d144fff95a6853930e3be4e8ddb2e0f//img/splitApplyCombine.png"><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Vamos a agrupar nuestos datos por sobrevivientes o no y calcular el promedio de la edad de cada grupo.</span>
+
+<span class="c1"># Tradicionalmente lo haríamos así:</span>
+
+<span class="n">mean_1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="c1"># Promedio de la edad de los sobrevivientes.</span>
+<span class="n">mean_0</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="c1"># Promedio de la edad de los no sobrevivientes.</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">mean_1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mean_0</span><span class="p">)</span>
+
+<span class="c1">## Entonces tendriamos que conocer cada una de las etiquetas para hacer los filtros, pero con groupby podemos hacerlo de una forma más sencilla.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>28.343689655172415
+30.62617924528302
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Survived&#39;</span><span class="p">)[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="c1"># Esto nos retorna una serie en la que saca el valor de la suma de la edad para cada uno de los valores de la columna Survived.</span>
+
+<span class="c1"># Esto se puede leer como: Agrupe los registros del dataframe df por la columna Survived y tome los valores de la columna Age y sumelos.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Survived
+0    12985.50
+1     8219.67
+Name: Age, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Survived&#39;</span><span class="p">)[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;sum&#39;</span><span class="p">)</span> <span class="c1"># Esto es igual a la anterior, solo que usamos el método agg.</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Survived&#39;</span><span class="p">)[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="s1">&#39;sum&#39;</span><span class="p">)</span> <span class="c1"># Esto es igual a la anterior, solo que usamos el método aggregate.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Survived
+0    12985.50
+1     8219.67
+Name: Age, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="unir-varios-dataframes-usando-merge">
+<h3>Unir varios dataframes usando merge<a class="headerlink" href="#unir-varios-dataframes-usando-merge" title="Link to this heading">#</a></h3>
+<p>Esta es una opción muy útil cuando tenemos varios dataframes y queremos unirlos en uno solo. Para esto podemos usar el método <code class="docutils literal notranslate"><span class="pre">merge()</span></code> que nos permite unir dos dataframes en base a una o más columnas en común.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">transactions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/transactions.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">requests</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/requests.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Revisemos los dataframes obtenidos</span>
+<span class="n">transactions</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sender</th>
+      <th>receiver</th>
+      <th>amount</th>
+      <th>sent_date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>stein</td>
+      <td>smoyer</td>
+      <td>49.03</td>
+      <td>2018-01-24</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>holden4580</td>
+      <td>joshua.henry</td>
+      <td>34.64</td>
+      <td>2018-02-06</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Revisemos los dataframes obtenidos</span>
+<span class="n">requests</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>from_user</th>
+      <th>to_user</th>
+      <th>amount</th>
+      <th>request_date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>chad.chen</td>
+      <td>paula7980</td>
+      <td>78.61</td>
+      <td>2018-02-12</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>kallen</td>
+      <td>lmoore</td>
+      <td>1.94</td>
+      <td>2018-02-23</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Me gustaría ver todas las solicitudes que tienen una transacción coincidente basada en los usuarios y el monto involucrado.</p>
+<p>Para hacer esto, combinaremos ambos conjuntos de datos.</p>
+<p>Crearemos un nuevo conjunto de datos utilizando el método DataFrame.merge.</p>
+<img src="https://uclouvain-cbio.github.io/WSBIM1207/figs/join-outer.png"/><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Como estamos llamando a merge en el DataFrame `requests`, se considera el lado izquierdo</span>
+<span class="n">successful_requests</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+    <span class="c1"># Y `transactions` es el lado derecho</span>
+    <span class="n">transactions</span><span class="p">,</span> 
+    <span class="c1"># Así que ahora alineamos las columnas que harán que la unión tenga sentido. esto es decir cual de la izquierda corresponde a la de la derecha.</span>
+    <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;from_user&#39;</span><span class="p">,</span> <span class="s1">&#39;to_user&#39;</span><span class="p">,</span> <span class="s1">&#39;amount&#39;</span><span class="p">],</span> 
+    <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;receiver&#39;</span><span class="p">,</span> <span class="s1">&#39;sender&#39;</span><span class="p">,</span> <span class="s1">&#39;amount&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="c1"># Veamos cómo nos fue</span>
+<span class="n">successful_requests</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>from_user</th>
+      <th>to_user</th>
+      <th>amount</th>
+      <th>request_date</th>
+      <th>sender</th>
+      <th>receiver</th>
+      <th>sent_date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>chad.chen</td>
+      <td>paula7980</td>
+      <td>78.61</td>
+      <td>2018-02-12</td>
+      <td>paula7980</td>
+      <td>chad.chen</td>
+      <td>2018-07-15</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>kallen</td>
+      <td>lmoore</td>
+      <td>1.94</td>
+      <td>2018-02-23</td>
+      <td>lmoore</td>
+      <td>kallen</td>
+      <td>2018-03-05</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>gregory.blackwell</td>
+      <td>rodriguez5768</td>
+      <td>30.57</td>
+      <td>2018-03-04</td>
+      <td>rodriguez5768</td>
+      <td>gregory.blackwell</td>
+      <td>2018-03-17</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>kristina.miller</td>
+      <td>john.hardy</td>
+      <td>77.05</td>
+      <td>2018-03-12</td>
+      <td>john.hardy</td>
+      <td>kristina.miller</td>
+      <td>2018-04-25</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>lacey8987</td>
+      <td>mcguire</td>
+      <td>54.09</td>
+      <td>2018-03-13</td>
+      <td>mcguire</td>
+      <td>lacey8987</td>
+      <td>2018-06-28</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="ejercicios-de-practica">
+<h2>Ejercicios de práctica<a class="headerlink" href="#ejercicios-de-practica" title="Link to this heading">#</a></h2>
+<section id="ejercicio-1">
+<h3>Ejercicio 1<a class="headerlink" href="#ejercicio-1" title="Link to this heading">#</a></h3>
+<p>Vamos a usar la data de sobrevivientes del Titanic. Vamos  responder a los siguientes enunciados:</p>
+<ol class="arabic simple">
+<li><p>¿Cuántos pasajeros sobrevivieron y cuántos no sobrevivieron?</p></li>
+<li><p>¿Cuántos pasajeros de cada clase sobrevivieron?</p></li>
+<li><p>¿Cuántos hombres y mujeres sobrevivieron?</p></li>
+<li><p>Usando groupby(), calcula la edad promedio para cada sexo.</p></li>
+<li><p>Calcula tasa promedio de supervivencia para todos los pasajeros.</p></li>
+<li><p>Calcula este ratio de supervivencia para todos los pasajeros menores de 25 años (recuerda: filtrado/indexación booleana)</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tu código aquí</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-2">
+<h3>Ejercicio 2<a class="headerlink" href="#ejercicio-2" title="Link to this heading">#</a></h3>
+<p><strong>Contexto:</strong></p>
+<p>Conjunto de datos cast: diferentes roles interpretados por actores/actrices en películas.</p>
+<p>title: título de la película</p>
+<ul class="simple">
+<li><p>name: nombre del actor/actriz</p></li>
+<li><p>type: actor/actriz</p></li>
+<li><p>n: el orden del rol (n=1: rol principal)</p></li>
+</ul>
+<p>Preguntas:</p>
+<ol class="arabic simple">
+<li><p>Usando groupby(), muestra el número de películas que se han estrenado cada década en la historia del cine.</p></li>
+<li><p>Usa groupby() para mostrar el número de películas de “Hamlet” hechas cada década.</p></li>
+<li><p>¿Cuántos roles principales (n=1) estuvieron disponibles para actores y cuántos para actrices, en cada año de la década de 1950?</p></li>
+<li><p>Lista los 10 actores/actrices que tienen más roles principales (n=1) desde la década de 1990.</p></li>
+<li><p>Usa groupby() para determinar cuántos roles están listados para cada una de las películas de “The Pink Panther”.</p></li>
+<li><p>Lista, en orden por año, cada una de las películas en las que Frank Oz ha interpretado más de un papel.</p></li>
+<li><p>Listar cada uno de los personajes que Frank Oz ha interpretado al menos dos veces</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tu código aquí</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-3">
+<h3>Ejercicio 3<a class="headerlink" href="#ejercicio-3" title="Link to this heading">#</a></h3>
+<p>Tienda de bicicletas</p>
+<p><strong>Preguntas:</strong></p>
+<ol class="arabic simple">
+<li><p>¿Cuál es el promedio de <code class="docutils literal notranslate"><span class="pre">Customers_Age</span></code>?</p></li>
+<li><p>¿Cuál es el promedio de <code class="docutils literal notranslate"><span class="pre">Order_Quantity</span></code>?</p></li>
+<li><p>¿Cuántas ventas por año se hacen?</p></li>
+<li><p>¿Cuántas ventas por mes se hacen?</p></li>
+<li><p>¿Qué paises tienen las mayores ventas?</p></li>
+<li><p>Crea una lista de cada producto vendido.</p></li>
+<li><p>Incrementa 50 Dólares de reveniue a cada venta.</p></li>
+<li><p>Obten el top 5 de productos más vendidos.</p></li>
+<li><p>Cuantas ordenes se hicieron en cada región de Francia.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tu código aquí</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Intro_pandas.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Introducción a Pandas</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tratamiento-de-valores-faltantes">Tratamiento de valores Faltantes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio">Ejercicio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-con-dataframes">Operaciones con dataframes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-de-indexacion-booleana">Operaciones de indexación booleana</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-de-indexacion-con-operadores-logicos">Operaciones de indexación con operadores lógicos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-entre-columnas">Operaciones entre columnas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ordenar-los-valores-de-un-resultado">Ordenar los valores de un resultado</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-sobre-columnas">Operaciones sobre columnas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transformar-textos-de-un-dataframe">Transformar textos de un dataframe</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminiar-columnas-de-un-dataframe">Eliminiar columnas de un dataframe</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cambiar-el-nombre-de-las-columnas">Cambiar el nombre de las columnas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ver-solo-algunas-columnas">Ver solo algunas columnas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-de-agregacion">Funciones de agregación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-de-agrupacion">Funciones de agrupación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unir-varios-dataframes-usando-merge">Unir varios dataframes usando merge</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-de-practica">Ejercicios de práctica</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1">Ejercicio 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2">Ejercicio 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-3">Ejercicio 3</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Reinel Tabares, Johan Piña, Brayan Arteaga
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
