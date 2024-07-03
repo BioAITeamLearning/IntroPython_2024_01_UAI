@@ -15,4 +15,6 @@ chapters:
 - file: "Intro_pandas"
 - file: "Data_filtering_and_cleaning"
 - file: "VisualizacionesPython" 
+- file: "VisualizacionDinamica"
+
     #- file: "recursos_extra"
