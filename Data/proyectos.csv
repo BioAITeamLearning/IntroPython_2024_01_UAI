@@ -1,3 +1,4 @@
+nombre,descripcion,fecha_inicio,fecha_fin,estado,presupuesto
 Construcción de puente,Construcción de un nuevo puente sobre el río,2023-01-01,2023-12-31,planificado,1000000
 Renovación de parque,Renovación del parque central de la ciudad,2023-03-01,2023-09-30,en curso,250000
 Construcción de escuela,Construcción de una nueva escuela primaria,2023-05-01,2024-04-30,planificado,500000
