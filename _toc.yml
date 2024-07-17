@@ -17,5 +17,6 @@ chapters:
 - file: "VisualizacionesPython" 
 - file: "VisualizacionDinamicaFoliumF"
 - file: "Automatizaciones"
-
+- file: "DataSciencePt1"
+- file: "DataSciencePt2"
     #- file: "recursos_extra"
