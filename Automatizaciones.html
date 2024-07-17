@@ -60,6 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Automatizaciones';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Ejemplo de ciencia de datos" href="DataSciencePt1.html" />
     <link rel="prev" title="Otras visualizaciones" href="VisualizacionDinamicaFoliumF.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -199,6 +200,8 @@
 
 
 
+<li class="toctree-l1"><a class="reference internal" href="DataSciencePt1.html">Ejemplo de ciencia de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DataSciencePt2.html">Ejemplo de ciencia de datos</a></li>
 </ul>
 
     </div>
@@ -2085,7 +2088,7 @@ Hello,Timothy this is your balance: 99.9. This is just a test
 <span class="kn">import</span> <span class="nn">smtplib</span>
 
 <span class="k">def</span> <span class="nf">send_mail</span><span class="p">(</span><span class="n">mensaje</span><span class="p">,</span><span class="n">destinatario</span><span class="p">):</span>
-  <span class="n">remitente</span> <span class="o">=</span> <span class="s2">&quot;jspinad@gmail.com&quot;</span>
+  <span class="n">remitente</span> <span class="o">=</span> <span class="s2">&quot;remitente@gmail.com&quot;</span>
 
   <span class="n">email</span> <span class="o">=</span> <span class="n">EmailMessage</span><span class="p">()</span>
 
@@ -2097,7 +2100,7 @@ Hello,Timothy this is your balance: 99.9. This is just a test
 
 
   <span class="n">smtp</span> <span class="o">=</span> <span class="n">smtplib</span><span class="o">.</span><span class="n">SMTP_SSL</span><span class="p">(</span><span class="s2">&quot;smtp.gmail.com&quot;</span><span class="p">)</span> <span class="c1"># Iniciamos la conexión a gmail, para otros correos se debe cambiar el parametro.</span>
-  <span class="n">smtp</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">remitente</span><span class="p">,</span> <span class="s2">&quot;caar kfqv zjoo isfn&quot;</span><span class="p">)</span> <span class="c1"># Autenticación con la clave de aplicaciones de google</span>
+  <span class="n">smtp</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">remitente</span><span class="p">,</span> <span class="s2">&quot;clave_de_gmail_123&quot;</span><span class="p">)</span> <span class="c1"># Autenticación con la clave de aplicaciones de google</span>
   <span class="n">smtp</span><span class="o">.</span><span class="n">sendmail</span><span class="p">(</span><span class="n">remitente</span><span class="p">,</span> <span class="n">destinatario</span><span class="p">,</span> <span class="n">email</span><span class="o">.</span><span class="n">as_string</span><span class="p">())</span>
   <span class="n">smtp</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
 </pre></div>
@@ -3265,6 +3268,15 @@ if (outputEl) {{
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">Otras visualizaciones</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="DataSciencePt1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Ejemplo de ciencia de datos</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
